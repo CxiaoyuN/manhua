@@ -74,9 +74,17 @@ class Users extends BaseUcenter
             $balance = $this->financeService->getBalance();
             cache('balance:' . $this->uid, $balance, '', 'pay');
         }
+        $user = User::get($this->uid);
+        $time = $user->vip_expire_time - time();
+        $day = 0;
+        if ($time > 0) {
+            $day = ceil(($user->vip_expire_time - time()) / (60 * 60 * 24));
+        }
         $this->assign([
             'balance' => $balance,
-            'header_title' => '个人中心'
+            'user' => $user,
+            'header_title' => '个人中心',
+            'day' => $day
         ]);
         return view($this->tpl);
     }

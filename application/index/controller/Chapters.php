@@ -25,9 +25,11 @@ class Chapters extends Base
             $flag = false;
         }
         $uid = session('xwx_user_id');
-        $level = session('xwx_user_level'); //用户等级
-        if (!is_null($level)) {
-            if ((int)$level > 0) { //如果是vip会员，则可以不受限制
+
+        if (!is_null($uid)) { //如果用户已经登录
+            $vip_expire_time = session('xwx_vip_expire_time'); //用户等级
+            $time = $vip_expire_time - time(); //计算vip用户时长
+            if ($time > 0) { //如果是vip会员且没过期，则可以不受限制
                 $flag = true;
             } else { //如果不是会员，则判断用户是否购买本章节
                 $map[] = ['user_id', '=', $uid];
@@ -96,7 +98,7 @@ class Chapters extends Base
             ]);
             return view($this->tpl);
         } else {
-            return redirect('/buychapter',['chapter_id' => $id]);
+            return redirect('/buychapter', ['chapter_id' => $id]);
         }
     }
 }

@@ -7,6 +7,7 @@ use app\admin\controller\Chapters;
 use app\model\Chapter;
 use app\model\UserBuy;
 use app\model\UserFinance;
+use app\model\UserOrder;
 use think\Controller;
 
 class FinanceService extends Controller
@@ -107,18 +108,48 @@ class FinanceService extends Controller
             if ($this->request->isMobile()) {
                 $type = 'util\MPage';
             }
-            $buys = UserBuy::where('user_id', '=', $uid)->order('id','desc')
+            $buys = UserBuy::where('user_id', '=', $uid)->order('id', 'desc')
                 ->paginate(10, false,
-                [
-                    'query' => request()->param(),
-                    'type' => $type,
-                    'var_page' => 'page',
-                ]);
+                    [
+                        'query' => request()->param(),
+                        'type' => $type,
+                        'var_page' => 'page',
+                    ]);
             foreach ($buys as &$buy) {
                 $chapter = Chapter::with('book')->find($buy['chapter_id']);
                 $buy['chapter'] = $chapter;
             }
             return $buys;
         }
+    }
+
+    public function getPagedOrders()
+    {
+        $data = UserOrder::order('id', 'desc');
+        $orders = $data->paginate(5, false,
+            [
+                'query' => request()->param(),
+                'type' => 'util\AdminPage',
+                'var_page' => 'page',
+            ]);
+        return [
+            'orders' => $orders,
+            'count' => $data->count()
+        ];
+    }
+
+    public function getPagedFinance()
+    {
+        $data = UserFinance::order('id', 'desc');
+        $finances = $data->paginate(5, false,
+            [
+                'query' => request()->param(),
+                'type' => 'util\AdminPage',
+                'var_page' => 'page',
+            ]);
+        return [
+            'finances' => $finances,
+            'count' => $data->count()
+        ];
     }
 }

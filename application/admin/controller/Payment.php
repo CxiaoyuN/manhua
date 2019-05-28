@@ -4,16 +4,16 @@
 namespace app\admin\controller;
 
 
-use app\service\OrderService;
+use app\service\FinanceService;
 use think\facade\App;
 
 class Payment extends BaseAdmin
 {
-    protected $orderService;
+    protected $financeService;
 
     protected function initialize()
     {
-        $this->orderService = new OrderService();
+        $this->financeService = new FinanceService();
     }
 
     //支付配置文件
@@ -32,9 +32,19 @@ class Payment extends BaseAdmin
     //订单查询
     public function orders()
     {
-        $data = $this->orderService->getPagedOrders();
+        $data = $this->financeService->getPagedOrders();
         $this->assign([
             'orders' => $data['orders'],
+            'count' => $data['count']
+        ]);
+        return view();
+    }
+
+    //用户消费记录
+    public function finance(){
+        $data = $this->financeService->getPagedFinance();
+        $this->assign([
+            'finances' => $data['finances'],
             'count' => $data['count']
         ]);
         return view();

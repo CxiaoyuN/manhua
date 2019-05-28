@@ -19,13 +19,13 @@
                     <div>
                         <label>昵称：</label>
                         <span>
-                           {$Think.session.xwx_nick_name}
+                           {$user.nick_name}
                         </span>
                     </div>
                     <div>
                         <label>绑定手机：</label>
                         <span>
-                           {$Think.session.xwx_user_mobile}
+                           {$user.mobile}
                         </span>
                     </div>
                     <div>
@@ -37,7 +37,8 @@
                     <div>
                         <label>我的VIP：</label>
                         <span>
-                           剩余 0 天
+                           剩余 {$day} 天
+                             <a class="btn wallet-btn" href="/charge">充值</a>
                         </span>
                     </div>
                 </form>

@@ -40,15 +40,14 @@
                     </li>
                     {/volist}
                 </ul>
-                <div class="bottom head"><span class="label">需支付:</span><span class="total">￥10.0</span></div>
+                <div class="bottom head"><span class="label">需支付:</span><span class="total"></span></div>
             </div>
             <script>
                 $(document).ready(function () {
                     var checkedItem = $('.goodsItem:checked');
                     var checkedChannel = $('.channel:checked');
                     $('.total').text('￥' + checkedItem.next().find('p span.color-main span.price').text());
-                    console.log(checkedItem.next().find('p span.color-main span.price').text());
-                    console.log(checkedChannel.attr('data-val'));
+
                     $('#money').val(checkedItem.next().find('p span.color-main span.price').text());
                     $('#pay_type').val(checkedChannel.attr('data-val'));
                 })

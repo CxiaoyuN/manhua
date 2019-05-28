@@ -5,6 +5,7 @@ namespace app\ucenter\controller;
 
 
 use app\model\Chapter;
+use app\model\User;
 use app\model\UserBuy;
 use app\model\UserFinance;
 use app\model\UserOrder;
@@ -21,7 +22,7 @@ class Finance extends BaseUcenter
     protected function initialize()
     {
         $this->financeService = new FinanceService();
-        $class = '\util\\'.config('site.payment');
+        $class = '\util\\' . config('site.payment');
         $this->util = new $class();
         $this->balance = cache('balance:' . $this->uid); //当前用户余额
         if (!$this->balance) {
@@ -155,9 +156,9 @@ class Finance extends BaseUcenter
         $price = $chapter->book->money; //获得单章价格
         if ($this->request->isPost()) {
             $redis = new_redis();
-            $lock = $redis->sIsMember($this->redis_prefix.':user_buy_lock', $this->uid); //先判断有没有用户锁
+            $lock = $redis->sIsMember($this->redis_prefix . ':user_buy_lock', $this->uid); //先判断有没有用户锁
             if (!$lock) { //如果没上锁，则该用户可以进行购买操作
-                $redis->sAdd($this->redis_prefix.':user_buy_lock', $this->uid); //先加锁
+                $redis->sAdd($this->redis_prefix . ':user_buy_lock', $this->uid); //先加锁
                 $this->balance = $this->financeService->getBalance(); //这里不查询缓存，直接查数据库更准确
                 if ($price > $this->balance) { //如果价格高于用户余额，则不能购买
                     return ['err' => 1, 'msg' => '余额不足'];
@@ -177,15 +178,70 @@ class Finance extends BaseUcenter
                     $userBuy->summary = '购买章节';
                     $userBuy->save();
                 }
-                $redis->sRem($this->redis_prefix.':user_buy_lock',$this->uid); //删除用户锁
+                $redis->sRem($this->redis_prefix . ':user_buy_lock', $this->uid); //删除用户锁
                 Cache::clear('pay'); //删除缓存
                 return ['err' => 0, 'msg' => '购买成功，等待跳转'];
+            } else {
+                return ['err' => 1, 'msg' => '同账号非法操作'];
             }
         }
         $this->assign([
             'balance' => $this->balance,
             'chapter' => $chapter,
             'price' => $price
+        ]);
+        return view($this->tpl);
+    }
+
+    //vip会员页面
+    public function vip(Request $request)
+    {
+        $user = User::get($this->uid);
+        if ($request->isPost()) {
+            $redis = new_redis();
+            $lock = $redis->sIsMember($this->redis_prefix . ':user_buy_lock', $this->uid); //先判断有没有用户锁
+            if (!$lock) { //如果没上锁，则该用户可以进行购买操作
+                $arr = config('payment.vip'); //拿到vip配置数组
+                $month = (int)$request->param('month'); //拿到用户选择的vip
+                foreach ($arr as $key => $value) {
+                    if ((int)$value['month'] == $month) {
+                        if ((int)$value['price'] > $this->balance) { //如果vip价格大于用户余额
+                            return ['err' => 1, 'msg' => '余额不足，请先充值'];
+                        } else { //处理购买vip的订单
+                            $finance = new UserFinance();
+                            $finance->user_id = $this->uid;
+                            $finance->money = (int)$value['price'];
+                            $finance->usage = 2;
+                            $finance->summary = '购买vip';
+                            $finance->save();
+
+                            $user->level = 1; //vip用户
+                            $user->vip_expire_time = time() + $month * 30 * 24 * 60 * 60;
+                            $user->isupdate(true)->save();
+                            Cache::clear('pay'); //删除缓存
+                            return ['err' => 0, 'msg' => '购买成功，等待跳转'];
+                        }
+                    }
+                }
+                return ['err' => 1, 'msg' => '请选择正确的选项']; //以防用户篡改页面的提交值
+                $redis->sRem($this->redis_prefix . ':user_buy_lock', $this->uid); //删除用户锁
+            } else {
+                return ['err' => -1, 'msg' => '同账号非法操作'];
+            }
+        }
+
+        $time = $user->vip_expire_time - time();
+        $day = 0;
+        if ($time > 0) {
+            $day = ceil(($user->vip_expire_time - time()) / (60 * 60 * 24));
+        }
+
+        $this->assign([
+            'balance' => $this->balance,
+            'header_title' => 'vip会员',
+            'user' => $user,
+            'day' => $day,
+            'vips' => config('payment.vip')
         ]);
         return view($this->tpl);
     }

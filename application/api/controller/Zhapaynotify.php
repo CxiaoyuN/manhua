@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\ucenter\controller;
+namespace app\api\controller;
 
 
 use app\model\UserFinance;

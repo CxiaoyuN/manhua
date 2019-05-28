@@ -1,15 +1,15 @@
 {extend name="pub/base" /}
 {block name="title"}
-<title>订单查询</title>
+<title>财务查询</title>
 {/block}
 
 {block name="body"}
 <section class="Hui-admin-article">
     <nav class="breadcrumb" style="background-color:#fff;padding: 0 24px"><i class="Hui-iconfont">&#xe67f;</i> 首页
         <span class="c-gray en">&gt;</span>
-        订单查询
+        财务查询
         <span class="c-gray en">&gt;</span>
-        订单列表
+        财务列表
         <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
@@ -26,28 +26,26 @@
                         <tr class="text-c">
                             <th width="80">ID</th>
                             <th width="80">用户ID</th>
-                            <th width="100">充值金额</th>
-                            <th width="100">状态</th>
-                            <th width="100">支付渠道</th>
+                            <th width="100">金额</th>
+                            <th width="100">用途</th>
                             <th width="120">备注</th>
-                            <th width="120">订单时间</th>
+                            <th width="120">发生时间</th>
                             <th width="200">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {volist name="orders" id="vo"}
+                        {volist name="finances" id="vo"}
                         <tr class="text-c">
                             <td>{$vo.id}</td>
                             <td>{$vo.user_id}</td>
                             <td>{$vo.money}</td>
-                            <td>{$vo.status == 1? "已支付" : "未支付"}</td>
                             <td>
-                                {if $vo.pay_type ==1 }
-                                    支付宝
-                                {elseif  $vo.pay_type ==2}
-                                    QQ钱包
-                                {elseif  $vo.pay_type ==3}
-                                    微信支付
+                                {if $vo.usage ==1 }
+                                用户充值
+                                {elseif  $vo.usage ==2}
+                                购买vip
+                                {elseif  $vo.usage ==3}
+                                购买章节
                                 {/if}
                             </td>
                             <td>{$vo.summary}</td>
@@ -58,7 +56,7 @@
                         {/volist}
                         </tbody>
                     </table>
-                    {$orders|raw}
+                    {$finances|raw}
                 </div>
             </div>
         </div>

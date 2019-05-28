@@ -39,9 +39,11 @@ Route::rule('/spendinghistory', 'ucenter/finance/spendinghistory');
 Route::rule('/buyhistory', 'ucenter/finance/buyhistory');
 Route::rule('/charge', 'ucenter/finance/charge');
 Route::rule('/feedback', 'ucenter/finance/feedback');
-Route::rule('/zhapaynotify', 'ucenter/zhapaynotify/index');
-Route::rule('/vkzfnotify', 'ucenter/vkzfnotify/index');
 Route::rule('/buychapter', 'ucenter/finance/buychapter');
+Route::rule('/vip', 'ucenter/finance/vip');
+
+Route::rule('/zhapaynotify', 'api/zhapaynotify/index');
+Route::rule('/vkzfnotify', 'api/vkzfnotify/index');
 
 Route::rule('/login', 'ucenter/account/login');
 Route::rule('/register', 'ucenter/account/register');
