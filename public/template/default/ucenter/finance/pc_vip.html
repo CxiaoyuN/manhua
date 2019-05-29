@@ -32,6 +32,19 @@
                 </ul>
                 <div class="bottom head"><span class="label">需支付:</span><span class="total"></span></div>
             </div>
+
+            <div class="recharge-footer mb20">
+                <form id="vipForm">
+                    <input type="hidden" name="month" id="month" value="">
+                </form>
+                <span class="label">
+                    <button onclick="formSub();" class="channel-btn">购买vip</button>
+                </span>
+                <span>
+                   <a href="#" target="_blank">用户充值、消费服务协议</a>
+                </span>
+                <span class="tip">成为本站vip，可以免费阅读所有收费章节，不再有额外消费</span>
+            </div>
             <script>
                 $(document).ready(function () {
                     var checkedItem = $('.goodsItem:checked');
@@ -45,40 +58,32 @@
                 })
 
             </script>
-            <div class="recharge-footer mb20">
-                <form id="vipForm">
-                    <input type="hidden" name="month" id="month" value="">
-                </form>
-                <span class="label">
-                    <button onclick="formSub();" class="channel-btn">购买vip</button>
-                </span>
-                <span>
-                   <a href="#" target="_blank">用户充值、消费服务协议</a>
-                </span>
-                <span class="tip">成为本站vip，可以免费阅读所有收费章节，不再有额外消费</span>
-            </div>
         </section>
     </div>
 </main>
 <script>
     function formSub() {
         var month = $('#month').val();
-        $.post({
-            url: '/vip',
-            data: {month: month},
-            success: function (res) {
-                ShowDialog(res.msg);
-                if (res.err == 0) {
-                    setTimeout(function () {
-                        location.href = '/ucenter';
-                    }, 1000);
-                } else if (res.err == 1) {
-                    setTimeout(function () {
-                        location.href = '/charge';
-                    }, 1000);
+        if (month == '') {
+            ShowDialog('请选择一个选项');
+        } else {
+            $.post({
+                url: '/vip',
+                data: {month: month},
+                success: function (res) {
+                    ShowDialog(res.msg);
+                    if (res.err == 0) {
+                        setTimeout(function () {
+                            location.href = '/ucenter';
+                        }, 1000);
+                    } else if (res.err == 1) {
+                        setTimeout(function () {
+                            location.href = '/charge';
+                        }, 1000);
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 </script>
 {/block}

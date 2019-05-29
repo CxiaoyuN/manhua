@@ -216,7 +216,12 @@ class Finance extends BaseUcenter
                             $finance->save();
 
                             $user->level = 1; //vip用户
-                            $user->vip_expire_time = time() + $month * 30 * 24 * 60 * 60;
+                            if ($user->vip_expire_time < time()) { //说明vip已经过期
+                                $user->vip_expire_time = time() + $month * 30 * 24 * 60 * 60;
+                            } else { //vip没过期，则在现有vip时间上增加
+                                $user->vip_expire_time = $user->vip_expire_time + $month * 30 * 24 * 60 * 60;
+                            }
+
                             $user->isupdate(true)->save();
                             Cache::clear('pay'); //删除缓存
                             return ['err' => 0, 'msg' => '购买成功，等待跳转'];
