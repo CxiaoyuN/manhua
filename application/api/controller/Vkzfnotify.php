@@ -9,14 +9,22 @@ use app\model\UserOrder;
 use think\Controller;
 use think\facade\Cache;
 use think\Request;
+use Util\Vkzf;
 
 class Vkzfnotify extends Controller
 {
+    protected $vkzfUtil;
+
+    protected function initialize()
+    {
+        $this->vkzfUtil = new Vkzf();
+    }
+
     public function index(Request $request)
     {
         $para = $request->param();
         $sign = input('sign');
-        $isSgin = verifyNotify($request, $sign);
+        $isSgin = $this->vkzfUtil->verifyNotify($request, $sign);
         if ($isSgin) {
             $order_id = str_replace('xwx_order_', '', $para['out_trade_no']);
             $type = 0;

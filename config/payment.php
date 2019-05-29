@@ -21,8 +21,8 @@ return [
         'appid' => '',
         'appkey' => '',
         'channel' => [
-            ['type' => 2, 'img' => 'alipay', 'title' => '支付宝'],
-            ['type' => 1, 'img' => 'weixin', 'title' => '微信支付']
+            ['type' => 'alipay', 'img' => 'alipay', 'title' => '支付宝'],
+            ['type' => 'wechat', 'img' => 'weixin', 'title' => '微信支付']
         ]
     ],
     'vip' => [  //设置vip天数及相应的价格

@@ -33,7 +33,7 @@ class Vkzf
         header("Location:{$urls}"); //跳转到支付页面
     }
 
-    protected function paraFilter($para)
+    public function paraFilter($para)
     {
         $para_filter = array();
         foreach ($para as $key => $val) {
@@ -48,7 +48,7 @@ class Vkzf
      * $para 排序前的数组
      * return 排序后的数组
      */
-    protected function argSort($para)
+    public function argSort($para)
     {
         ksort($para);
         reset($para);
@@ -60,7 +60,7 @@ class Vkzf
      * $para_sort 已排序要签名的数组
      * return 签名结果字符串
      */
-    protected function buildRequestMysign($para_sort)
+    public function buildRequestMysign($para_sort)
     {
         //把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
         $prestr = $this->createLinkstring($para_sort);
@@ -74,7 +74,7 @@ class Vkzf
      *  $key 私钥
      * return 签名结果
      */
-    protected function md5Sign($prestr, $key)
+    public function md5Sign($prestr, $key)
     {
         $prestr = $prestr . $key;
         return md5($prestr);
@@ -85,7 +85,7 @@ class Vkzf
      * $para 需要拼接的数组
      * return 拼接完成以后的字符串
      */
-    protected function createLinkstring($para)
+    public function createLinkstring($para)
     {
         $arg = "";
         foreach ($para as $key => $val) {
@@ -107,7 +107,7 @@ class Vkzf
      * $para 需要拼接的数组
      * return 拼接完成以后的字符串
      */
-    protected function createLinkstringUrlencode($para)
+    public function createLinkstringUrlencode($para)
     {
         $arg = "";
         foreach ($para as $key => $val) {
@@ -132,7 +132,7 @@ class Vkzf
      * $key 私钥
      * return 签名结果
      */
-    function md5Verify($prestr, $sign, $key) {
+    public function md5Verify($prestr, $sign, $key) {
         $prestr = $prestr . $key;
         $mysgin = md5($prestr);
 
@@ -144,7 +144,7 @@ class Vkzf
         }
     }
 
-    function verifyNotify($request,$sign){
+    public function verifyNotify($request,$sign){
         if(empty($request)) {//判断POST来的数组是否为空
             return false;
         }
@@ -166,7 +166,7 @@ class Vkzf
         }
     }
 
-    function getSignVeryfy($para_temp, $sign) {
+    public function getSignVeryfy($para_temp, $sign) {
         //除去待签名参数数组中的空值和签名参数
         $para_filter = $this->paraFilter($para_temp);
 
