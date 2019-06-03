@@ -14,32 +14,7 @@
         <a href="/booklist/" class="full-class-btn">全部分类</a>
     </div>
 </div>
-<div class="mt20">
-    <section class="banner_puzzle container">
-        <ul class="puzzle">
-            <li class="pos-1">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper" style="width: 100%; height: 380px; transform: translate3d(-1020px, 0px, 0px); transition-duration: 0.3s;">
-                        {volist name="banners" id="vo"}
-                        <div class="swiper-slide" style="width: 100%; height: 380px;">
-                            <a href="book/{$vo.book_id}" title="{$vo.title}">
-                                <p class="mh-cover " style="background-image: url('{$img_site}/static/upload/banner/{$vo.pic_name}');
-                                background-size: contain; background-repeat: no-repeat;">
-                                </p>
-                            </a>
-                        </div>
-                        {/volist}
-                    </div>
-                    {volist name="banners" id="vo"}
-                    <div class="pagination">
-                        <span class="swiper-pagination-switch"></span>
-                    </div>
-                    {/volist}
-                </div>
-            </li>
-        </ul>
-    </section>
-</div>
+
 <section class="box container overflow-Show">
     <header class="box-header"><i class="icon icon-cat"></i>
         <h2>最近更新</h2>
