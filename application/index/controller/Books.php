@@ -39,7 +39,7 @@ class Books extends Base
 
         $recommand = cache('rand_books');
         if (!$recommand){
-            $recommand = $this->bookService->getRandBooks();
+            $recommand = $this->bookService->getRecommand();
             cache('rand_books',$recommand,null,'redis');
         }
         $updates = cache('update_books');

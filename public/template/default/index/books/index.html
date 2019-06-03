@@ -37,11 +37,12 @@
         <a class="detail-selector-item active" href="javascript:void(0);"
            onclick="titleSelect(this, '#chapter_indexes');">目录</a>
         <a class="detail-selector-item" href="javascript:void(0);"
-           onclick="titleSelect(this, '#author_words');">作者语</a>
-        <a class="detail-selector-item" href="javascript:void(0);"
            onclick="titleSelect(this, '#comment');">评论
             <span class="detail-selector-item-count commentcount">999+</span>
         </a>
+        <a class="detail-selector-item" href="javascript:void(0);"
+           onclick="titleSelect(this, '#recommand');">推荐</a>
+
     </div>
     <div id="chapter_indexes" class="selector-zero">
         <div class="detail-list-title" id="detail-list-title">
@@ -154,6 +155,35 @@
                 <img class="detail-comment-fix-bottom-logo" src="/static/images/detail-comment-logo.png">我已经忍不住要吐槽啦～
             </a>
         </div>
+    </div>
+    <div id="recommand" style="display:none;" class="selector-zero">
+        {volist name="recommand" id="vo"}
+        <div class="buy-manga">
+            <div class="buy-manga-cover">
+                <a href="/book/{$vo.id}">
+                    {if empty($vo.cover_url)}
+                    <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg">
+                    {else /}
+                    <img src="{$vo.cover_url}">
+                    {/if}
+                </a>
+                <a class="buy-manga-cover-hover" href="javascript:void(0);" mid="2941" style="display:none;"></a>
+            </div>
+            <div class="buy-manga-info">
+                <a href="/book/{$vo.id}" class="readlink" mid="2941">
+                    <p class="buy-manga-title">{$vo.book_name}</p>
+                </a>
+                <p class="buy-manga-author">{$vo.last_time|date='Y-m-d'}更新</p>
+                <a href="/book/{$vo.id}" class="readlink" mid="40683">
+                    <p class="buy-manga-new">{$vo.summary|subtext=12...}</p>
+                </a>
+                <a class="buy-manga-right-a readlink" href="/book/{$vo.id}">
+                    <img class="buy-manga-right-img" src="/static/images/buy-manga-right.png">
+                    <p class="buy-manga-right-title">阅读</p>
+                </a>
+            </div>
+        </div>
+        {/volist}
     </div>
 </div>
 <div class="toast" style="display:none;"></div>

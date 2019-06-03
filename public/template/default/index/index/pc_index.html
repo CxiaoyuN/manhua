@@ -14,6 +14,32 @@
         <a href="/booklist/" class="full-class-btn">全部分类</a>
     </div>
 </div>
+<div class="mt20">
+    <section class="banner_puzzle container">
+        <ul class="puzzle">
+            <li class="pos-1">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper" style="width: 100%; height: 380px; transform: translate3d(-1020px, 0px, 0px); transition-duration: 0.3s;">
+                        {volist name="banners" id="vo"}
+                        <div class="swiper-slide" style="width: 100%; height: 380px;">
+                            <a href="book/{$vo.book_id}" title="{$vo.title}">
+                                <p class="mh-cover " style="background-image: url('{$img_site}/static/upload/banner/{$vo.pic_name}');
+                                background-size: contain; background-repeat: no-repeat;">
+                                </p>
+                            </a>
+                        </div>
+                        {/volist}
+                    </div>
+                    {volist name="banners" id="vo"}
+                    <div class="pagination">
+                        <span class="swiper-pagination-switch"></span>
+                    </div>
+                    {/volist}
+                </div>
+            </li>
+        </ul>
+    </section>
+</div>
 <section class="box container overflow-Show">
     <header class="box-header"><i class="icon icon-cat"></i>
         <h2>最近更新</h2>
@@ -99,9 +125,9 @@
                                 </p>
                                 <p class="desc">{$vo.book_name}</p>
                                 <div class="tag">
-                                {volist name="vo.taglist" id="tag"}
+                                    {volist name="vo.taglist" id="tag"}
                                     <a href="/booklist/{$tag}" target="_blank">{$tag}</a>
-                                {/volist}
+                                    {/volist}
                                 </div>
                             </div>
                         </li>
@@ -291,19 +317,27 @@
     </div>
 </div>
 <ul class="index-right-float" style="display: block;">
-    <li><a href="javascript:void(0);" onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.box-header&#39;).eq(0).offset().top-80},500);" class="active">最近<br>更新</a>
+    <li><a href="javascript:void(0);"
+           onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.box-header&#39;).eq(0).offset().top-80},500);"
+           class="active">最近<br>更新</a>
     </li>
-    <li><a href="javascript:void(0);" onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.index-title&#39;).eq(0).offset().top-80},500);" class="">热门<br>漫画</a>
+    <li><a href="javascript:void(0);"
+           onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.index-title&#39;).eq(0).offset().top-80},500);"
+           class="">热门<br>漫画</a>
     </li>
-    <li><a href="javascript:void(0);" onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.index-rank&#39;).eq(0).offset().top-80},500);" class="">排行<br>榜单</a>
+    <li><a href="javascript:void(0);"
+           onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.index-rank&#39;).eq(0).offset().top-80},500);"
+           class="">排行<br>榜单</a>
     </li>
-    <li><a href="javascript:void(0);" onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.box-header&#39;).eq(1).offset().top-80},500);">完结<br>佳作</a>
+    <li><a href="javascript:void(0);"
+           onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.box-header&#39;).eq(1).offset().top-80},500);">完结<br>佳作</a>
     </li>
-    <li><a href="javascript:void(0);" onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:0},500);" class="index-right-float-top"></a></li>
+    <li><a href="javascript:void(0);" onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:0},500);"
+           class="index-right-float-top"></a></li>
 </ul>
 <script type="text/javascript">
-    $(function() {
-        $(window).scroll(function() {
+    $(function () {
+        $(window).scroll(function () {
             var scrollTop = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) + 5;
             if (scrollTop < $('.box-header').eq(0).offset().top - 80) {
                 $('.index-right-float li a').removeClass('active');
@@ -314,7 +348,7 @@
             } else if (scrollTop < $('.index-rank').eq(0).offset().top - 80) {
                 $('.index-right-float li a').removeClass('active');
                 $('.index-right-float li a').eq(2).addClass('active');
-            }  else if (scrollTop < $('.box-header').eq(1).offset().top - 80) {
+            } else if (scrollTop < $('.box-header').eq(1).offset().top - 80) {
                 $('.index-right-float li a').removeClass('active');
                 $('.index-right-float li a').eq(5).addClass('active');
             } else {

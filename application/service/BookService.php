@@ -71,6 +71,15 @@ class BookService extends Base
         return $books;
     }
 
+    public function getRecommand($tags){
+        $arr=explode('|',$tags);
+        $map = array();
+        foreach ($arr as $value){
+            $map[] = ['tags','like','%'.$value.'%'];
+        }
+        return Book::where($map)->limit(10)->select();
+    }
+
     public function getRandBooks(){
         $books = Db::query('SELECT ad1.id,book_name,summary,cover_url FROM '.$this->prefix.'book AS ad1 JOIN 
 (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM '.$this->prefix.'book)-(SELECT MIN(id) FROM '.$this->prefix.'book))+(SELECT MIN(id) FROM '.$this->prefix.'book)) AS id)

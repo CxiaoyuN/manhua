@@ -14,7 +14,7 @@ $('#btnsave').click(function () {
     })
     setTimeout(function () {
         location.reload();
-    },2);
+    },1000);
 })
 
 function filterStr(str)
