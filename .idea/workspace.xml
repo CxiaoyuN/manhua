@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/index/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Books.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/service/BookService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/BookService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/cache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/site.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/js/userinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/js/userinfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +33,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/template/default/index/index/pc_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
+            <state relative-caret-position="418">
               <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#section#0;n#div#1;n#!!top" expanded="true" />
@@ -52,7 +44,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="227">
@@ -62,10 +54,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/index/controller/Books.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="41" column="69" selection-start-line="41" selection-start-column="69" selection-end-line="41" selection-end-column="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/service/BookService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/template/default/index/index/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
-              <caret line="16" column="77" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="77" />
+              <caret line="16" column="77" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -177,11 +187,11 @@
         <option value="$PROJECT_DIR$/application/admin/view/index/index.html" />
         <option value="$PROJECT_DIR$/application/index/controller/Index.php" />
         <option value="$PROJECT_DIR$/public/static/js/userinfo.js" />
-        <option value="$PROJECT_DIR$/application/service/BookService.php" />
-        <option value="$PROJECT_DIR$/application/index/controller/Books.php" />
         <option value="$PROJECT_DIR$/public/template/default/index/books/index.html" />
         <option value="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" />
         <option value="$PROJECT_DIR$/public/static/css/style.css" />
+        <option value="$PROJECT_DIR$/application/index/controller/Books.php" />
+        <option value="$PROJECT_DIR$/application/service/BookService.php" />
       </list>
     </option>
   </component>
@@ -210,13 +220,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
               <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
@@ -287,6 +307,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -579,17 +600,18 @@
       <workItem from="1559363392900" duration="37000" />
       <workItem from="1559453341328" duration="669000" />
       <workItem from="1559535245464" duration="4219000" />
+      <workItem from="1559544392694" duration="211000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="693279000" />
+    <option name="totallyTimeSpent" value="693490000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20911528" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21179625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -972,20 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/service/BookService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="73" column="32" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Books.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="41" column="57" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/template/default/index/books/pc_index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -1033,16 +1041,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/index/index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="77" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/template/default/index/index/pc_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
+        <state relative-caret-position="418">
           <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#section#0;n#div#1;n#!!top" expanded="true" />
@@ -1052,10 +1053,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/index/index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="77" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="6421" column="16" selection-start-line="6421" selection-start-column="16" selection-end-line="6421" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Books.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="41" column="69" selection-start-line="41" selection-start-column="69" selection-end-line="41" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/service/BookService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
         </state>
       </provider>
     </entry>

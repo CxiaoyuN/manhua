@@ -77,7 +77,11 @@ class BookService extends Base
         foreach ($arr as $value){
             $map[] = ['tags','like','%'.$value.'%'];
         }
-        return Book::where($map)->limit(10)->select();
+        $books = Book::where($map)->limit(10)->select();
+        foreach ($books as &$book){
+            $book['chapter_count'] = Chapter::where('book_id','=',$book['id'])->count();
+        }
+        return $books;
     }
 
     public function getRandBooks(){
