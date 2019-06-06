@@ -30,7 +30,7 @@ Route::rule('/bindphone', 'ucenter/users/bindphone');
 Route::rule('/userphone', 'ucenter/users/userphone');
 Route::rule('/sendcms', 'ucenter/users/sendcms');
 Route::rule('/verifyphone', 'ucenter/users/verifyphone');
-Route::rule('/recovery', 'ucenter/users/recovery');
+Route::rule('/recovery', 'account/users/recovery');
 Route::rule('/resetpwd', 'ucenter/users/resetpwd');
 Route::rule('/commentadd', 'ucenter/users/commentadd');
 Route::rule('/wallet', 'ucenter/finance/wallet');

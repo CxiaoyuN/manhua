@@ -10,6 +10,11 @@
       <path value="$PROJECT_DIR$/xiaohuanxiong/vendor/topthink/think-captcha" />
       <path value="$PROJECT_DIR$/xiaohuanxiong/vendor/topthink/think-installer" />
       <path value="$PROJECT_DIR$/xiaohuanxiong/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
     </include_path>
   </component>
 </project>

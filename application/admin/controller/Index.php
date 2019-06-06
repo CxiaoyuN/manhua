@@ -2,8 +2,10 @@
 
 namespace app\admin\controller;
 
+use GuzzleHttp\Client;
 use think\facade\App;
 use think\facade\Cache;
+use think\facade\Env;
 
 class Index extends BaseAdmin
 {
@@ -22,7 +24,7 @@ class Index extends BaseAdmin
         $redis_host = config('cache.host');
         $redis_port = config('cache.port');
         $redis_auth = config('cache.password');
-        $redis_prefix= config('cache.prefix');
+        $redis_prefix = config('cache.prefix');
         $front_tpl = config('site.tpl');
         $payment = config('site.payment');
 
@@ -46,7 +48,7 @@ class Index extends BaseAdmin
     {
         $site_name = input('site_name');
         $url = input('url');
-        $img_site = input('img_site'); 
+        $img_site = input('img_site');
         $salt = input('salt');
         $api_key = input('api_key');
         $redis_host = input('redis_host');
@@ -96,5 +98,44 @@ INFO;
         $rootPath = App::getRootPath();
         delete_dir_file($rootPath . '/runtime/cache/') && delete_dir_file($rootPath . '/runtime/temp/');
         $this->success('清理缓存', 'index', '', 1);
+    }
+
+    public function checkupdate()
+    {
+        $client = new Client();
+        $srcUrl = Env::get('root_path') . "/public/static/html/version.txt";
+        $localVersion = (int)str_replace('.', '', file_get_contents($srcUrl));
+        $server = "http://update.xhxcms.xyz";
+        $serverFileUrl = $server . "/public/static/html/version.txt";
+        $res = $client->request('GET', $serverFileUrl);
+        $serverVersion = (int)str_replace('.', '', $res->getBody());
+        $msg = array();
+        array_push($msg,'<p></p>');
+
+        if ($serverVersion > $localVersion) {
+            for ($i = $localVersion + 1; $i <= $serverVersion; $i++) {
+                $res = $client->request('GET',"http://config.xhxcms.xyz/" . $i . ".json");
+                $json = json_decode($res->getBody(), true);
+
+                foreach ($json['update'] as $value) {
+                    $data = $client->request('GET',$server . '/' . $value)->getBody(); //根据配置读取升级文件的内容
+                    $saveFileName = Env::get('root_path') . $value;
+                    file_put_contents($saveFileName, $data, true); //将内容写入到本地文件
+                    array_push($msg,'<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
+                }
+                foreach ($json['delete'] as $value) {
+                    $flag = unlink($server . '/' . $value);
+                    if ($flag) {
+                        array_push($msg,'<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
+                    } else {
+                        array_push($msg,'<p style="margin-left: 15px;color:darkred">删除文件失败</p>');
+                    }
+                }
+            }
+            array_push($msg,'<p style="margin-left:15px;">升级完成</p>');
+        } else {
+            $msg = ['已经是最新版本！当前版本是' . $localVersion];
+        }
+        return implode('',$msg);
     }
 }

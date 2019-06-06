@@ -18,7 +18,7 @@ return [
     // 用户名
     'username'        => 'root',
     // 密码
-    'password'        => '168168',
+    'password'        => 'aiguo999',
     // 端口
     'hostport'        => '3306',
     // 连接dsn
