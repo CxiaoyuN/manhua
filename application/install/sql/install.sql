@@ -118,7 +118,7 @@ DROP TABLE IF EXISTS `xwx_book`;
 CREATE TABLE `xwx_book` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `book_name` varchar(50) NOT NULL COMMENT '漫画名',
-  `nick_name` varchar(100) COMMENT '别名',
+  `nick_name` varchar(100) DEFAULT '' COMMENT '别名',
   `create_time` int(11) DEFAULT '0',
   `update_time` int(11) DEFAULT '0',
   `last_time` int(11) DEFAULT '0' COMMENT '最后更新时间',
@@ -126,7 +126,7 @@ CREATE TABLE `xwx_book` (
   `summary` text COMMENT '简介',
   `end` tinyint(4) DEFAULT '0' COMMENT '0为连载，1为完结',
   `author_id` int(11) NOT NULL COMMENT '作者ID',
-  `author_name` varchar(100) DEFAULT '',
+  `author_name` varchar(100) DEFAULT '佚名',
   `cover_url` varchar(255) DEFAULT '' COMMENT '封面图路径',
   `start_pay` int(10) NOT NULL DEFAULT '99999' COMMENT '第m话开始需要付费',
   `money` decimal(10,2) DEFAULT '0' COMMENT '每章所需费用',
