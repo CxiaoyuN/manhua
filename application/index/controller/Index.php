@@ -14,12 +14,12 @@ class Index extends Base
 
     public function index()
     {
-
         $banners = cache('banners_homepage');
         if (!$banners){
             $banners = Banner::limit(5)->order('id','desc')->select();
             cache('banners_homepage',$banners,null,'redis');
         }
+
         $redis = new_redis();
         $hots = $redis->zRevRange($this->redis_prefix.'hot_books',0,12,true);
         $hot_books = array();

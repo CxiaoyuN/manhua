@@ -7,8 +7,10 @@
 <div class="container">
     <div class="shutter">
         <div class="shutter-img">
-            {volist name="banners" id="vo" key="k"}
-            <a href="/book/{$vo.book_id}" data-shutter-title="{$vo.title}"><img src="{$img_site}/static/upload/banner/{$vo.pic_name}" alt="{$vo.title}"></a>
+            {volist name="banners" id="vo"}
+            <a href="/book/{$vo.book_id}" data-shutter-title="{$vo.title}">
+                <img src="{$img_site}/static/upload/banner/{$vo.pic_name}" alt="{$vo.title}">
+            </a>
             {/volist}
         </div>
         <ul class="shutter-btn">
@@ -16,7 +18,9 @@
             <li class="next"></li>
         </ul>
         <div class="shutter-desc">
+            {volist name="banners" id="vo"}
             <p>{$vo.title}</p>
+            {/volist}
         </div>
     </div>
 </div>
