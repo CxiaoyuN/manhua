@@ -124,7 +124,7 @@ INFO;
                     array_push($msg,'<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
                 }
                 foreach ($json['delete'] as $value) {
-                    $flag = unlink($srcUrl . '/' . $value);
+                    $flag = unlink(Env::get('root_path') . '/' . $value);
                     if ($flag) {
                         array_push($msg,'<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
                     } else {
