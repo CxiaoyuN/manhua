@@ -124,7 +124,7 @@ INFO;
                     array_push($msg,'<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
                 }
                 foreach ($json['delete'] as $value) {
-                    $flag = unlink($server . '/' . $value);
+                    $flag = unlink($srcUrl . '/' . $value);
                     if ($flag) {
                         array_push($msg,'<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
                     } else {
