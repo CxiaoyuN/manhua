@@ -129,7 +129,7 @@ FROM '.$this->prefix.'book AS ad1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) F
 
     public function search($keyword){
         return Db::query(
-            "select * from ".$this->prefix."book where match(book_name,summary) 
+            "select * from ".$this->prefix."book where match(book_name,summary,author_name,nick_name) 
             against ('".$keyword."' IN NATURAL LANGUAGE MODE)"
         );
     }
