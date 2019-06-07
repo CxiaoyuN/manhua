@@ -4,6 +4,23 @@
 <meta name="description" content="{$site_name}为大家带来最新漫画大全，这里有超多漫画资源，无论是韩国漫画，少女漫画，还是恐怖漫画，总有一个让你酣畅淋漓">
 {/block}
 {block name="content"}
+<div class="container">
+    <div class="shutter">
+        <div class="shutter-img">
+            {volist name="banners" id="vo" key="k"}
+            <a href="/book/{$vo.book_id}" data-shutter-title="{$vo.title}"><img src="{$img_site}/static/upload/banner/{$vo.pic_name}" alt="{$vo.title}"></a>
+            {/volist}
+        </div>
+        <ul class="shutter-btn">
+            <li class="prev"></li>
+            <li class="next"></li>
+        </ul>
+        <div class="shutter-desc">
+            <p>{$vo.title}</p>
+        </div>
+    </div>
+</div>
+
 <div class="full-class">
     <div class="container">
         <ul class="list">
@@ -15,11 +32,27 @@
     </div>
 </div>
 
+<script>
+    $(function () {
+        $('.shutter').shutter({
+            shutterW: 1000, // 容器宽度
+            shutterH: 358, // 容器高度
+            isAutoPlay: true, // 是否自动播放
+            playInterval: 3000, // 自动播放时间
+            curDisplay: 3, // 当前显示页
+            fullPage: false // 是否全屏展示
+        });
+    });
+</script>
+<link rel="stylesheet" type="text/css" href="/static/css/lunbo.css">
+<script src="/static/js/shutter.js"></script>
+<script src="/static/js/velocity.js"></script>
+
 <section class="box container overflow-Show">
     <header class="box-header"><i class="icon icon-cat"></i>
         <h2>最近更新</h2>
         <div class="pull-right">
-            <a class="more" href="">更多<i class="icon icon-arrow"></i></a></div>
+            <a class="more" href="/booklist?end=0">更多<i class="icon icon-arrow"></i></a></div>
     </header>
     <div class="box-body">
         <section class="box-con-8n3">
@@ -61,7 +94,7 @@
     <div class="container">
         <img src="/static/images/index-title-1.png" class="index-title-logo">
         <h2>热门漫画</h2>
-        <a href="#" class="index-title-more">更多</a>
+        <a href="/rank" class="index-title-more">更多</a>
     </div>
 </div>
 <div class="index-original">
@@ -161,7 +194,7 @@
 <!-- 热门排行 -->
 <div class="container">
     <div class="index-rank">
-        <div class="index-rank-title">新书榜<a href="#" class="more">更多</a></div>
+        <div class="index-rank-title">新书榜<a href="/rank" class="more">更多</a></div>
         <ul class="index-rank-list">
             {volist name="newest" id="vo" key="k" offset="1" length="4"}
             <li>
@@ -186,7 +219,7 @@
         </ul>
     </div>
     <div class="index-rank">
-        <div class="index-rank-title">点击榜<a href="#" class="more">更多</a></div>
+        <div class="index-rank-title">点击榜<a href="/rank" class="more">更多</a></div>
         <ul class="index-rank-list">
             {volist name="hot" id="vo" key="k" offset="1" length="4"}
             <li>
@@ -211,7 +244,7 @@
         </ul>
     </div>
     <div class="index-rank">
-        <div class="index-rank-title">完结榜<a href="#" class="more">更多</a></div>
+        <div class="index-rank-title">完结榜<a href="/rank" class="more">更多</a></div>
         <ul class="index-rank-list">
             {volist name="ends" id="vo" key="k" offset="1" length="4"}
             <li>
@@ -242,7 +275,7 @@
     <header class="box-header"><i class="icon icon-cat"></i>
         <h2>完结优选</h2>
         <div class="pull-right">
-            <a class="more" href="">更多<i class="icon icon-arrow"></i></a></div>
+            <a class="more" href="/booklist?end=1">更多<i class="icon icon-arrow"></i></a></div>
     </header>
     <div class="box-body">
         <section class="box-con-8n3">

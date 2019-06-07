@@ -22,6 +22,9 @@
         <p class="detail-main-info-author">作者：
             <a href="#">{$book.author.author_name}</a>
         </p>
+        <p class="detail-main-info-author">地区：
+            <a href="/booklist/?area={$book.area_id}">{$book.area.area_name}</a>
+        </p>
         <p class="detail-main-info-class">
             {volist name="tags" id="vo"}
             <span>
@@ -86,6 +89,15 @@
             {/if}
         </div>
         <a class="detail-list-more" id="detail-list-more" href="javascript:void(0);" onclick="charpterMore(this);">展开全部章节</a>
+        <script> 
+            $(document).ready(function(){
+                var much = $("#detail-list-select li").length + 1;
+                    if (much <= 13) {
+                        $('#detail-list-more').hide();
+                    }
+            })      
+                
+            </script>         
     </div>
 
     <script>

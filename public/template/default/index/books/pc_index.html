@@ -33,7 +33,7 @@
                 <p class="subtitle">作者：{$book.author.author_name}</p>
                 <p class="tip">
                     <span class="block">状态：<span>{$book.end?'已完结':'连载中'}</span></span>
-                    <span class="block ticai">地区：<a href="#" target="_blank">{$book.area.area_name}</a></span>
+                    <span class="block ticai">地区：<a href="/booklist/?area={$book.area_id}" target="_blank">{$book.area.area_name}</a></span>
                     <span class="block">更新时间：{$book.last_time|date='Y-m-d'}</span>
                 </p>
                 <p class="tip" style="margin-top:10px;">
@@ -170,9 +170,18 @@
                             })
                         })();
                     </script>
-                    <div class="m-load-more-sm" id="detail-list-more">
-                        <a href="javascript:void(0);" onclick="charpterMore(this);" class="detail-more" rel="nofollow">显示全部章节</a>
-                    </div>
+                    <div class="m-load-more-sm" id="detail-list-more" onclick="charpterMore();">
+                        <a href="javascript:void(0);"  class="detail-more" rel="nofollow">显示全部章节</a>
+                    </div>  
+                    <script> 
+                    $(document).ready(function(){
+                        var much = $("#detail-list-select li").length + 1;
+                            if (much <= 13) {
+                                $('#detail-list-more').hide();
+                            }
+                    })      
+                        
+                    </script>             
                 </div>
             </div>
             <div class="index-title">

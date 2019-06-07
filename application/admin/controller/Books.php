@@ -29,14 +29,15 @@ class Books extends BaseAdmin
         $this->assign([
             'books' => $books,
             'count' => $count
-            ]);
+        ]);
         return view();
     }
 
-    public function search(){
+    public function search()
+    {
         $name = input('book_name');
         $where = [
-            ['book_name', 'like', '%'.$name.'%']
+            ['book_name', 'like', '%' . $name . '%']
         ];
         $data = $this->bookService->getPagedBooksAdmin($where);
         $books = $data['books'];
@@ -54,7 +55,7 @@ class Books extends BaseAdmin
     public function create()
     {
         $areas = Area::all();
-        $this->assign('areas',$areas);
+        $this->assign('areas', $areas);
         return view();
     }
 
@@ -63,36 +64,37 @@ class Books extends BaseAdmin
         $book = new Book();
         $data = $request->param();
         $validate = new \app\admin\validate\Book();
-        if ($validate->check($data)){
-            if ($this->bookService->getByName($data['book_name'])){
+        if ($validate->check($data)) {
+            if ($this->bookService->getByName($data['book_name'])) {
                 $this->error('漫画名已经存在');
             }
 
             //作者处理
             $author = $this->authorService->getByName($data['author']);
-            if (is_null($author)){//如果作者不存在
+            if (is_null($author)) {//如果作者不存在
                 $author = new \app\model\Author();
                 $author->author_name = $data['author'];
                 $author->save();
             }
             $book->author_id = $author->id;
+            $book->author_name = $author->author_name;
             $result = $book->save($data);
-            if ($result){
-                $dir = App::getRootPath().'/public/static/upload/book/' . $book->id;
+            if ($result) {
+                $dir = App::getRootPath() . '/public/static/upload/book/' . $book->id;
                 if (!file_exists($dir)) {
                     mkdir($dir, 0777, true);
                 }
                 if (count($request->file()) > 0) {
                     $cover = $request->file('cover');
                     $cover->validate(['size' => 2048000, 'ext' => 'jpg,png,gif'])
-                        ->move($dir,'cover.jpg');
+                        ->move($dir, 'cover.jpg');
                 }
 
-                $this->success('添加成功','index','',1);
-            }else{
+                $this->success('添加成功', 'index', '', 1);
+            } else {
                 $this->error('添加失败');
             }
-        }else{
+        } else {
             $this->error($validate->getError());
         }
     }
@@ -109,39 +111,41 @@ class Books extends BaseAdmin
         return view();
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $data = $request->param();
         $validate = new \app\admin\validate\Book();
-        if ($validate->check($data)){
+        if ($validate->check($data)) {
             //作者处理
             $author = $this->authorService->getByName($data['author']);
-            if (is_null($author)){//如果是新作者
+            if (is_null($author)) {//如果是新作者
                 $author = new \app\model\Author();
                 $author->author_name = $data['author'];
                 $author->save();
-            }else{ //如果作者已经存在
+            } else { //如果作者已经存在
                 $data['author_id'] = $author->id;
+                $data['author_name'] = $author->author_name;
             }
             $result = Book::update($data);
-            if ($result){
-                $dir = App::getRootPath().'/public/static/upload/book/' . $data['id'];
+            if ($result) {
+                $dir = App::getRootPath() . '/public/static/upload/book/' . $data['id'];
                 if (!file_exists($dir)) {
                     mkdir($dir, 0777, true);
                 }
                 if (count($request->file()) > 0) {
                     $cover = $request->file('cover');
                     $cover->validate(['size' => 2048000, 'ext' => 'jpg,png,gif'])
-                        ->move($dir,'cover.jpg');
+                        ->move($dir, 'cover.jpg');
                     //清理浏览器缓存
-                    header("Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . "GMT" );
-                    header("Cache-Control: no-cache, must-revalidate" );
+                    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . "GMT");
+                    header("Cache-Control: no-cache, must-revalidate");
 
                 }
                 $this->success('编辑成功');
-            }else{
+            } else {
                 $this->error('编辑失败');
             }
-        }else{
+        } else {
             $this->error($validate->getError());
         }
     }
@@ -150,11 +154,11 @@ class Books extends BaseAdmin
     {
         $book = Book::get($id);
         $chapters = $book->chapters;
-        if (count($chapters) > 0){
-            return ['err' => 1,'msg' => '该漫画下含有章节，请先删除所有章节'];
+        if (count($chapters) > 0) {
+            return ['err' => 1, 'msg' => '该漫画下含有章节，请先删除所有章节'];
         }
         $book->delete();
-        return ['err' => 0,'msg' => '删除成功'];
+        return ['err' => 0, 'msg' => '删除成功'];
     }
 
 
