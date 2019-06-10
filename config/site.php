@@ -6,5 +6,5 @@
             'salt' => 'hanmantai',
             'api_key' => 'hahahaha',   
             'tpl' => 'default',
-            'payment' => 'codepay'            
+            'payment' => 'Vkzf'
             ];

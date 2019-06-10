@@ -12,6 +12,7 @@ namespace app\ucenter\controller;
 use app\model\User;
 use think\App;
 use think\Controller;
+use think\facade\Env;
 use think\Request;
 
 class Account extends Controller
@@ -21,10 +22,13 @@ class Account extends Controller
     public function __construct(App $app = null)
     {
         parent::__construct($app);
+        $tpl_root = Env::get('root_path') . '/public/template/' . config('site.tpl') . '/ucenter/';
+        $controller = strtolower($this->request->controller());
+        $action = strtolower($this->request->action());
         if ($this->request->isMobile()) {
-            $this->tpl = $this->request->action();
+            $this->tpl = $tpl_root . $controller . '/' . $action . '.html';
         } else {
-            $this->tpl = 'pc_' . $this->request->action();
+            $this->tpl = $tpl_root . $controller . '/' . 'pc_' . $action . '.html';
         }
     }
 
@@ -102,7 +106,9 @@ class Account extends Controller
         $phone = input('phone');
         $this->assign([
             'phone' => $phone,
-            'header_title' => '找回密码'
+            'header_title' => '找回密码',
+            'site_name' => config('site.site_name'),
+            'url' => config('site.url')
         ]);
         return view($this->tpl);
     }

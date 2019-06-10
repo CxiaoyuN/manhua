@@ -25,7 +25,7 @@ class FinanceService extends Controller
             if ($this->request->isMobile()) {
                 $type = 'util\MPage';
             }
-            $charges = UserFinance::where($map)->paginate(1, false,
+            $charges = UserFinance::where($map)->paginate(10, false,
                 [
                     'query' => request()->param(),
                     'type' => $type,

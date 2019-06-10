@@ -2,8 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/application/admin/controller/Mc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/admin/view/mc/message.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/admin/view/mc/reply.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/model/Message.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/images/admin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/images/forgetpwd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/images/messages.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/leavemsg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default/ucenter/account/pc_recovery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default/ucenter/account/recovery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/leavemsg.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/message.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_leavemsg.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_message.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/pub/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/pub/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/api/controller/Vkzfnotify.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/api/controller/Vkzfnotify.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/api/controller/Xunhunotify.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/api/controller/Xunhunotify.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/index/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/install/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/install/controller/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/install/sql/install.sql" beforeDir="false" afterPath="$PROJECT_DIR$/application/install/sql/install.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/FinanceService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/FinanceService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/site.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/css/mstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/css/mstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/js/phone.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/js/phone.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/pub/pc_menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/pub/pc_menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/ucenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/ucenter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/route.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/route.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,29 +59,109 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/install/sql/install.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="124" column="46" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/template/default/index/index/pc_index.html">
+        <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Users.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+            <state relative-caret-position="121">
+              <caret line="279" column="41" lean-forward="true" selection-start-line="279" selection-start-column="41" selection-end-line="279" selection-end-column="41" />
+              <folding>
+                <element signature="e#817#1139#0#PHP" />
+                <element signature="e#1145#1465#0#PHP" />
+                <element signature="e#1471#1872#0#PHP" />
+                <element signature="e#2706#3218#0#PHP" />
+                <element signature="e#4248#4502#0#PHP" />
+                <element signature="e#4508#5255#0#PHP" />
+                <element signature="e#5261#5474#0#PHP" />
+                <element signature="e#6192#7238#0#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
+        <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/message.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="418">
+              <caret line="31" column="48" lean-forward="true" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/template/default/pub/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/admin/controller/Mc.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="722">
+              <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+              <folding>
+                <element signature="e#42#64#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/pc_message.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="58" column="48" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="48" />
+              <folding>
+                <element signature="n#style#0;n#!!top" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#section#0;n#article#0;n#main#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#section#0;n#article#0;n#main#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#1;n#section#0;n#article#0;n#main#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/static/js/leavemsg.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/route/route.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="35" column="22" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/leavemsg.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/ucenter.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="65" column="75" selection-start-line="65" selection-start-column="75" selection-end-line="65" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -70,25 +179,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>list</find>
-      <find>收藏成功</find>
-      <find>userbook</find>
-      <find>toast</find>
-      <find>收藏</find>
-      <find>chapterlistload</find>
-      <find>.detail-list-2-info-right</find>
-      <find>text</find>
-      <find>.textarea</find>
-      <find>payment</find>
-      <find>$this</find>
-      <find>pay_type</find>
-      <find>summary</find>
-      <find>md5Verify</find>
-      <find>this</find>
-      <find>mCustomScrollBox</find>
-      <find>alertTop_1</find>
-      <find>$balance</find>
-      <find>show</find>
       <find>verifyNotify</find>
       <find>author_words</find>
       <find>titleSelect</find>
@@ -100,6 +190,25 @@
       <find>much</find>
       <find>更多</find>
       <find>shutter-desc</find>
+      <find>提交</find>
+      <find>收藏</find>
+      <find>alertTop_1</find>
+      <find>show</find>
+      <find>toast</find>
+      <find>章节</find>
+      <find>codepay</find>
+      <find>.table-body table tr</find>
+      <find>/recover</find>
+      <find>reset</find>
+      <find>recovery</find>
+      <find>txt_phonecode</find>
+      <find>startTime</find>
+      <find>delete</find>
+      <find>/ucenter</find>
+      <find>formsub</find>
+      <find>leave</find>
+      <find>scroll</find>
+      <find>overflow-x</find>
     </findStrings>
     <replaceStrings>
       <replace>小涴熊CMS</replace>
@@ -118,57 +227,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/ucenter/controller/Zhapaynotify.php" />
-        <option value="$PROJECT_DIR$/extend/util/Zhapay.php" />
-        <option value="$PROJECT_DIR$/application/ucenter/controller/Vkzfnotify.php" />
-        <option value="$PROJECT_DIR$/application/admin/view/books/create.html" />
-        <option value="$PROJECT_DIR$/application/admin/view/pub/base2.html" />
-        <option value="$PROJECT_DIR$/application/admin/view/books/edit.html" />
-        <option value="$PROJECT_DIR$/application/admin/validate/Book.php" />
-        <option value="$PROJECT_DIR$/application/admin/view/books/index.html" />
-        <option value="$PROJECT_DIR$/application/service/AdminService.php" />
-        <option value="$PROJECT_DIR$/application/service/OrderService.php" />
-        <option value="$PROJECT_DIR$/public/template/default/index/chapters/pc_index.html" />
-        <option value="$PROJECT_DIR$/application/api/controller/Zhapaynotify.php" />
-        <option value="$PROJECT_DIR$/application/service/FinanceService.php" />
-        <option value="$PROJECT_DIR$/application/admin/view/payment/orders.html" />
-        <option value="$PROJECT_DIR$/application/admin/controller/Payment.php" />
-        <option value="$PROJECT_DIR$/application/admin/view/pub/menu.html" />
-        <option value="$PROJECT_DIR$/application/admin/view/payment/finance.html" />
-        <option value="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_charge.html" />
-        <option value="$PROJECT_DIR$/public/template/default/ucenter/users/pc_ucenter.html" />
-        <option value="$PROJECT_DIR$/application/ucenter/controller/Account.php" />
         <option value="$PROJECT_DIR$/application/index/controller/Chapters.php" />
         <option value="$PROJECT_DIR$/application/ucenter/common.php" />
         <option value="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_vip.html" />
         <option value="$PROJECT_DIR$/public/template/default/ucenter/finance/vip.html" />
-        <option value="$PROJECT_DIR$/application/ucenter/controller/Users.php" />
         <option value="$PROJECT_DIR$/application/ucenter/controller/Finance.php" />
-        <option value="$PROJECT_DIR$/public/template/default/ucenter/users/ucenter.html" />
         <option value="$PROJECT_DIR$/config/payment.php" />
         <option value="$PROJECT_DIR$/extend/util/Vkzf.php" />
-        <option value="$PROJECT_DIR$/application/api/controller/Vkzfnotify.php" />
         <option value="$PROJECT_DIR$/extend/util/Xunhupay.php" />
         <option value="$PROJECT_DIR$/application/api/controller/Xunhunotify.php" />
         <option value="$PROJECT_DIR$/application/admin/view/index/index.html" />
         <option value="$PROJECT_DIR$/public/static/js/userinfo.js" />
-        <option value="$PROJECT_DIR$/public/static/css/style.css" />
         <option value="$PROJECT_DIR$/application/index/controller/Books.php" />
-        <option value="$PROJECT_DIR$/application/service/BookService.php" />
         <option value="$PROJECT_DIR$/public/template/default/index/index/search.html" />
         <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/route/route.php" />
         <option value="$PROJECT_DIR$/application/admin/view/login/index.html" />
         <option value="$PROJECT_DIR$/application/admin/view/pub/head.html" />
         <option value="$PROJECT_DIR$/application/admin/view/pub/index_scripts.html" />
-        <option value="$PROJECT_DIR$/application/admin/controller/Index.php" />
         <option value="$PROJECT_DIR$/public/static/js/index.js" />
         <option value="$PROJECT_DIR$/public/template/default/index/books/pc_index.html" />
         <option value="$PROJECT_DIR$/public/template/default/index/books/index.html" />
-        <option value="$PROJECT_DIR$/application/install/sql/install.sql" />
         <option value="$PROJECT_DIR$/application/admin/controller/Books.php" />
-        <option value="$PROJECT_DIR$/application/index/controller/Index.php" />
         <option value="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" />
+        <option value="$PROJECT_DIR$/application/service/BookService.php" />
+        <option value="$PROJECT_DIR$/application/index/controller/Index.php" />
+        <option value="$PROJECT_DIR$/application/api/controller/Vkzfnotify.php" />
+        <option value="$PROJECT_DIR$/application/model/Message.php" />
+        <option value="$PROJECT_DIR$/public/template/default/ucenter/pub/pc_menu.html" />
+        <option value="$PROJECT_DIR$/application/service/FinanceService.php" />
+        <option value="$PROJECT_DIR$/application/install/sql/install.sql" />
+        <option value="$PROJECT_DIR$/application/admin/view/pub/menu.html" />
+        <option value="$PROJECT_DIR$/public/static/upload/message/7/msg.txt" />
+        <option value="$PROJECT_DIR$/application/admin/view/mc/message.html" />
+        <option value="$PROJECT_DIR$/application/admin/view/mc/reply.html" />
+        <option value="$PROJECT_DIR$/config/site.php" />
+        <option value="$PROJECT_DIR$/application/install/controller/Index.php" />
+        <option value="$PROJECT_DIR$/public/static/css/style.css" />
+        <option value="$PROJECT_DIR$/public/template/default/ucenter/users/pc_message.html" />
+        <option value="$PROJECT_DIR$/route/route.php" />
+        <option value="$PROJECT_DIR$/public/template/default/pub/base.html" />
+        <option value="$PROJECT_DIR$/public/template/default/ucenter/account/recovery.html" />
+        <option value="$PROJECT_DIR$/public/static/js/phone.js" />
+        <option value="$PROJECT_DIR$/application/ucenter/controller/Account.php" />
+        <option value="$PROJECT_DIR$/public/template/default/ucenter/account/pc_recovery.html" />
+        <option value="$PROJECT_DIR$/application/admin/controller/Index.php" />
+        <option value="$PROJECT_DIR$/application/admin/controller/Mc.php" />
+        <option value="$PROJECT_DIR$/public/template/default/ucenter/users/ucenter.html" />
+        <option value="$PROJECT_DIR$/public/static/js/leavemsg.js" />
+        <option value="$PROJECT_DIR$/public/template/default/ucenter/users/leavemsg.html" />
+        <option value="$PROJECT_DIR$/public/template/default/ucenter/users/pc_leavemsg.html" />
+        <option value="$PROJECT_DIR$/public/template/default/ucenter/users/message.html" />
+        <option value="$PROJECT_DIR$/application/ucenter/controller/Users.php" />
       </list>
     </option>
   </component>
@@ -218,49 +327,12 @@
               <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
               <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
               <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="default" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="default" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="default" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
+              <item name="route" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -273,7 +345,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/static/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/static/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -282,18 +354,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\wwwroot\xiaohuanxiong\public\static\images" />
       <recent name="D:\wwwroot\xiaohuanxiong\public\static\css" />
       <recent name="D:\wwwroot\xiaohuanxiong\public\static\js" />
-      <recent name="D:\wwwroot\xiaohuanxiong\public\static\images" />
       <recent name="D:\wwwroot\xiaohuanxiong\public\static\admin\css" />
       <recent name="$PROJECT_DIR$/public/static/js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\wwwroot\xiaohuanxiong\public\template\default\ucenter\users" />
+      <recent name="D:\wwwroot\xiaohuanxiong\public\template\default\ucenter\account" />
       <recent name="D:\wwwroot\xiaohuanxiong\application\api\controller" />
       <recent name="D:\wwwroot\xiaohuanxiong\public\template\default\ucenter\finance" />
       <recent name="D:\wwwroot\xiaohuanxiong\application\ucenter\controller" />
-      <recent name="D:\wwwroot\xiaohuanxiong\application\pay" />
-      <recent name="D:\wwwroot\xiaohuanxiong\public\static\upload\book\1" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -576,17 +648,24 @@
       <workItem from="1559826787634" duration="531000" />
       <workItem from="1559872456294" duration="381000" />
       <workItem from="1559898350286" duration="1017000" />
+      <workItem from="1559903406736" duration="1982000" />
+      <workItem from="1559971544813" duration="143000" />
+      <workItem from="1559978395364" duration="12000" />
+      <workItem from="1559979237794" duration="25000" />
+      <workItem from="1559979471452" duration="33000" />
+      <workItem from="1560052293003" duration="15720000" />
+      <workItem from="1560137821382" duration="12711000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="712052000" />
+    <option name="totallyTimeSpent" value="742678000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21581769" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19839142" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -637,237 +716,175 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/extend/util/Xunhupay.php">
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/pub/pc_menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="14" />
+        <state relative-caret-position="380">
+          <caret line="20" column="57" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/api/controller/Xunhunotify.php">
+    <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Finance.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="73" column="37" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
+        <state relative-caret-position="96">
+          <caret line="77" column="61" selection-start-line="77" selection-start-column="49" selection-end-line="77" selection-end-column="61" />
           <folding>
-            <element signature="e#40#66#0#PHP" expanded="true" />
+            <element signature="e#355#785#0#PHP" />
+            <element signature="e#802#1365#0#PHP" />
+            <element signature="e#1371#1962#0#PHP" />
+            <element signature="e#2726#3114#0#PHP" />
+            <element signature="e#3131#4172#0#PHP" />
+            <element signature="e#4193#4379#0#PHP" />
+            <element signature="e#4385#6362#0#PHP" />
+            <element signature="e#6382#8840#0#PHP" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/api/controller/Zhapaynotify.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding>
-            <element signature="e#40#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/api/controller/Vkzfnotify.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding>
-            <element signature="e#40#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/index/index/pc_search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#a#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#a#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#section#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/index/rank/pc_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="63" column="52" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Rank.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/userinfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/static/js/userinfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="2" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/bookshelf.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="32" column="93" lean-forward="true" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/history.html">
+    <entry file="file://$PROJECT_DIR$/application/service/FinanceService.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="33" column="59" lean-forward="true" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="59" />
+          <caret line="50" column="13" lean-forward="true" selection-start-line="47" selection-start-column="12" selection-end-line="50" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/common.php">
+    <entry file="file://$PROJECT_DIR$/application/model/Admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="16" />
-          <folding>
-            <element signature="n#delete_dir_file#0;n#!!top" />
-            <element signature="n#img_process#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="361">
+          <caret line="24" column="5" selection-start-line="15" selection-start-column="4" selection-end-line="24" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/static/css/style.css">
+    <entry file="file://$PROJECT_DIR$/application/admin/view/pub/menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121999">
-          <caret line="6421" column="16" selection-start-line="6421" selection-start-column="16" selection-end-line="6421" selection-end-column="16" />
+        <state relative-caret-position="456">
+          <caret line="93" column="57" selection-start-line="93" selection-start-column="57" selection-end-line="93" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Books.php">
+    <entry file="file://$PROJECT_DIR$/application/admin/controller/Areas.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="41" column="69" selection-start-line="41" selection-start-column="69" selection-end-line="41" selection-end-column="69" />
+        <state relative-caret-position="-506">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/service/BookService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/index/index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="77" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="24" column="53" lean-forward="true" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
-          <folding>
-            <element signature="e#526#760#0#PHP" />
-            <element signature="e#766#1082#0#PHP" />
-            <element signature="e#1088#1402#0#PHP" />
-            <element signature="e#1408#1798#0#PHP" />
-            <element signature="e#1804#2471#0#PHP" />
-            <element signature="e#2622#3124#0#PHP" />
-            <element signature="e#3130#4132#0#PHP" />
-            <element signature="e#4138#4385#0#PHP" />
-            <element signature="e#4391#5124#0#PHP" />
-            <element signature="e#5130#5338#0#PHP" />
-            <element signature="e#5344#6042#0#PHP" />
-            <element signature="e#6048#7064#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/index/index/search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="66" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/controller/Friendshiplinks.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-304">
+        <state relative-caret-position="-57">
           <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
+    <entry file="file://$PROJECT_DIR$/application/common.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="136" column="97" selection-start-line="136" selection-start-column="56" selection-end-line="136" selection-end-column="97" />
+        <state relative-caret-position="304">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/admins/index.html">
+    <entry file="file://$PROJECT_DIR$/application/admin/view/books/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-672" />
+        <state relative-caret-position="380">
+          <caret line="80" column="81" lean-forward="true" selection-start-line="79" selection-start-column="32" selection-end-line="80" selection-end-column="81" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/admins/edit.html">
+    <entry file="file://$PROJECT_DIR$/application/admin/view/books/create.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-468" />
+        <state relative-caret-position="399">
+          <caret line="78" column="14" lean-forward="true" selection-start-line="71" selection-start-column="8" selection-end-line="78" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/upload/message/6/msg.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/upload/message/7/msg.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="48" selection-start-column="48" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/upload/message/7/8.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/mc/message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="44" column="60" selection-start-line="44" selection-start-column="60" selection-end-line="44" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/mc/reply.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#form#0;n#article#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#1;n#form#0;n#article#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/install/controller/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="235" column="30" selection-start-line="235" selection-start-column="30" selection-end-line="235" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="3684" selection-start-line="3684" selection-end-line="3684" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/install/sql/install.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4712">
+          <caret line="248" column="10" selection-start-line="248" selection-start-column="3" selection-end-line="248" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/finance/pc_chargehistory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="70" column="26" selection-start-line="24" selection-start-column="16" selection-end-line="70" selection-end-column="26" />
+          <folding>
+            <element signature="n#section#0;n#div#0;n#section#0;n#article#0;n#main#0;n#!!top" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/site.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="32" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="32" />
+        <state relative-caret-position="152">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/route/route.php">
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Books.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="34" column="55" lean-forward="true" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
+        <state relative-caret-position="532">
+          <caret line="187" column="25" selection-start-line="187" selection-start-column="25" selection-end-line="187" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/pub/others.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/pub/pc_base.html">
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/history.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1537" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/pub/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-50" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/pub/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-88" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/admins/create.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/pub/base2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+        <state relative-caret-position="323">
+          <caret line="17" column="32" selection-end-line="58" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/static/admin/js/jquery.min.js">
+    <entry file="file://$PROJECT_DIR$/public/static/js/loadNewBookmarker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-563" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/js/velocity.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
@@ -876,143 +893,223 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/topthink/think-captcha/src/CaptchaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/topthink/think-captcha/src/Captcha.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/login/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="49" column="75" selection-start-line="49" selection-start-column="75" selection-end-line="49" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/pub/head.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/install/view/index/index.html">
+    <entry file="file://$PROJECT_DIR$/public/static/js/shutter.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/install/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3719">
-          <caret line="65" column="37" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/install/view/index/step3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="49" lean-forward="true" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/install/view/index/step2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-354">
-          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="114" column="26" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="26" />
-          <folding>
-            <element signature="e#40#62#0#PHP" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/pub/index_scripts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1653">
-          <caret line="87" column="25" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1957">
-          <caret line="103" column="61" selection-start-line="103" selection-start-column="61" selection-end-line="103" selection-end-column="61" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/static/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="44" column="1" lean-forward="true" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+        <state relative-caret-position="-392">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/index/books/index.html">
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/account/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
-          <folding>
-            <element signature="n#div#3;n#div#1;n#!!top" />
-            <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#div#4;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-399" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/index/books/pc_index.html">
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/pc_userphone.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#div#1;n#section#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-171" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/install/sql/install.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="124" column="46" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/controller/Books.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2337">
-          <caret line="126" column="60" selection-start-line="126" selection-start-column="60" selection-end-line="126" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/books/create.html">
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/pc_resetpwd.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Base.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="266">
+          <caret line="28" column="17" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/default/index/index/pc_index.html">
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/resetpwd.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/userphone.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/pc_bindphone.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="50" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/js/phone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/account/recovery.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="13" column="49" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="49" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/account/pc_recovery.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#section#0;n#main#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#1;n#form#0;n#div#0;n#div#0;n#div#1;n#section#0;n#main#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#2;n#form#0;n#div#0;n#div#0;n#div#1;n#section#0;n#main#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#4;n#form#0;n#div#0;n#div#0;n#div#1;n#section#0;n#main#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Account.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="110" column="37" selection-start-line="110" selection-start-column="37" selection-end-line="110" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/upload/message/13/msg.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/controller/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="125" column="38" selection-start-line="125" selection-start-column="32" selection-end-line="125" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/controller/Admins.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="77" column="5" selection-start-line="70" selection-start-column="4" selection-end-line="77" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/ucenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="65" column="75" selection-start-line="65" selection-start-column="75" selection-end-line="65" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/finance/chargehistory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" selection-start-line="4" selection-end-line="38" selection-end-column="8" />
+          <folding>
+            <element signature="n#style#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/js/leavemsg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/pc_leavemsg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="43" column="69" selection-start-line="43" selection-start-column="69" selection-end-line="43" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#article#0;n#main#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/route/route.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="35" column="22" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/controller/Mc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+          <folding>
+            <element signature="e#42#64#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/leavemsg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/pc_message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="58" column="48" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#!!top" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#section#0;n#article#0;n#main#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#section#0;n#article#0;n#main#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#1;n#section#0;n#article#0;n#main#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/pub/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/users/message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="31" column="48" lean-forward="true" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="279" column="41" lean-forward="true" selection-start-line="279" selection-start-column="41" selection-end-line="279" selection-end-column="41" />
+          <folding>
+            <element signature="e#817#1139#0#PHP" />
+            <element signature="e#1145#1465#0#PHP" />
+            <element signature="e#1471#1872#0#PHP" />
+            <element signature="e#2706#3218#0#PHP" />
+            <element signature="e#4248#4502#0#PHP" />
+            <element signature="e#4508#5255#0#PHP" />
+            <element signature="e#5261#5474#0#PHP" />
+            <element signature="e#6192#7238#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>

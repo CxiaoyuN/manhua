@@ -61,7 +61,7 @@ class Index extends Base
         foreach ($hot_search_json as $k => $v){
             $hot_search[] = $k;
         }
-        $books = cache('searchresult'.$keyword);
+        $books = cache('searchresult:'.$keyword);
         if (!$books){
             $books = $this->bookService->search($keyword);
             cache('searchresult:'.$keyword,$books,null,'redis');

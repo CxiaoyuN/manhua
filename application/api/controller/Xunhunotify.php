@@ -9,7 +9,7 @@ use app\model\UserOrder;
 use think\Controller;
 use think\facade\Cache;
 use think\Request;
-use Util\Xunhupay;
+use util\Xunhupay;
 
 class Xunhunotify extends Controller
 {

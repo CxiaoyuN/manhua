@@ -234,9 +234,27 @@ CREATE TABLE `xwx_comments` (
   `user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `book_id` int(10) unsigned NOT NULL DEFAULT '0',
   `create_time` int(11) DEFAULT '0',
-  `update_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `book_id` (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for xwx_message
+-- ----------------------------
+DROP TABLE IF EXISTS `xwx_message`;
+CREATE TABLE `xwx_message`  (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `msg_key` int(11) NOT NULL COMMENT '留言用户ID，或受回复消息ID',
+  `type` tinyint(4) NOT NULL COMMENT '留言类型：0是用户留言，1是回复',
+  `create_time` int(11) DEFAULT '0',
+  `update_time` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `user_id` (`user_id`),
+  key `type` (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
 

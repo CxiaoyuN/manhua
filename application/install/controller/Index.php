@@ -233,7 +233,7 @@ class Index extends Controller
             'salt' => '{$salt}',
             'api_key' => '{$api_key}',   
             'tpl' => 'default',
-            'payment' => 'codepay'            
+            'payment' => 'Vkzf'            
             ];
 INFO;
         file_put_contents(App::getRootPath() . 'config/site.php', $code);

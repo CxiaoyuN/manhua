@@ -3683,14 +3683,6 @@ hr {
     color: #e90930
 }
 
-.table-body table tr {
-    background-color: #e6e6e6
-}
-
-.table-body table tr:nth-child(2n) {
-    background-color: #fff
-}
-
 .table-body table thead {
     color: #999
 }
