@@ -251,10 +251,7 @@ CREATE TABLE `xwx_message`  (
   `create_time` int(11) DEFAULT '0',
   `update_time` int(11) DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `user_id` (`user_id`),
+  KEY `msg_key` (`msg_key`),
   key `type` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-SET FOREIGN_KEY_CHECKS = 1;
-
 
