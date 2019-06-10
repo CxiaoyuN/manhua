@@ -110,32 +110,36 @@ INFO;
         $res = $client->request('GET', $serverFileUrl);
         $serverVersion = (int)str_replace('.', '', $res->getBody());
         $msg = array();
-        array_push($msg,'<p></p>');
+        array_push($msg, '<p></p>');
 
         if ($serverVersion > $localVersion) {
             for ($i = $localVersion + 1; $i <= $serverVersion; $i++) {
-                $res = $client->request('GET',"http://config.xhxcms.xyz/" . $i . ".json");
+                $res = $client->request('GET', "http://config.xhxcms.xyz/" . $i . ".json");
                 $json = json_decode($res->getBody(), true);
 
                 foreach ($json['update'] as $value) {
-                    $data = $client->request('GET',$server . '/' . $value)->getBody(); //根据配置读取升级文件的内容
+                    $data = $client->request('GET', $server . '/' . $value)->getBody(); //根据配置读取升级文件的内容
                     $saveFileName = Env::get('root_path') . $value;
+                    $dir = dirname($saveFileName);
+                    if (!file_exists($dir)) {
+                        mkdir($dir, 0777);
+                    }
                     file_put_contents($saveFileName, $data, true); //将内容写入到本地文件
-                    array_push($msg,'<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
+                    array_push($msg, '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
                 }
                 foreach ($json['delete'] as $value) {
                     $flag = unlink(Env::get('root_path') . '/' . $value);
                     if ($flag) {
-                        array_push($msg,'<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
+                        array_push($msg, '<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
                     } else {
-                        array_push($msg,'<p style="margin-left: 15px;color:darkred">删除文件失败</p>');
+                        array_push($msg, '<p style="margin-left: 15px;color:darkred">删除文件失败</p>');
                     }
                 }
             }
-            array_push($msg,'<p style="margin-left:15px;">升级完成</p>');
+            array_push($msg, '<p style="margin-left:15px;">升级完成</p>');
         } else {
             $msg = ['已经是最新版本！当前版本是' . $localVersion];
         }
-        return implode('',$msg);
+        return implode('', $msg);
     }
 }
