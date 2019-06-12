@@ -156,9 +156,7 @@ class Finance extends BaseUcenter
         $price = $chapter->book->money; //获得单章价格
         if ($this->request->isPost()) {
             $redis = new_redis();
-            $lock = $redis->sIsMember($this->redis_prefix . ':user_buy_lock', $this->uid); //先判断有没有用户锁
-            if (!$lock) { //如果没上锁，则该用户可以进行购买操作
-                $redis->sAdd($this->redis_prefix . ':user_buy_lock', $this->uid); //先加锁
+            if (!$redis->exists($this->redis_prefix . ':user_buy_lock:'.$this->uid)) { //如果没上锁，则该用户可以进行购买操作
                 $this->balance = $this->financeService->getBalance(); //这里不查询缓存，直接查数据库更准确
                 if ($price > $this->balance) { //如果价格高于用户余额，则不能购买
                     return ['err' => 1, 'msg' => '余额不足'];
@@ -178,7 +176,7 @@ class Finance extends BaseUcenter
                     $userBuy->summary = '购买章节';
                     $userBuy->save();
                 }
-                $redis->sRem($this->redis_prefix . ':user_buy_lock', $this->uid); //删除用户锁
+                $redis->set($this->redis_prefix . ':user_buy_lock:'.$this->uid, 1, 5);
                 Cache::clear('pay'); //删除缓存
                 return ['err' => 0, 'msg' => '购买成功，等待跳转'];
             } else {
@@ -240,7 +238,6 @@ class Finance extends BaseUcenter
         if ($time > 0) {
             $day = ceil(($user->vip_expire_time - time()) / (60 * 60 * 24));
         }
-
         $this->assign([
             'balance' => $this->balance,
             'header_title' => 'vip会员',

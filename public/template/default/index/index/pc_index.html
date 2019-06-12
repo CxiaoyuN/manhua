@@ -114,10 +114,10 @@
                                 <a href="/book/{$vo.id}" title="{$vo.book_name}">
                                     {if empty($vo.cover_url)}
                                     <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" alt="{$vo.book_name}"
-                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? &#39;167px&#39; : this.width);">
+                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? '167px' : this.width);">
                                     {else /}
                                     <img src="{$vo.cover_url}" alt="{$vo.book_name}"
-                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? &#39;167px&#39; : this.width);">
+                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? '167px' : this.width);">
                                     {/if}
                                 </a>
                             </div>
@@ -154,10 +154,10 @@
                                 <a href="/book/{$vo.id}" title="{$vo.book_name}">
                                     {if empty($vo.cover_url)}
                                     <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" alt="{$vo.book_name}"
-                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? &#39;167px&#39; : this.width);">
+                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? '167px' : this.width);">
                                     {else /}
                                     <img src="{$vo.cover_url}" alt="{$vo.book_name}"
-                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? &#39;167px&#39; : this.width);">
+                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? '167px' : this.width);">
                                     {/if}
                                 </a>
                             </div>
@@ -330,21 +330,23 @@
 </div>
 <ul class="index-right-float" style="display: block;">
     <li><a href="javascript:void(0);"
-           onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.box-header&#39;).eq(0).offset().top-80},500);"
+           onclick="$('html,body').stop().animate({ scrollTop:$('.box-header').eq(0).offset().top-80},500);"
            class="active">最近<br>更新</a>
     </li>
     <li><a href="javascript:void(0);"
-           onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.index-title&#39;).eq(0).offset().top-80},500);"
+           onclick="$('html,body').stop().animate({ scrollTop:$('.index-title').eq(0).offset().top-80},500);"
            class="">热门<br>漫画</a>
     </li>
     <li><a href="javascript:void(0);"
-           onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.index-rank&#39;).eq(0).offset().top-80},500);"
+           onclick="$('html,body').stop().animate({ scrollTop:$('.index-rank').eq(0).offset().top-80},500);"
            class="">排行<br>榜单</a>
     </li>
     <li><a href="javascript:void(0);"
-           onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:$(&#39;.box-header&#39;).eq(1).offset().top-80},500);">完结<br>佳作</a>
+           onclick="$('html,body').stop().animate({ scrollTop:$('.box-header').eq(1).offset().top-80},500);">完结<br>佳作</a>
     </li>
-    <li><a href="javascript:void(0);" onclick="$(&#39;html,body&#39;).stop().animate({ scrollTop:0},500);"
+    <li><a href="/leavemsg">留言<br>反馈</a>
+    </li>
+    <li><a href="javascript:void(0);" onclick="$('html,body').stop().animate({ scrollTop:0},500);"
            class="index-right-float-top"></a></li>
 </ul>
 <script type="text/javascript">

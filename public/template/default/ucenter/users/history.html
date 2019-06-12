@@ -42,16 +42,16 @@
     {/volist}
 </div>
 
- <a href="javascript:$(&#39;.win-pay2&#39;).show();$(&#39;.mask&#39;).show();" class="center-main-bottom-btn l50" style="display:none;">清空</a>
+ <a href="javascript:$('.win-pay2').show();$('.mask').show();" class="center-main-bottom-btn l50" style="display:none;">清空</a>
 <a href="javascript:deleteReadhistory();" class="center-main-bottom-btn r50" style="display:none;">删除</a>
 <div class="mask" style="display: none;"></div>
 <div class="win-pay2" style="display: none;">
-    <a href="javascript:$(&#39;.mask,.win-pay2&#39;).hide();">
+    <a href="javascript:$('.mask,.win-pay2').hide();">
         <img class="win-pay-cross" src="/static/images/win-cross.png">
     </a>
     <p class="win-pay-content pb10">是否清空清空阅读历史?</p>
     <div class="win-pay-btn-group2 pb20">
-        <a class="win-pay-btn gary" href="javascript:$(&#39;.mask,.win-pay2&#39;).hide();">再想想</a>
+        <a class="win-pay-btn gary" href="javascript:$('.mask,.win-pay2').hide();">再想想</a>
         <a class="win-pay-btn red" href="javascript:clearReadhistory();">确认清空</a> </div>
 </div>
 <div class="toast" style="display:none;"></div>

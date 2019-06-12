@@ -24,7 +24,7 @@
                                     <span class="color-main"> ￥ <span class="price">{$vo.price}</span> </span> <span
                                         class="original"></span>
                                 </p>
-                                <p class="describe">每月￥{$vo.price}</p>
+                                <p class="describe">每月￥{:floor($vo.price/$vo.month)}</p>
                             </div>
                         </label>
                     </li>

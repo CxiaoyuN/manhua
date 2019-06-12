@@ -11,7 +11,7 @@
         <li data-val="{$vo.month}">
             <div class="recharge-set-info">
                 <p class="recharge-set-title">{$vo.month}个月VIP</p>
-                <p class="recharge-set-tip">每月￥{$vo.price}</p>
+                <p class="recharge-set-tip">每月￥{:floor($vo.price/$vo.month)}</p>
             </div>
             <span class="recharge-set-right"> ￥{$vo.price} </span>
         </li>
