@@ -197,8 +197,7 @@ class Finance extends BaseUcenter
         $user = User::get($this->uid);
         if ($request->isPost()) {
             $redis = new_redis();
-            $lock = $redis->sIsMember($this->redis_prefix . ':user_buy_lock', $this->uid); //先判断有没有用户锁
-            if (!$lock) { //如果没上锁，则该用户可以进行购买操作
+            if (!$redis->exists($this->redis_prefix . ':user_buy_lock:'.$this->uid)) { //如果没上锁，则该用户可以进行购买操作
                 $arr = config('payment.vip'); //拿到vip配置数组
                 $month = (int)$request->param('month'); //拿到用户选择的vip
                 foreach ($arr as $key => $value) {
@@ -219,15 +218,15 @@ class Finance extends BaseUcenter
                             } else { //vip没过期，则在现有vip时间上增加
                                 $user->vip_expire_time = $user->vip_expire_time + $month * 30 * 24 * 60 * 60;
                             }
-
                             $user->isupdate(true)->save();
+                            session('xwx_vip_expire_time',$user->vip_expire_time); //更新session
                             Cache::clear('pay'); //删除缓存
                             return ['err' => 0, 'msg' => '购买成功，等待跳转'];
                         }
                     }
                 }
+                $redis->set($this->redis_prefix . ':user_buy_lock:'.$this->uid, 1, 5);
                 return ['err' => 1, 'msg' => '请选择正确的选项']; //以防用户篡改页面的提交值
-                $redis->sRem($this->redis_prefix . ':user_buy_lock', $this->uid); //删除用户锁
             } else {
                 return ['err' => -1, 'msg' => '同账号非法操作'];
             }

@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/static/images/feedback.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/css/mstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/css/mstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/html/wx.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/html/wx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/chapters/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/chapters/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/buychapter.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/buychapter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/buyhistory.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/buyhistory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/charge.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/charge.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/feedback.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/feedback.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_vip.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_vip.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/vip.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/vip.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/pub/pc_menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/pub/pc_menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/history.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/history.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/template/default/index/index/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="596">
-              <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+            <state relative-caret-position="292">
+              <caret line="17" column="57" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -58,6 +44,41 @@
                 <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/index/controller/Chapters.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="29" column="61" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Finance.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="219" column="29" lean-forward="true" selection-start-line="219" selection-start-column="29" selection-end-line="219" selection-end-column="29" />
+              <folding>
+                <element signature="e#802#1365#0#PHP" />
+                <element signature="e#1371#1962#0#PHP" />
+                <element signature="e#1979#2720#0#PHP" />
+                <element signature="e#2726#3114#0#PHP" />
+                <element signature="e#3131#4172#0#PHP" />
+                <element signature="e#4193#4379#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Account.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="72" column="69" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -75,7 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>#comment</find>
       <find>comment</find>
       <find>recov</find>
       <find>checkupdate</find>
@@ -105,6 +125,7 @@
       <find>'</find>
       <find>&amp;#39;</find>
       <find>showdi</find>
+      <find>vip</find>
     </findStrings>
     <replaceStrings>
       <replace>小涴熊CMS</replace>
@@ -170,11 +191,11 @@
         <option value="$PROJECT_DIR$/public/template/default/ucenter/users/history.html" />
         <option value="$PROJECT_DIR$/public/static/html/wx.html" />
         <option value="$PROJECT_DIR$/application/api/controller/Vkzfnotify.php" />
-        <option value="$PROJECT_DIR$/application/ucenter/controller/Finance.php" />
         <option value="$PROJECT_DIR$/public/template/default/ucenter/finance/buychapter.html" />
         <option value="$PROJECT_DIR$/public/template/default/index/chapters/index.html" />
         <option value="$PROJECT_DIR$/public/static/css/mstyle.css" />
         <option value="$PROJECT_DIR$/public/template/default/index/index/index.html" />
+        <option value="$PROJECT_DIR$/application/ucenter/controller/Finance.php" />
       </list>
     </option>
   </component>
@@ -219,59 +240,20 @@
             <path>
               <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
               <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
               <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="ucenter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
               <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="default" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="default" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="default" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-              <item name="chapters" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xiaohuanxiong" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xiaohuanxiong" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="default" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="ucenter" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -599,18 +581,19 @@
       <workItem from="1560243386151" duration="879000" />
       <workItem from="1560249286380" duration="20000" />
       <workItem from="1560351857457" duration="2191000" />
-      <workItem from="1560355249949" duration="1019000" />
+      <workItem from="1560355249949" duration="1157000" />
+      <workItem from="1560357050878" duration="246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="748852000" />
+    <option name="totallyTimeSpent" value="749236000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21715818" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21983914" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -661,17 +644,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/admin/view/mc/reply.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#form#0;n#article#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#1;n#form#0;n#article#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/install/controller/Index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
@@ -794,13 +766,6 @@
             <element signature="n#style#0;n#span#0;n#p#2;n#form#0;n#div#0;n#div#0;n#div#1;n#section#0;n#main#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#4;n#form#0;n#div#0;n#div#0;n#div#1;n#section#0;n#main#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="110" column="37" selection-start-line="110" selection-start-column="37" selection-end-line="110" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1027,21 +992,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Finance.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1349">
-          <caret line="178" column="78" selection-start-line="178" selection-start-column="78" selection-end-line="178" selection-end-column="78" />
-          <folding>
-            <element signature="e#802#1365#0#PHP" />
-            <element signature="e#1371#1962#0#PHP" />
-            <element signature="e#1979#2720#0#PHP" />
-            <element signature="e#2726#3114#0#PHP" />
-            <element signature="e#3131#4172#0#PHP" />
-            <element signature="e#4193#4379#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/template/default/ucenter/finance/buychapter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -1079,8 +1029,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/template/default/index/index/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+        <state relative-caret-position="292">
+          <caret line="17" column="57" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1089,6 +1039,35 @@
             <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Chapters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="29" column="61" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Account.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="72" column="69" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/ucenter/controller/Finance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="219" column="29" lean-forward="true" selection-start-line="219" selection-start-column="29" selection-end-line="219" selection-end-column="29" />
+          <folding>
+            <element signature="e#802#1365#0#PHP" />
+            <element signature="e#1371#1962#0#PHP" />
+            <element signature="e#1979#2720#0#PHP" />
+            <element signature="e#2726#3114#0#PHP" />
+            <element signature="e#3131#4172#0#PHP" />
+            <element signature="e#4193#4379#0#PHP" />
           </folding>
         </state>
       </provider>
