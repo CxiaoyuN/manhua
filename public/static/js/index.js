@@ -38,7 +38,7 @@ var showmorechapter = false;
 //章节加载更多事件
 function charpterMore() {
     var much = $("#detail-list-select li").length;
-    if (much >= 25) {
+    if (much >= 12) {
         $('#detail-list-more').hide();
         $("#detail-list-select").css("max-height", "none");
     }
