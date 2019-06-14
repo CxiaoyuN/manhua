@@ -4,6 +4,9 @@ namespace app\admin\controller;
 
 use app\model\Area;
 use app\model\Book;
+use app\model\Chapter;
+use app\model\Photo;
+use think\Db;
 use think\facade\App;
 use think\Request;
 
@@ -161,5 +164,43 @@ class Books extends BaseAdmin
         return ['err' => 0, 'msg' => '删除成功'];
     }
 
+    public function deleteAll($ids)
+    {
+        foreach ($ids as $id) {
+            $chapters = Chapter::where('book_id', '=', $id)->select(); //按漫画id查找所有章节
+            foreach ($chapters as $chapter) {
+                $pics = Photo::where('chapter_id', '=', $chapter->id)->select(); //按章节id查找所有图片
+                foreach ($pics as $pic) {
+                    $pic->delete(); //删除图片
+                }
+                $chapter->delete(); //删除章节
+            }
+        }
+        Book::destroy($ids);
+    }
 
+    public function payment(Request $request)
+    {
+        if ($this->request->isPost()) {
+            $validate = new \app\admin\validate\Book();
+            $data = $request->param();
+            if ($validate->scene('payment')->check($data)) {
+                $start_pay = $data['start_pay'];
+                $money = $data['money'];
+                $area_id = $data['area_id'];
+                $sql = 'UPDATE xwx_book SET start_pay=' . $start_pay . ',money=' . $money;
+                if ($area_id != -1) {
+                    $sql = $sql . ' WHERE area_id=' . $area_id;
+                }
+                Db::query($sql);
+                $this->success('批量设置成功');
+            } else {
+                $this->error($validate->getError());
+            }
+
+        }
+        $areas = Area::all();
+        $this->assign('areas', $areas);
+        return view();
+    }
 }

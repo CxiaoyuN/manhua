@@ -106,4 +106,8 @@ class Chapters extends BaseAdmin
         $chapter->delete();
         return ['err'=>0,'msg'=>'删除成功'];
     }
+
+    public function deleteAll($ids){
+        Chapter::destroy($ids);
+    }
 }

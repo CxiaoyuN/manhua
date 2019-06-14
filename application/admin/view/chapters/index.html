@@ -17,6 +17,7 @@
         <div class="panel-body">
             <div class="clearfix">
                 <div class="formControls col-xs-3 col-sm-3">
+                    <a href="javascript:;" onclick="delAll()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
                     <a class="btn btn-primary radius" onclick="editCreate('添加章节','/admin/chapters/create?book_id={$book.id}')">添加章节</a>
                 </div>
                 <div class="formControls col-xs-3 col-sm-3">
@@ -27,6 +28,7 @@
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
                     <tr class="text-c">
+                        <th width="40"><input id="cbx" type="checkbox" value=""></th>
                         <th width="80">ID</th>
                         <th width="100">章节名</th>
                         <th width="80">图片数</th>
@@ -40,6 +42,7 @@
                     <tbody>
                     {volist name="chapters" id="vo"}
                     <tr class="text-c">
+                        <td><input data-val="{$vo.id}" class="cbx" type="checkbox" value=""></td>
                         <td>{$vo.id}</td>
                         <td>{$vo.chapter_name}</td>
                         <td>{$vo.photo_count}</td>
@@ -65,4 +68,35 @@
         </div>
     </div>
 </section>
+<script>
+    $('#cbx').click(function () {
+        var cbxs = $('.cbx');
+        var flag = $('#cbx').prop("checked");
+        $.each(cbxs, function (index, value) {
+            $(value).prop("checked", flag);
+        })
+    })
+
+    function delAll() {
+        var cbxs = $('.cbx:checked');
+        var arr = [];
+        $.each(cbxs, function (index, value) {
+            arr.push($(value).attr('data-val'));
+        })
+        if (arr.length <= 0) {
+            layer.msg('请选择要删除的章节', {icon: 2});
+        } else {
+            $.ajax({
+                type:'post',
+                url: '/admin/chapters/deleteAll',
+                data: {ids: arr},
+                success(res){
+                    layer.msg('批量删除成功', {icon: 1, time: 1000}, function () {
+                        location.reload();
+                    });
+                }
+            })
+        }
+    }
+</script>
 {/block}

@@ -39,7 +39,8 @@
 
     function member_stop(id) {
         layer.confirm('确认要停用吗？', function (index) {
-            $.get({
+            $.ajax({
+                type:'post',
                 url: "{:url('disable')}",
                 data: {'id': id},
                 success: function (res) {
@@ -61,7 +62,8 @@
     /*用户-启用*/
     function member_start(id) {
         layer.confirm('确认要启用吗？', function (index) {
-            $.get({
+            $.ajax({
+                type:'post',
                 url: "{:url('enable')}",
                 data: {'id': id},
                 success: function (res) {

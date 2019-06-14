@@ -61,17 +61,22 @@ class Account extends Controller
             $map = array();
             $map[] = ['username', '=', trim($request->param('username'))];
             $map[] = ['password', '=', md5(strtolower(trim($request->param('password'))) . config('site.salt'))];
-            $user = User::where($map)->find();
+            $user = User::withTrashed()->where($map)->find();
             if (is_null($user)) {
                 return ['err' => 1, 'msg' => '用户名或密码错误'];
             } else {
-                session('xwx_user', $user->username);
-                session('xwx_user_id', $user->id);
-                session('xwx_nick_name', $user->nick_name);
-                session('xwx_user_mobile', $user->mobile);
-                session('xwx_user_level', $user->level);
-                session('xwx_vip_expire_time', $user->vip_expire_time);
-                return ['err' => 0, 'msg' => '登录成功'];
+                if ($user->delete_time > 0) {
+                    return ['err' => 1, 'msg' => '用户被锁定'];
+                } else {
+                    session('xwx_user', $user->username);
+                    session('xwx_user_id', $user->id);
+                    session('xwx_nick_name', $user->nick_name);
+                    session('xwx_user_mobile', $user->mobile);
+                    session('xwx_user_level', $user->level);
+                    session('xwx_vip_expire_time', $user->vip_expire_time);
+                    return ['err' => 0, 'msg' => '登录成功'];
+                }
+
             }
         } else {
             $this->assign('site_name', config('site.site_name'));

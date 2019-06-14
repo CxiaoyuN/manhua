@@ -31,4 +31,10 @@ class Book extends Validate
         'start_pay' => '起始付费章节必须是整数',
         'money' => 'money必须是数字'
     ];
+
+    protected $scene = [
+        'create'  =>  ['book_name','author','start_pay','money'],
+        'edit'  =>  ['book_name','author','start_pay','money'],
+        'payment' => ['start_pay','money']
+    ];
 }
