@@ -57,3 +57,104 @@ function verifyform() {
     }
     return true;
 }
+
+function login(){
+    var $username = $("#txt_username");
+    var $pwd = $("#txt_password");
+    if (!$username || $.trim($username.val()) === "") {
+        ShowDialog("必须填写用户名");
+        $username.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" });
+        return;
+    }
+    if (!$pwd || $.trim($pwd.val()) === "") {
+        ShowDialog("必须填写密码");
+        $pwd.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" });
+        return;
+    }
+    $.ajax({
+        type: 'POST',
+        url: "/login",
+        data: $('#form-login').serialize(),
+        dataType: 'json',
+        success: function (data) {
+            var result = data;
+            if (result.err == 0){ //登录成功
+                ShowDialog(result.msg);
+                setTimeout(function () {
+                    location.href = '/ucenter';
+                }, 1000);
+            } else {
+                ShowDialog(result.msg);
+            }
+        },
+        error: function (data) {
+            ShowDialog(data.msg);
+        },
+    });
+}
+
+function register() {
+    var regpwd = new RegExp("^[0-9A-Za-z\\-=\\[\\];,./~!@#$%^*()_+}{:?]{6,21}$");
+    var $username = $("#txt_username");
+    var $pwd = $("#txt_password");
+    var $pwd1 = $("#txt_password2");
+
+    if (!$username || $.trim($username.val()) === "") {
+        ShowDialog("必须填写用户名");
+        $username.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" });
+        return;
+    }
+    if (!$pwd || $.trim($pwd.val()) === "") {
+        ShowDialog("必须填写密码");
+        $pwd.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" });
+        return;
+    }
+    if ($pwd1.length > 0 && $.trim($pwd1.val()) === "") {
+        ShowDialog("请再次输入密码");
+        $pwd1.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" });
+        return;
+    }
+    if ($pwd1.length > 0 && $.trim($pwd.val()) !== $.trim($pwd1.val())) {
+        ShowDialog("两次输入的密码不一致");
+        $pwd.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" }).val("");
+        $pwd1.val("");
+        return;
+    }
+    if (!regpwd.test($username.val())) {
+        ShowDialog("用户名由6-20位字母、数字和字符组成");
+        $username.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" }).val("");
+        if ($pwd1.length > 0) {
+            $pwd1.val("");
+        }
+        return;
+    }
+    if (!regpwd.test($pwd.val())) {
+        ShowDialog("密码由6-20位字母、数字和字符组成");
+        $pwd.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" }).val("");
+        if ($pwd1.length > 0) {
+            $pwd1.val("");
+        }
+        return;
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: "/register",
+        data: $('#form-reg').serialize(),
+        dataType: 'json',
+        success: function (data) {
+            var result = data;
+            if (result.err == 0){ //注册成功
+                ShowDialog(result.msg);
+                setTimeout(function () {
+                    location.href = '/login';
+                }, 1000);
+            } else {
+                ShowDialog(result.msg);
+            }
+        },
+        error: function (data) {
+            ShowDialog(data.msg);
+        },
+    });
+}

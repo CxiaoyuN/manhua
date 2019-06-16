@@ -35,23 +35,34 @@ class Account extends Controller
     public function register(Request $request)
     {
         if ($request->isPost()) {
-            $user = User::where('username', '=', trim($request->param('username')))->find();
-            if (!is_null($user)) {
-                return ['err' => 1, 'msg' => '用户名已经存在'];
-            }
-            $user = new User();
-            $result = $user->save([
-                'username' => trim($request->param('username')),
-                'password' => $request->param('password')
-            ]);
-            if ($result) {
-                return ['err' => 0, 'msg' => '注册成功，请登录'];
+            $data = $request->param();
+            $validate = new \app\ucenter\validate\User();
+            if ($validate->check($data)) {
+                $user = User::where('username', '=', trim($request->param('username')))->find();
+                if (!is_null($user)) {
+                    return ['err' => 1, 'msg' => '用户名已经存在'];
+                }
+                $user = new User();
+                $result = $user->save([
+                    'username' => trim($request->param('username')),
+                    'password' => $request->param('password')
+                ]);
+                if ($result) {
+                    return ['err' => 0, 'msg' => '注册成功，请登录'];
+                } else {
+                    return ['err' => 1, 'msg' => '注册失败，请尝试重新注册'];
+                }
             } else {
-                return ['err' => 1, 'msg' => '注册失败，请尝试重新注册'];
+                return ['err' => 1, 'msg' => $validate->getError()];
             }
+
         } else {
-            $this->assign('site_name', config('site.site_name'));
-            return view('./template/default/ucenter/account/register.html');
+            $this->assign([
+                'site_name' => config('site.site_name'),
+                'url' => config('site.url'),
+                'header_title' => '注册'
+            ]);
+            return view($this->tpl);
         }
     }
 
@@ -79,8 +90,12 @@ class Account extends Controller
 
             }
         } else {
-            $this->assign('site_name', config('site.site_name'));
-            return view('./template/default/ucenter/account/login.html');
+            $this->assign([
+                'site_name' => config('site.site_name'),
+                'url' => config('site.url'),
+                'header_title' => '登录'
+            ]);
+            return view($this->tpl);
         }
     }
 
