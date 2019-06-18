@@ -29,7 +29,7 @@ CREATE TABLE `xwx_user` (
   `update_time` int(11) DEFAULT '0',
   `delete_time` int(11) DEFAULT '0',
   `vip_expire_time` int(11) DEFAULT '0' COMMENT '会员到期时间',
-  `pid`int(10) unsigned DEFAULT '-1' COMMENT '上线用户ID',
+  `pid`int(10) unsigned DEFAULT '0' COMMENT '上线用户ID',
   PRIMARY KEY (`id`) USING BTREE,
   unique key `username` (`username`) ,
   key `mobile` (`mobile`) USING BTREE,

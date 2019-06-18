@@ -335,7 +335,6 @@ INFO;
             ['pdo', '支持', 'yes', '类'],
             ['pdo_mysql', '支持', 'yes', '模块'],
             ['zip', '支持', 'yes', '模块'],
-            ['curl', '支持', 'yes', '模块'],
             ['xml', '支持', 'yes', '函数'],
             ['file_get_contents', '支持', 'yes', '函数'],
             ['mb_strlen', '支持', 'yes', '函数'],
