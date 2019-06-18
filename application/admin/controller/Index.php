@@ -115,24 +115,27 @@ INFO;
         if ($serverVersion > $localVersion) {
             for ($i = $localVersion + 1; $i <= $serverVersion; $i++) {
                 $res = $client->request('GET', "http://config.xhxcms.xyz/" . $i . ".json");
-                $json = json_decode($res->getBody(), true);
+                if((int)($res->getStatusCode()) == 200)
+                {
+                    $json = json_decode($res->getBody(), true);
 
-                foreach ($json['update'] as $value) {
-                    $data = $client->request('GET', $server . '/' . $value)->getBody(); //根据配置读取升级文件的内容
-                    $saveFileName = Env::get('root_path') . $value;
-                    $dir = dirname($saveFileName);
-                    if (!file_exists($dir)) {
-                        mkdir($dir, 0777);
+                    foreach ($json['update'] as $value) {
+                        $data = $client->request('GET', $server . '/' . $value)->getBody(); //根据配置读取升级文件的内容
+                        $saveFileName = Env::get('root_path') . $value;
+                        $dir = dirname($saveFileName);
+                        if (!file_exists($dir)) {
+                            mkdir($dir, 0777);
+                        }
+                        file_put_contents($saveFileName, $data, true); //将内容写入到本地文件
+                        array_push($msg, '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
                     }
-                    file_put_contents($saveFileName, $data, true); //将内容写入到本地文件
-                    array_push($msg, '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
-                }
-                foreach ($json['delete'] as $value) {
-                    $flag = unlink(Env::get('root_path') . '/' . $value);
-                    if ($flag) {
-                        array_push($msg, '<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
-                    } else {
-                        array_push($msg, '<p style="margin-left: 15px;color:darkred">删除文件失败</p>');
+                    foreach ($json['delete'] as $value) {
+                        $flag = unlink(Env::get('root_path') . '/' . $value);
+                        if ($flag) {
+                            array_push($msg, '<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
+                        } else {
+                            array_push($msg, '<p style="margin-left: 15px;color:darkred">删除文件失败</p>');
+                        }
                     }
                 }
             }
