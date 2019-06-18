@@ -1,0 +1,42 @@
+{extend name="./template/default/pub/base.html" /}
+{block name="seo"}
+<title>我的推广-{$site_name}</title>
+{/block}
+{block name="content"}
+{include file="./template/default/pub/top4.html" /}
+<div class="wallet-main">
+    <div class="wallet-main-coin">
+        <div class="wallet-main-coin-left">
+            <span class="wallet-main-coin-title"> 推广奖励 </span>
+        </div>
+        <div class="wallet-main-coin-right">
+            <span class="wallet-main-coin-value">{$promotion_sum}</span> 元
+        </div>
+    </div>
+    <a class="wallet-main-coin-btn copy-btns" data-clipboard-target="#fo1">获取推广链接</a>
+    <div style="color: white;margin-top: 3px;text-align: center" id="fo1">{$url}/register?pid={$Think.session.xwx_user_id}</div>
+</div>
+<div id="wrapper" style="touch-action: none;">
+    <ul class="vip-record" style="transform: translate(0px, 0px) translateZ(0px);">
+        {volist name="rewards" id="vo"}
+        <li>
+            <p class="vip-record-rechange">{$vo.create_time|date='Y-m-d'}</p>
+            <span class="vip-record-right">{$vo.money}元</span>
+        </li>
+        {/volist}
+    </ul>
+</div>
+<div class="toast" style="display:none;"></div>
+<script src="/static/js/clipboard.min.js"></script>
+<script type="text/javascript">
+    var clipboard = new Clipboard('.copy-btns');
+    clipboard.on('success',
+        function (e) {
+            ShowDialog('复制成功');
+        });
+    clipboard.on('error',
+        function (e) {
+            ShowDialog('复制失败');
+        });
+</script>
+{/block}

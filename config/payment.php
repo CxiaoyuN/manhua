@@ -9,8 +9,8 @@ return [
         ]
     ],
     'vkzf' => [ //快支付，官网地址：https://www.vkzf.cn/
-        'appid' => '1714',
-        'appkey' => 's3EMgvQRqsxGbPp3YVgqYQvxmqTzmEsf',
+        'appid' => '',
+        'appkey' => '',
         'channel' => [
             ['type' => 'alipay', 'img' => 'alipay', 'title' => '支付宝'],
             ['type' => 'wxpay', 'img' => 'weixin', 'title' => '微信支付'],
@@ -31,5 +31,5 @@ return [
         ['month' => 12, 'price' => 400]
     ],
     'money' => [1, 10, 30, 100], //设置支付金额
-    'price' => 5 //设置单章价格
+    'promotional_rewards_rate' => 0.1 //设置推广提成，必须是小数
 ];

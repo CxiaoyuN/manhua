@@ -50,4 +50,13 @@ class Payment extends BaseAdmin
         return view();
     }
 
+    //用户购买记录
+    public function buy(){
+        $data = $this->financeService->getPagedBuyHistory();
+        $this->assign([
+            'buys' => $data['buys'],
+            'count' => $data['count']
+        ]);
+        return view();
+    }
 }

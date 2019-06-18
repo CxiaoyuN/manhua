@@ -9,6 +9,7 @@ use think\Controller;
 use think\facade\Cache;
 use think\Request;
 use util\Vkzf;
+use app\service\PromotionService;
 
 class Vkzfnotify extends Controller
 {
@@ -59,6 +60,9 @@ class Vkzfnotify extends Controller
                     $userFinance->usage = 1; //用户充值
                     $userFinance->summary = '快支付';
                     $userFinance->save(); //存储用户充值数据
+
+                    $promotionService = new PromotionService();
+                    $promotionService->rewards($order->user_id,$order->money); //调用推广处理函数
                 }
                 Cache::clear('pay'); //清除支付缓存
             }

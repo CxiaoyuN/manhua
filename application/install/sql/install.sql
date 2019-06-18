@@ -19,7 +19,7 @@ CREATE TABLE `xwx_admin` (
 -- ----------------------------
 DROP TABLE IF EXISTS `xwx_user`;
 CREATE TABLE `xwx_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` char(32) NOT NULL,
   `nick_name` varchar(100) DEFAULT '',
   `mobile` char(11) DEFAULT '' COMMENT '会员手机号',
@@ -29,6 +29,7 @@ CREATE TABLE `xwx_user` (
   `update_time` int(11) DEFAULT '0',
   `delete_time` int(11) DEFAULT '0',
   `vip_expire_time` int(11) DEFAULT '0' COMMENT '会员到期时间',
+  `pid`int(10) unsigned DEFAULT '-1' COMMENT '上线用户ID',
   PRIMARY KEY (`id`) USING BTREE,
   unique key `username` (`username`) ,
   key `mobile` (`mobile`) USING BTREE
@@ -42,12 +43,13 @@ CREATE TABLE `xwx_user_finance`  (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) NOT NULL DEFAULT 0,
   `money` decimal(10,2) NOT NULL DEFAULT 0 COMMENT '充值/消费金额',
-  `usage` tinyint(4) NOT NULL COMMENT '用途，1.充值，2.购买vip，3.购买章节',
+  `usage` tinyint(4) NOT NULL COMMENT '用途，1.充值，2.购买vip，3.购买章节，4.下线奖励',
   `summary` text COMMENT '备注',
   `create_time` int(11) DEFAULT '0',
   `update_time` int(11) DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE,
-  key `user_id` (`user_id`) USING BTREE
+  key `user_id` (`user_id`) USING BTREE,
+  key `usage` (`usage`) USING BTREE
 ) ENGINE = InnoDB CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
@@ -66,7 +68,9 @@ CREATE TABLE `xwx_user_order`  (
   `update_time` int(11) DEFAULT '0',
   `expire_time` int(11) default '0',
   PRIMARY KEY (`id`) USING BTREE,
-  key `user_id` (`user_id`) USING BTREE
+  key `user_id` (`user_id`) USING BTREE,
+  key `status` (`status`) USING BTREE,
+  key `pay_type` (`pay_type`) USING BTREE
 ) ENGINE = InnoDB CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------

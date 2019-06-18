@@ -14,17 +14,24 @@ use think\facade\App;
 
 class Banners extends BaseAdmin
 {
-    public function index(){
-        $banners = BannerModel::with('book')->paginate(5,true);
-        $count = count($banners);
+    public function index()
+    {
+        $data = BannerModel::with('book');
+        $banners = $data->paginate(5, false,
+            [
+                'query' => request()->param(),
+                'type' => 'util\AdminPage',
+                'var_page' => 'page',
+            ]);
         $this->assign([
             'banners' => $banners,
-            'count' => $count
+            'count' => $data->count()
         ]);
         return view();
     }
 
-    public function create(){
+    public function create()
+    {
         return view();
     }
 
@@ -33,27 +40,28 @@ class Banners extends BaseAdmin
         $data = $request->param();
         $validate = new \app\admin\validate\Banner();
         if ($validate->check($data)) {
-            if (count($request->file()) > 0){
+            if (count($request->file()) > 0) {
                 $pic = $request->file('pic_name');
                 $dir = App::getRootPath() . '/public/static/upload/banner/';
                 if (!file_exists($dir)) {
                     mkdir($dir, 0777, true);
                 }
                 $info = $pic->validate(['size' => 2048000, 'ext' => 'jpg,jpeg,png'])->rule('md5')->move($dir);
-                if ($info){
+                if ($info) {
                     $data['pic_name'] = $info->getSaveName();
                 }
                 BannerModel::create($data);
                 $this->success('添加成功');
-            }else{
+            } else {
                 $this->error('未上传图片');
             }
-        }else{
+        } else {
             $this->error($validate->getError());
         }
     }
 
-    public function edit(){
+    public function edit()
+    {
         $id = input('id');
         $banner = BannerModel::get($id);
         $this->assign([
@@ -62,18 +70,19 @@ class Banners extends BaseAdmin
         return view();
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $data = $request->param();
         $validate = new \app\admin\validate\Banner();
         if ($validate->check($data)) {
-            if (count($request->file()) > 0){
+            if (count($request->file()) > 0) {
                 $pic = $request->file('pic_name');
                 $dir = App::getRootPath() . '/public/static/upload/banner/';
                 if (!file_exists($dir)) {
                     mkdir($dir, 0777, true);
                 }
                 $info = $pic->validate(['size' => 2048000, 'ext' => 'jpg,jpeg,png'])->rule('md5')->move($dir);
-                if ($info){
+                if ($info) {
                     $data['pic_name'] = $info->getSaveName();
                 }
             }
@@ -82,19 +91,21 @@ class Banners extends BaseAdmin
             if ($result) {
 
                 $this->success('编辑成功');
-            }else{
+            } else {
                 $this->error('编辑失败');
             }
-        }else{
+        } else {
             $this->error($validate->getError());
         }
     }
-    public function delete($id){
+
+    public function delete($id)
+    {
         $result = BannerModel::destroy($id);
-        if ($result){
-            return ['err' => 0,'msg' => '删除成功'];
-        }else{
-            return ['err' => 1,'msg' => '删除失败'];
+        if ($result) {
+            return ['err' => 0, 'msg' => '删除成功'];
+        } else {
+            return ['err' => 1, 'msg' => '删除失败'];
         }
     }
 }

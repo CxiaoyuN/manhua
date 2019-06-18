@@ -3,7 +3,7 @@
 
 namespace app\service;
 
-use app\admin\controller\Chapters;
+use app\model\Book;
 use app\model\Chapter;
 use app\model\UserBuy;
 use app\model\UserFinance;
@@ -149,6 +149,25 @@ class FinanceService extends Controller
             ]);
         return [
             'finances' => $finances,
+            'count' => $data->count()
+        ];
+    }
+
+    public function getPagedBuyHistory()
+    {
+        $data = UserBuy::order('id', 'desc');
+        $buys = $data->paginate(5, false,
+            [
+                'query' => request()->param(),
+                'type' => 'util\AdminPage',
+                'var_page' => 'page',
+            ]);
+        foreach ($buys as &$buy) {
+            $buy['chapter'] = Chapter::get($buy->chapter_id);
+            $buy['book'] = Book::get($buy->book_id);
+        }
+        return [
+            'buys' => $buys,
             'count' => $data->count()
         ];
     }

@@ -12,6 +12,7 @@ use app\model\Comments;
 use app\model\Message;
 use app\model\User;
 use app\service\FinanceService;
+use app\service\PromotionService;
 use app\service\UserService;
 use think\facade\App;
 use think\facade\Env;
@@ -21,11 +22,13 @@ class Users extends BaseUcenter
 {
     protected $userService;
     protected $financeService;
+    protected $promotionService;
 
     protected function initialize()
     {
         $this->userService = new UserService();
         $this->financeService = new FinanceService();
+        $this->promotionService = new PromotionService();
     }
 
     public function bookshelf()
@@ -302,6 +305,27 @@ class Users extends BaseUcenter
         $this->assign([
             'msgs' => $msgs,
             'header_title' => '查看回复'
+        ]);
+        return view($this->tpl);
+    }
+
+    public function promotion()
+    {
+        $rewards = cache('rewards:' . $this->uid);
+        if (!$rewards) {
+            $rewards = $this->promotionService->getRewardsHistory();
+        }
+
+        $sum = cache('rewards:sum:' . $this->uid);
+        if (!$sum) {
+            $sum = $this->promotionService->getRewardsSum();
+        }
+
+        $this->assign([
+            'rewards' => $rewards,
+            'rate' => config('payment.promotional_rewards_rate') * 100,
+            'promotion_sum' => $sum,
+            'header_title' => '推广赚币'
         ]);
         return view($this->tpl);
     }

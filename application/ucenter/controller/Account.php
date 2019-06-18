@@ -34,6 +34,7 @@ class Account extends Controller
 
     public function register(Request $request)
     {
+        $pid = $request->param('pid');
         if ($request->isPost()) {
             $data = $request->param();
             $validate = new \app\ucenter\validate\User();
@@ -43,10 +44,10 @@ class Account extends Controller
                     return ['err' => 1, 'msg' => '用户名已经存在'];
                 }
                 $user = new User();
-                $result = $user->save([
-                    'username' => trim($request->param('username')),
-                    'password' => $request->param('password')
-                ]);
+                $user->username = trim($request->param('username'));
+                $user->password = trim($request->param('password'));
+                $user->pid = $pid; //设置用户上线id
+                $result = $user->save();
                 if ($result) {
                     return ['err' => 0, 'msg' => '注册成功，请登录'];
                 } else {
@@ -55,12 +56,15 @@ class Account extends Controller
             } else {
                 return ['err' => 1, 'msg' => $validate->getError()];
             }
-
         } else {
+            if (!$pid) {
+                $pid = -1;
+            }
             $this->assign([
                 'site_name' => config('site.site_name'),
                 'url' => config('site.url'),
-                'header_title' => '注册'
+                'header_title' => '注册',
+                'pid' => $pid
             ]);
             return view($this->tpl);
         }

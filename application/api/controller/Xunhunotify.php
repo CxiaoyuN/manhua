@@ -6,6 +6,7 @@ namespace app\api\controller;
 
 use app\model\UserFinance;
 use app\model\UserOrder;
+use app\service\PromotionService;
 use think\Controller;
 use think\facade\Cache;
 use think\Request;
@@ -81,6 +82,9 @@ class Xunhunotify extends Controller
                 $userFinance->usage = 1; //用户充值
                 $userFinance->summary = '虎皮椒支付';
                 $userFinance->save(); //存储用户充值数据
+
+                $promotionService = new PromotionService();
+                $promotionService->rewards($order->user_id,$order->money); //调用推广处理函数
             }
             Cache::clear('pay'); //清除支付缓存
         }

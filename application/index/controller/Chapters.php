@@ -71,13 +71,13 @@ class Chapters extends Base
             if (!$prev) {
                 $prev = Db::query(
                     'select * from ' . $this->prefix . 'chapter where book_id=' . $book_id . ' and chapter_order<' . $chapter->chapter_order . ' order by id desc limit 1');
-                cache('chapter_prev' . $id, $prev, null, 'redis');
+                cache('chapter_prev:' . $id, $prev, null, 'redis');
             }
             $next = cache('chapter_next:' . $id);
             if (!$next) {
                 $next = Db::query(
                     'select * from ' . $this->prefix . 'chapter where book_id=' . $book_id . ' and chapter_order>' . $chapter->chapter_order . ' order by id limit 1');
-                cache('chapter_next' . $id, $next, null, 'redis');
+                cache('chapter_next:' . $id, $next, null, 'redis');
             }
             if (count($prev) > 0) {
                 $this->assign('prev', $prev[0]);

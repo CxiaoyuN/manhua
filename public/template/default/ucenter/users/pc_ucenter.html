@@ -32,13 +32,20 @@
                         <label>我的余额：</label>
                         <span>
                            {$balance} 元
+                            <a class="btn wallet-btn" href="/charge">充值</a>
                         </span>
                     </div>
                     <div>
                         <label>我的VIP：</label>
                         <span>
                            剩余 {$day} 天
-                             <a class="btn wallet-btn" href="/charge">充值</a>
+                        </span>
+                    </div>
+                    <div>
+                        <label>推广链接：</label>
+                        <span>
+                            <samp id="fo1">{$url}/register?pid={$Think.session.xwx_user_id}</samp>
+                             <a class="btn wallet-btn copy-btns" data-clipboard-target="#fo1">复制链接</a>
                         </span>
                     </div>
                 </form>
@@ -46,4 +53,16 @@
         </section>
     </article>
 </main>
+<script src="/static/js/clipboard.min.js"></script>
+<script type="text/javascript">
+    var clipboard = new Clipboard('.copy-btns');
+    clipboard.on('success',
+        function(e) {
+            ShowDialog('复制成功');
+        });
+    clipboard.on('error',
+        function(e) {
+            ShowDialog('复制失败');
+        });
+</script>
 {/block}

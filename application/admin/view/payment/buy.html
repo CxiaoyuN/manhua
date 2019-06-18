@@ -1,15 +1,15 @@
 {extend name="pub/base" /}
 {block name="title"}
-<title>用户管理</title>
+<title>购买查询</title>
 {/block}
 
 {block name="body"}
 <section class="Hui-admin-article">
     <nav class="breadcrumb" style="background-color:#fff;padding: 0 24px"><i class="Hui-iconfont">&#xe67f;</i> 首页
         <span class="c-gray en">&gt;</span>
-        用户管理
+        购买查询
         <span class="c-gray en">&gt;</span>
-        正常用户列表
+        购买列表
         <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
@@ -25,32 +25,32 @@
                         <thead>
                         <tr class="text-c">
                             <th width="80">ID</th>
-                            <th width="120">用户名</th>
-                            <th width="120">昵称</th>
-                            <th width="120">手机</th>
-                            <th width="120">vip到期时间</th>
-                            <th width="120">创建时间</th>
+                            <th width="80">用户ID</th>
+                            <th width="100">金额</th>
+                            <th width="120">购买章节</th>
+                            <th width="120">购买漫画</th>
+                            <th width="120">发生时间</th>
                             <th width="200">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {volist name="users" id="vo"}
+                        {volist name="buys" id="vo"}
                         <tr class="text-c">
                             <td>{$vo.id}</td>
-                            <td>{$vo.username}</td>
-                            <td>{$vo.nick_name}</td>
-                            <td>{$vo.mobile}</td>
-                            <td>{$vo.vip_expire_time|date='Y-m-d'}</td>
-                            <td>{$vo.create_time|date='Y-m-d'}</td>
+                            <td>{$vo.user_id}</td>
+                            <td>{$vo.money}</td>
+                            <td>
+                                {$vo.chapter.chapter_name}
+                            </td>
+                            <td>{$vo.book.book_name}</td>
+                            <td>{$vo.create_time|date='Y-m-d H:i'}</td>
                             <td class="f-14 td-manage">
-                                <a style="text-decoration:none" onClick="member_stop('{$vo.id}')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
-                                <a style="text-decoration:none" class="ml-5" onclick="del(this,{$vo.id})" href="javascript:;"
-                                   title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                                <a style="text-decoration:none" class="ml-5" onclick="del(this,{$vo.id})" href="javascript:;"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                         </tr>
                         {/volist}
                         </tbody>
                     </table>
-                    {$users|raw}
+                    {$buys|raw}
                 </div>
             </div>
         </div>

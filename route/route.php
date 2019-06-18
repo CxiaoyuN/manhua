@@ -35,6 +35,8 @@ Route::rule('/resetpwd', 'ucenter/users/resetpwd');
 Route::rule('/commentadd', 'ucenter/users/commentadd');
 Route::rule('/leavemsg', 'ucenter/users/leavemsg');
 Route::rule('/message', 'ucenter/users/message');
+Route::rule('/promotion', 'ucenter/users/promotion');
+
 Route::rule('/wallet', 'ucenter/finance/wallet');
 Route::rule('/chargehistory', 'ucenter/finance/chargehistory');
 Route::rule('/spendinghistory', 'ucenter/finance/spendinghistory');
