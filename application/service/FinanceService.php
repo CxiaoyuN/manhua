@@ -68,7 +68,7 @@ class FinanceService extends Controller
         }
         $map = array();
         $map[] = ['user_id', '=', $uid];
-        $map[] = ['usage', '=', 1];
+        $map[] = ['usage', 'in', [1,4]];
         $sum = UserFinance::where($map)->sum('money');
         return $sum;
     }

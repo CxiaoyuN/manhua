@@ -16,8 +16,6 @@ class PromotionService extends Controller
      * */
     public function rewards($uid, $money)
     {
-        $uid = input('uid'); //接收充值用户id
-        $money = input('money');//接收本次充值金额
         $user = User::get($uid);
         if ($user->pid > -1) {
             $rate = config('payment.promotional_rewards_rate');
