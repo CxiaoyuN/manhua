@@ -31,5 +31,6 @@ return [
         ['month' => 12, 'price' => 400]
     ],
     'money' => [1, 10, 30, 100], //设置支付金额
-    'promotional_rewards_rate' => 0.1 //设置推广提成，必须是小数
+    'promotional_rewards_rate' => 0.1, //设置充值提成比例，必须是小数
+    'reg_rewards' => 1 //注册奖励金额，单位是元
 ];

@@ -323,7 +323,8 @@ class Users extends BaseUcenter
 
         $this->assign([
             'rewards' => $rewards,
-            'rate' => config('payment.promotional_rewards_rate') * 100,
+            'promotion_rate' => (float)config('payment.promotional_rewards_rate') * 100,
+            'reg_reward' => config('payment.reg_rewards'),
             'promotion_sum' => $sum,
             'header_title' => '推广赚币'
         ]);

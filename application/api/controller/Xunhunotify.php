@@ -84,7 +84,7 @@ class Xunhunotify extends Controller
                 $userFinance->save(); //存储用户充值数据
 
                 $promotionService = new PromotionService();
-                $promotionService->rewards($order->user_id,$order->money); //调用推广处理函数
+                $promotionService->rewards($order->user_id, $order->money, 1); //调用推广处理函数
             }
             Cache::clear('pay'); //清除支付缓存
         }

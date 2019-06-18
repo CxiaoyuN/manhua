@@ -1,4 +1,5 @@
 <?php
+
 namespace app\index\controller;
 
 use app\model\Banner;
@@ -8,6 +9,7 @@ use think\Db;
 class Index extends Base
 {
     protected $bookService;
+
     protected function initialize()
     {
         $this->bookService = new \app\service\BookService();
@@ -15,30 +17,34 @@ class Index extends Base
 
     public function index()
     {
+        $pid = input('pid');
+        if ($pid) { //如果有推广pid
+            cookie('xwx_promotion', $pid); //将pid写入cookie
+        }
         $banners = cache('banners_homepage');
-        if (!$banners){
+        if (!$banners) {
             $banners = Db::query('SELECT * FROM xwx_banner WHERE id >= 
 ((SELECT MAX(id) FROM xwx_banner)-(SELECT MIN(id) FROM xwx_banner)) * RAND() + (SELECT MIN(id) FROM xwx_banner) LIMIT 5');
-            cache('banners_homepage',$banners,null,'redis');
+            cache('banners_homepage', $banners, null, 'redis');
         }
 
         $redis = new_redis();
-        $hots = $redis->zRevRange($this->redis_prefix.'hot_books',0,12,true);
+        $hots = $redis->zRevRange($this->redis_prefix . 'hot_books', 0, 12, true);
         $hot_books = array();
-        foreach ($hots as $k => $v){
-            $hot_books[] = json_decode($k,true);
+        foreach ($hots as $k => $v) {
+            $hot_books[] = json_decode($k, true);
         }
 
         $newest = cache('newest_homepage');
-        if (!$newest){
-            $newest = $this->bookService->getBooks('create_time','1=1',14);
-            cache('newest_homepage',$newest,null,'redis');
+        if (!$newest) {
+            $newest = $this->bookService->getBooks('create_time', '1=1', 14);
+            cache('newest_homepage', $newest, null, 'redis');
         }
 
         $ends = cache('ends_homepage');
-        if (!$ends){
-            $ends = $this->bookService->getBooks('update_time',[['end','=','1']],14);
-            cache('ends_homepage',$ends,null,'redis');
+        if (!$ends) {
+            $ends = $this->bookService->getBooks('update_time', [['end', '=', '1']], 14);
+            cache('ends_homepage', $ends, null, 'redis');
         }
         $this->assign([
             'banners' => $banners,
@@ -47,28 +53,29 @@ class Index extends Base
             'hot' => $hot_books,
             'ends' => $ends,
         ]);
-        if (!$this->request->isMobile()){
+        if (!$this->request->isMobile()) {
             $tags = \app\model\Tags::all();
-            $this->assign('tags',$tags);
+            $this->assign('tags', $tags);
         }
         return view($this->tpl);
     }
 
-    public function search(){
+    public function search()
+    {
         $keyword = input('keyword');
         $redis = new_redis();
-        $redis->zIncrBy($this->redis_prefix.'hot_search:',1,$keyword);
-        $hot_search_json = $redis->zRevRange($this->redis_prefix.'hot_search:',1,4,true);
+        $redis->zIncrBy($this->redis_prefix . 'hot_search:', 1, $keyword);
+        $hot_search_json = $redis->zRevRange($this->redis_prefix . 'hot_search:', 1, 4, true);
         $hot_search = array();
-        foreach ($hot_search_json as $k => $v){
+        foreach ($hot_search_json as $k => $v) {
             $hot_search[] = $k;
         }
-        $books = cache('searchresult:'.$keyword);
-        if (!$books){
+        $books = cache('searchresult:' . $keyword);
+        if (!$books) {
             $books = $this->bookService->search($keyword);
-            cache('searchresult:'.$keyword,$books,null,'redis');
+            cache('searchresult:' . $keyword, $books, null, 'redis');
         }
-        foreach ($books as &$book){
+        foreach ($books as &$book) {
             $author = Author::get($book['author_id']);
             $book['author'] = $author;
         }
@@ -80,8 +87,9 @@ class Index extends Base
         return view($this->tpl);
     }
 
-    public function bookshelf(){
-        $this->assign('header_title','书架');
+    public function bookshelf()
+    {
+        $this->assign('header_title', '书架');
         return view($this->tpl);
     }
 }

@@ -13,7 +13,8 @@ use think\Request;
 
 class Zhapaynotify extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $data = $request->param();
         ksort($data); //排序post参数
         reset($data); //内部指针指向数组中的第一个元素
@@ -50,7 +51,7 @@ class Zhapaynotify extends Controller
                     $userFinance->save(); //存储用户充值数据
 
                     $promotionService = new PromotionService();
-                    $promotionService->rewards($order->user_id,$order->money); //调用推广处理函数
+                    $promotionService->rewards($order->user_id, $order->money, 1); //调用推广处理函数
                 }
                 Cache::clear('pay'); //清除支付缓存
             }

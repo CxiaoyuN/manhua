@@ -10,6 +10,7 @@ namespace app\ucenter\controller;
 
 
 use app\model\User;
+use app\service\PromotionService;
 use think\App;
 use think\Controller;
 use think\facade\Env;
@@ -34,7 +35,6 @@ class Account extends Controller
 
     public function register(Request $request)
     {
-        $pid = $request->param('pid');
         if ($request->isPost()) {
             $data = $request->param();
             $validate = new \app\ucenter\validate\User();
@@ -46,9 +46,15 @@ class Account extends Controller
                 $user = new User();
                 $user->username = trim($request->param('username'));
                 $user->password = trim($request->param('password'));
+                $pid = cookie('xwx_promotion');
+                if (!$pid) {
+                    $pid = 0;
+                }
                 $user->pid = $pid; //设置用户上线id
                 $result = $user->save();
                 if ($result) {
+                    $promotionService = new PromotionService();
+                    $promotionService->rewards($user->id,(float)config('payment.reg_rewards'), 2); //调用推广处理函数
                     return ['err' => 0, 'msg' => '注册成功，请登录'];
                 } else {
                     return ['err' => 1, 'msg' => '注册失败，请尝试重新注册'];
@@ -57,14 +63,10 @@ class Account extends Controller
                 return ['err' => 1, 'msg' => $validate->getError()];
             }
         } else {
-            if (!$pid) {
-                $pid = 0;
-            }
             $this->assign([
                 'site_name' => config('site.site_name'),
                 'url' => config('site.url'),
-                'header_title' => '注册',
-                'pid' => $pid
+                'header_title' => '注册'
             ]);
             return view($this->tpl);
         }
