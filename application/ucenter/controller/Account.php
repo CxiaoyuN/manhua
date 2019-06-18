@@ -58,7 +58,7 @@ class Account extends Controller
             }
         } else {
             if (!$pid) {
-                $pid = -1;
+                $pid = 0;
             }
             $this->assign([
                 'site_name' => config('site.site_name'),
