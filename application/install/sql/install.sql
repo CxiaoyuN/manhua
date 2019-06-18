@@ -32,7 +32,8 @@ CREATE TABLE `xwx_user` (
   `pid`int(10) unsigned DEFAULT '-1' COMMENT '上线用户ID',
   PRIMARY KEY (`id`) USING BTREE,
   unique key `username` (`username`) ,
-  key `mobile` (`mobile`) USING BTREE
+  key `mobile` (`mobile`) USING BTREE,
+  key `pid` (`pid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
