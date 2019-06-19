@@ -10,6 +10,7 @@ use app\model\UserBuy;
 use app\model\UserFinance;
 use app\model\UserOrder;
 use app\service\FinanceService;
+use think\App;
 use think\facade\Cache;
 use think\Request;
 
@@ -19,8 +20,9 @@ class Finance extends BaseUcenter
     protected $util;
     protected $balance;
 
-    protected function initialize()
+    public function __construct(App $app = null)
     {
+        parent::__construct($app);
         $this->financeService = new FinanceService();
         $class = '\util\\' . config('site.payment');
         $this->util = new $class();

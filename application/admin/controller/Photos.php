@@ -18,8 +18,10 @@ use think\Request;
 class Photos extends BaseAdmin
 {
     protected $photoService;
-    protected function initialize()
+
+    public function __construct(\think\App $app = null)
     {
+        parent::__construct($app);
         $this->photoService = new PhotoService();
     }
 

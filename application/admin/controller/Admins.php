@@ -11,18 +11,15 @@ namespace app\admin\controller;
 
 use app\model\Admin;
 use app\service\AdminService;
+use think\App;
 use think\Request;
 
 class Admins extends BaseAdmin
 {
-    protected $adminService;
-    protected function initialize()
-    {
-        $this->adminService = new AdminService();
-    }
 
     public function index(){
-        $data = $this->adminService->GetAll();
+        $adminService = new AdminService();
+        $data = $adminService->GetAll();
         $this->assign([
             'admins' => $data['admins'],
             'count' => $data['count']

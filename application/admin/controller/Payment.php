@@ -11,8 +11,9 @@ class Payment extends BaseAdmin
 {
     protected $financeService;
 
-    protected function initialize()
+    public function __construct(\think\App $app = null)
     {
+        parent::__construct($app);
         $this->financeService = new FinanceService();
     }
 

@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\model\Author;
+use think\App;
 use think\Controller;
 use think\Request;
 
@@ -10,13 +11,15 @@ class Authors extends BaseAdmin
 {
     protected $authorService;
 
-    public function initialize()
+    public function __construct(App $app = null)
     {
+        parent::__construct($app);
         $this->authorService = new \app\service\AuthorService();
     }
 
     public function index()
     {
+        $authorService = new \app\service\AuthorService();
         $data = $this->authorService->getAuthors();
         $this->assign([
             'authors' => $data['authors'],

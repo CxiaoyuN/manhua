@@ -16,8 +16,10 @@ use think\facade\App;
 class Tag extends BaseAdmin
 {
     protected $tagsService;
-    protected function initialize()
+
+    public function __construct(\think\App $app = null)
     {
+        parent::__construct($app);
         $this->tagsService = new TagsService();
     }
 

@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\model\Book;
+use think\App;
 use think\Request;
 use app\model\Chapter;
 
@@ -11,11 +12,11 @@ class Chapters extends BaseAdmin
     protected $chapterService;
     protected $validate;
 
-    public function initialize()
+    public function __construct(App $app = null)
     {
+        parent::__construct($app);
         $this->chapterService = new \app\service\ChapterService();
         $this->validate = new \app\admin\validate\Chapter;
-
     }
 
     public function index($book_id)

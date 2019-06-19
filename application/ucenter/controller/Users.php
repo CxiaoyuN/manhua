@@ -24,8 +24,9 @@ class Users extends BaseUcenter
     protected $financeService;
     protected $promotionService;
 
-    protected function initialize()
+    public function __construct(\think\App $app = null)
     {
+        parent::__construct($app);
         $this->userService = new UserService();
         $this->financeService = new FinanceService();
         $this->promotionService = new PromotionService();

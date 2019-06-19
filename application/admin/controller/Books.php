@@ -15,14 +15,17 @@ class Books extends BaseAdmin
     protected $authorService;
     protected $bookService;
 
-    public function initialize()
+    public function __construct(\think\App $app = null)
     {
+        parent::__construct($app);
         $this->authorService = new \app\service\AuthorService();
         $this->bookService = new \app\service\BookService();
     }
 
     public function index()
     {
+        $this->authorService = new \app\service\AuthorService();
+        $this->bookService = new \app\service\BookService();
         $data = $this->bookService->getPagedBooksAdmin();
         $books = $data['books'];
         foreach ($books as &$book) {
