@@ -34,27 +34,33 @@ class Zhapaynotify extends Controller
             if ($data['pay_type'] == 1) {
                 $type = 3; //微信支付
             }
-            $order = UserOrder::get($order_id); //通过返回的订单id查询数据库
-            if ($order) {
-                $order->money = $data['total_fee'];
-                $order->pay_type = $type; //支付类型
-                $order->update_time = $data['paytime']; //云端处理订单时间戳
-                $order->status = (int)$data['status'];
-                $order->isupdate(true)->save(); //更新订单
+            $status = 0;
+            if ((int)$data['status'] == 1) { //如果已支付，则更新用户财务信息
+                $status=1;
+                $order = UserOrder::get($order_id); //通过返回的订单id查询数据库
+                if ($order) {
+                    if ($order == 0){
+                        $order->money = $data['total_fee'];
+                        $order->pay_type = $type; //支付类型
+                        $order->update_time = $data['paytime']; //云端处理订单时间戳
+                        $order->status = $status;
+                        $order->isupdate(true)->save(); //更新订单
 
-                if ((int)$data['status'] == 1) { //如果已支付，则更新用户财务信息
-                    $userFinance = new UserFinance();
-                    $userFinance->user_id = $order->user_id;
-                    $userFinance->money = $order->money;
-                    $userFinance->usage = 1; //用户充值
-                    $userFinance->summary = '幻兮支付';
-                    $userFinance->save(); //存储用户充值数据
+                        $userFinance = new UserFinance();
+                        $userFinance->user_id = $order->user_id;
+                        $userFinance->money = $order->money;
+                        $userFinance->usage = 1; //用户充值
+                        $userFinance->summary = '幻兮支付';
+                        $userFinance->save(); //存储用户充值数据
 
-                    $promotionService = new PromotionService();
-                    $promotionService->rewards($order->user_id, $order->money, 1); //调用推广处理函数
+                        $promotionService = new PromotionService();
+                        $promotionService->rewards($order->user_id, $order->money, 1); //调用推广处理函数
+
+                        Cache::clear('pay'); //清除支付缓存
+                    }
                 }
-                Cache::clear('pay'); //清除支付缓存
             }
+
             return 'success';
         }
     }

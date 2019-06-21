@@ -7,38 +7,7 @@
 <link rel="stylesheet" href="/static/css/jquery-ui-1.7.3.custom.css">
 {/block}
 {block name="content"}
-<div class="ad-top-info">
-    <a href="javascript:$('.ad-top-info').remove();">
-        <img class="ad-top-info-cross" src="http://css99tel.cdndm5.com/v201905271815/blue/images/mobile/search-downlist-item-cross.png"></a>
-    <div class="ad-top-info-main" onclick="window.location.href = 'https://download.jjxs518.cn?cid=0050&pid=jjmanhua2'">
-        <div class="ad-top-info-main-cover logo">
-            <img src="http://css99tel.cdndm5.com/v201905271815/blue/images/mobile/win-logo.png">
-        </div>
-        <div class="ad-top-info-main-right logo">
-            <p class="ad-top-info-main-right-title">下载app</p>
-            <div class="swiper-container3 swiper-container-vertical swiper-container-android swiper-container-wp8-vertical" style="height: 30px;">
-                <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, -60px, 0px);">
-                    <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" data-swiper-slide-index="2" style="height: 30px;">
-                        <p class="ad-top-info-main-right-subtitle">每日签到抽好礼,免费看精彩漫画</p>
-                    </div>
-                    <div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="0" style="height: 30px;">
-                        <p class="ad-top-info-main-right-subtitle">好漫画,为看漫画的人而生</p>
-                    </div>
-                    <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="1" style="height: 30px;">
-                        <p class="ad-top-info-main-right-subtitle">秒速追更,随时随地口袋阅读</p>
-                    </div>
-                    <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="2" style="height: 30px;">
-                        <p class="ad-top-info-main-right-subtitle">每日签到抽好礼,免费看精彩漫画</p>
-                    </div>
-                    <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev" data-swiper-slide-index="0" style="height: 30px;">
-                        <p class="ad-top-info-main-right-subtitle">好漫画,为看漫画的人而生</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a class="ad-top-info-right" href="https://download.jjxs518.cn?cid=0050&pid=jjmanhua2">打开</a>
-</div>
+
 {include file="./template/default/pub/top2.html" /}
 <div class="detail-main">
     {if empty($book.cover_url)}
@@ -67,6 +36,9 @@
     </div>
 </div>
 <p class="detail-desc">{$book.summary}</p>
+<a href="https://download.jjxs518.cn?cid=0050&pid=jjmanhua2">
+	<img style="width: 100%;height: auto;" src="https://ae01.alicdn.com/kf/HTB1OJ3IcNiH3KVjSZPfq6xBiVXa3.jpg" alt="歪歪漫画">
+</a>
 <div id="tempc">
     <div class="detail-selector item-3">
         <a class="detail-selector-item active" href="javascript:void(0);"

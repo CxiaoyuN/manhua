@@ -41,31 +41,32 @@ class Vkzfnotify extends Controller
             }
             $status = 0;
             if ($para['trade_status'] == 'TRADE_SUCCESS') {
-                $status = 1;
-            } else {
-                return json(['code' => false, 'status' => 'error']);
-            }
-            $order = UserOrder::get($order_id); //通过返回的订单id查询数据库
-            if ($order) {
-                $order->money = $para['money'];
-                $order->pay_type = $type; //支付类型
-                $order->update_time = time(); //云端处理订单时间戳
-                $order->status = $status;
-                $order->isupdate(true)->save(); //更新订单
+                $status = 1; //如果已支付，则更新用户财务信息
+                $order = UserOrder::get($order_id); //通过返回的订单id查询数据库
+                if ($order) {
+                    if ($order == 0) { //如果是未完成订单，才进行更新
+                        $order->status = $status;
+                        $order->money = $para['money'];
+                        $order->pay_type = $type; //支付类型
+                        $order->update_time = time(); //云端处理订单时间戳
+                        $order->isupdate(true)->save(); //更新订单
 
-                if ($status == 1) { //如果已支付，则更新用户财务信息
-                    $userFinance = new UserFinance();
-                    $userFinance->user_id = $order->user_id;
-                    $userFinance->money = $order->money;
-                    $userFinance->usage = 1; //用户充值
-                    $userFinance->summary = '快支付';
-                    $userFinance->save(); //存储用户充值数据
+                        $userFinance = new UserFinance();
+                        $userFinance->user_id = $order->user_id;
+                        $userFinance->money = $order->money;
+                        $userFinance->usage = 1; //用户充值
+                        $userFinance->summary = '快支付';
+                        $userFinance->save(); //存储用户充值数据
 
-                    $promotionService = new PromotionService();
-                    $promotionService->rewards($order->user_id,$order->money, 1); //调用推广处理函数
+                        $promotionService = new PromotionService();
+                        $promotionService->rewards($order->user_id, $order->money, 1); //调用推广处理函数
+
+                    }
+
+                    Cache::clear('pay'); //清除支付缓存
                 }
-                Cache::clear('pay'); //清除支付缓存
             }
+
             return json(['code' => true, 'status' => 'success']);
         }
     }

@@ -64,29 +64,29 @@ class Xunhunotify extends Controller
         $status = 0;
         if ($data['status'] == 'OD') {
             $status = 1;
-        } else {
-            return 'failed';
-        }
-        $order = UserOrder::get($order_id); //通过返回的订单id查询数据库
-        if ($order) {
-            $order->money = $data['money'];
-            $order->pay_type = $type; //支付类型
-            $order->update_time = time(); //云端处理订单时间戳
-            $order->status = $status;
-            $order->isupdate(true)->save(); //更新订单
 
-            if ($status == 1) { //如果已支付，则更新用户财务信息
-                $userFinance = new UserFinance();
-                $userFinance->user_id = $order->user_id;
-                $userFinance->money = $order->money;
-                $userFinance->usage = 1; //用户充值
-                $userFinance->summary = '虎皮椒支付';
-                $userFinance->save(); //存储用户充值数据
+            $order = UserOrder::get($order_id); //通过返回的订单id查询数据库
+            if ($order) {
+                if ($order == 0) {
+                    $order->money = $data['money'];
+                    $order->pay_type = $type; //支付类型
+                    $order->update_time = time(); //云端处理订单时间戳
+                    $order->status = $status;
+                    $order->isupdate(true)->save(); //更新订单
 
-                $promotionService = new PromotionService();
-                $promotionService->rewards($order->user_id, $order->money, 1); //调用推广处理函数
+                    $userFinance = new UserFinance();
+                    $userFinance->user_id = $order->user_id;
+                    $userFinance->money = $order->money;
+                    $userFinance->usage = 1; //用户充值
+                    $userFinance->summary = '虎皮椒支付';
+                    $userFinance->save(); //存储用户充值数据
+
+                    $promotionService = new PromotionService();
+                    $promotionService->rewards($order->user_id, $order->money, 1); //调用推广处理函数
+
+                    Cache::clear('pay'); //清除支付缓存
+                }
             }
-            Cache::clear('pay'); //清除支付缓存
         }
 
 //以下是处理成功后输出，当支付平台接收到此消息后，将不再重复回调当前接口
