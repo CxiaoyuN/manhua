@@ -39,7 +39,7 @@ class Zhapaynotify extends Controller
                 $status=1;
                 $order = UserOrder::get($order_id); //通过返回的订单id查询数据库
                 if ($order) {
-                    if ($order == 0){
+                    if ((int)$order->status == 0){
                         $order->money = $data['total_fee'];
                         $order->pay_type = $type; //支付类型
                         $order->update_time = $data['paytime']; //云端处理订单时间戳

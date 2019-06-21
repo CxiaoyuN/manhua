@@ -67,7 +67,7 @@ class Xunhunotify extends Controller
 
             $order = UserOrder::get($order_id); //通过返回的订单id查询数据库
             if ($order) {
-                if ($order == 0) {
+                if ((int)$order->status == 0) {
                     $order->money = $data['money'];
                     $order->pay_type = $type; //支付类型
                     $order->update_time = time(); //云端处理订单时间戳
