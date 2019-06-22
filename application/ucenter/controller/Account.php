@@ -36,32 +36,46 @@ class Account extends Controller
     public function register(Request $request)
     {
         if ($request->isPost()) {
-            $data = $request->param();
-            $validate = new \app\ucenter\validate\User();
-            if ($validate->check($data)) {
-                $user = User::where('username', '=', trim($request->param('username')))->find();
-                if (!is_null($user)) {
-                    return ['err' => 1, 'msg' => '用户名已经存在'];
-                }
-                $user = new User();
-                $user->username = trim($request->param('username'));
-                $user->password = trim($request->param('password'));
-                $pid = cookie('xwx_promotion');
-                if (!$pid) {
-                    $pid = 0;
-                }
-                $user->pid = $pid; //设置用户上线id
-                $result = $user->save();
-                if ($result) {
-                    $promotionService = new PromotionService();
-                    $promotionService->rewards($user->id,(float)config('payment.reg_rewards'), 2); //调用推广处理函数
-                    return ['err' => 0, 'msg' => '注册成功，请登录'];
-                } else {
-                    return ['err' => 1, 'msg' => '注册失败，请尝试重新注册'];
-                }
-            } else {
-                return ['err' => 1, 'msg' => $validate->getError()];
+            $captcha = $request->param('captcha');
+            if( !captcha_check($captcha ))
+            {
+                return ['err' => 1, 'msg' => '验证码错误'];
             }
+            $ip = $request->ip();
+            $redis = new_redis();
+            if ($redis->exists('user_reg:' . $ip)) {
+                return ['err' => 1, 'msg' => '操作太频繁'];
+            } else {
+                $redis->set('user_reg:'.$ip,1,60); //写入锁
+                $data = $request->param();
+                $validate = new \app\ucenter\validate\User();
+                if ($validate->check($data)) {
+                    $user = User::where('username', '=', trim($request->param('username')))->find();
+                    if (!is_null($user)) {
+                        return ['err' => 1, 'msg' => '用户名已经存在'];
+                    }
+                    $user = new User();
+                    $user->username = trim($request->param('username'));
+                    $user->password = trim($request->param('password'));
+                    $pid = cookie('xwx_promotion');
+                    if (!$pid) {
+                        $pid = 0;
+                    }
+                    $user->pid = $pid; //设置用户上线id
+                    $result = $user->save();
+                    if ($result) {
+                        $promotionService = new PromotionService();
+                        $promotionService->rewards($user->id, (float)config('payment.reg_rewards'), 2); //调用推广处理函数
+                        return ['err' => 0, 'msg' => '注册成功，请登录'];
+                    } else {
+                        return ['err' => 1, 'msg' => '注册失败，请尝试重新注册'];
+                    }
+                } else {
+                    return ['err' => 1, 'msg' => $validate->getError()];
+                }
+
+            }
+
         } else {
             $this->assign([
                 'site_name' => config('site.site_name'),
@@ -75,6 +89,11 @@ class Account extends Controller
     public function login(Request $request)
     {
         if ($request->isPost()) {
+            $captcha = $request->param('captcha');
+            if( !captcha_check($captcha ))
+            {
+                return ['err' => 1, 'msg' => '验证码错误'];
+            }
             $map = array();
             $map[] = ['username', '=', trim($request->param('username'))];
             $map[] = ['password', '=', md5(strtolower(trim($request->param('password'))) . config('site.salt'))];

@@ -53,7 +53,7 @@ class Chapters extends Base
                 $redis = new_redis();
                 $arr = [
                     'book_id' => $chapter->book->id,
-                    'cover' => $chapter->book->cover_url,
+                    'cover_url' => $chapter->book->cover_url,
                     'chapter_id' => $chapter->id,
                     'chapter_name' => $chapter->chapter_name,
                     'book_name' => $chapter->book->book_name,

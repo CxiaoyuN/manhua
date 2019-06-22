@@ -1,7 +1,7 @@
 {extend name="./template/default/pub/pc_base.html" /}
 {block name="seo"}
 <title>{$book.book_name}全集免费高清无修在线阅读-{$site_name}</title>
-<meta name="description" content="{$book.book_name}是一本地区为{$book.area.area_name}，类型为{$book.tags}的高人气漫画，漫画简介：{$book.summary}">
+<meta name="description" content="{$book.book_name}又名{$book.nick_name},是一本地区为{$book.area.area_name}，类型为{$book.tags}的高人气漫画，漫画简介：{$book.summary}">
 {/block}
 {block name="css"}
 <link rel="stylesheet" href="/static/css/jquery-ui-1.7.3.custom.css">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="info">
-                <h1>{$book.book_name}</h1>
+                <h1>{$book.book_name}({$book.nick_name})</h1>
                 <p class="subtitle">作者：{$book.author.author_name}</p>
                 <p class="tip">
                     <span class="block">状态：<span>{$book.end?'已完结':'连载中'}</span></span>

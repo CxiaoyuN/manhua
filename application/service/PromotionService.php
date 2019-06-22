@@ -7,6 +7,7 @@ namespace app\service;
 use app\model\User;
 use app\model\UserFinance;
 use think\Controller;
+use think\facade\Cache;
 
 class PromotionService extends Controller
 {
@@ -21,17 +22,19 @@ class PromotionService extends Controller
             $rate = config('payment.promotional_rewards_rate');
             $userFinance = new UserFinance();
             $userFinance->user_id = $user->pid; //用户上线id
-            $userFinance->money = round($money * $rate, 2); //根据提成比率来计算出本次奖励金额
             $userFinance->usage = 4; //推广提成
             if ($type == 1) { //下线充值奖励，2为注册奖励
+                $userFinance->money = round($money * $rate, 2); //根据提成比率来计算出本次奖励金额
                 $userFinance->summary = '下线用户' . $uid . '充值提成';
             } else {
+                $userFinance->money = $money; //直接奖励
                 $userFinance->summary = '用户注册奖励';
             }
 
             $userFinance->save(); //存储用户充值数据
             cache('rewards:' . $uid, null); //删除奖励缓存
             cache('rewards:sum:' . $uid, null); //删除奖励总和缓存
+            Cache::clear('pay'); //清除支付缓存
         }
     }
 

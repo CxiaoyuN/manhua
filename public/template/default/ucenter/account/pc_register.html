@@ -29,7 +29,12 @@
                         </p>
                         <p style="margin-bottom:15px;">
                             <input id="txt_password2"  type="password" autocomplete="off" value=""
-                                   placeholder="确认密码" onblur="$(this).css({outlineWidth: 5, outlineColor: '#93b5ec'});"></p>
+                                   placeholder="确认密码" onblur="$(this).css({outlineWidth: 5, outlineColor: '#93b5ec'});">
+                        </p>
+                        <p>
+                            <input name="captcha" type="text" placeholder="验证码" style="width:150px;">
+                            <img src="{:captcha_src()}" onclick = "this.src='/captcha?rnd=' + Math.random();">
+                        </p>
                     </form>
                     <p><button class="button" onclick="register()">立即注册</button></p>
                     <p class="options">

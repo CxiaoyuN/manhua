@@ -13,6 +13,8 @@ function subForm(ismobile) {
             } else {
                 ShowDialog(res.msg);
             }
+        }, error(jqXHR, textStatus, errorThrown) {
+            ShowDialog(jqXHR.responseText);
         }
     })
 

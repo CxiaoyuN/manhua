@@ -14,7 +14,22 @@
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
     <article class="Hui-admin-content clearfix">
-
+        <div class="panel">
+            <div class="panel-body">
+                <div class="text-c">
+                    <input type="text" placeholder="用户名" style="width:250px" id="searchParam" class="input-text">
+                    <button type="submit" class="btn btn-success" onclick="search()"><i
+                            class="Hui-iconfont">&#xe665;</i> 查询
+                    </button>
+                </div>
+                <script>
+                    function search() {
+                        var param = $('#searchParam').val();
+                        location.href = "search?username=" + param + '&status=0';
+                    }
+                </script>
+            </div>
+        </div>
         <div class="panel mt-20">
             <div class="panel-body">
                 <div class="clearfix">
