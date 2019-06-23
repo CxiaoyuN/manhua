@@ -200,7 +200,7 @@
     <div class="index-rank">
         <div class="index-rank-title">新书榜<a href="/rank" class="more">更多</a></div>
         <ul class="index-rank-list">
-            {volist name="newest" id="vo" key="k" offset="1" length="4"}
+            {volist name="newest" id="vo" key="k" offset="0" length="4"}
             <li>
                 <div class="cover">
                     <a href="/book/{$vo.id}" title="{$vo.book_name}">
@@ -225,7 +225,7 @@
     <div class="index-rank">
         <div class="index-rank-title">点击榜<a href="/rank" class="more">更多</a></div>
         <ul class="index-rank-list">
-            {volist name="hot" id="vo" key="k" offset="1" length="4"}
+            {volist name="hot" id="vo" key="k" offset="0" length="4"}
             <li>
                 <div class="cover">
                     <a href="/book/{$vo.id}" title="{$vo.book_name}">
@@ -248,25 +248,25 @@
         </ul>
     </div>
     <div class="index-rank">
-        <div class="index-rank-title">完结榜<a href="/rank" class="more">更多</a></div>
+        <div class="index-rank-title">充值榜<a href="/rank" class="more">更多</a></div>
         <ul class="index-rank-list">
-            {volist name="ends" id="vo" key="k" offset="1" length="4"}
+            {volist name="most_charged" id="vo" key="k" offset="0" length="4"}
             <li>
                 <div class="cover">
-                    <a href="/book/{$vo.id}" title="{$vo.book_name}">
-                        {if empty($vo.cover_url)}
-                        <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" alt="{$vo.book_name}">
+                    <a href="/book/{$vo.book.id}" title="{$vo.book.book_name}">
+                        {if empty($vo.book.cover_url)}
+                        <img src="{$img_site}/static/upload/book/{$vo.book.id}/cover.jpg" alt="{$vo.book.book_name}">
                         {else /}
-                        <img src="{$vo.cover_url}" alt="{$vo.book_name}">
+                        <img src="{$vo.book.cover_url}" alt="{$vo.book.book_name}">
                         {/if}
                     </a>
                 </div>
                 <div class="sign"><span class="top-{$k}">{$k}</span></div>
                 <div class="info">
                     <p class="title">
-                        <a href="/book/{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
+                        <a href="/book/{$vo.book.id}" title="{$vo.book.book_name}">{$vo.book.book_name}</a>
                     </p>
-                    <p class="subtitle">{$vo.summary|subtext=15}</p>
+                    <p class="subtitle">{$vo.book.summary|subtext=15}</p>
                 </div>
             </li>
             {/volist}

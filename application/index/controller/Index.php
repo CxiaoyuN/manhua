@@ -46,12 +46,20 @@ class Index extends Base
             $ends = $this->bookService->getBooks('update_time', [['end', '=', '1']], 14);
             cache('ends_homepage', $ends, null, 'redis');
         }
+
+        $most_charged = cache('most_charged');
+        if (!$most_charged) {
+            $most_charged = $this->bookService->getMostChargedBook();
+            cache('most_charged', $most_charged, null, 'redis');
+        }
+
         $this->assign([
             'banners' => $banners,
             'banners_count' => count($banners),
             'newest' => $newest,
             'hot' => $hot_books,
             'ends' => $ends,
+            'most_charged' => $most_charged
         ]);
         if (!$this->request->isMobile()) {
             $tags = \app\model\Tags::all();

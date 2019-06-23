@@ -27,7 +27,7 @@ class Books extends Base
         if ($book ==false) {
             $book = Book::with(['chapters' => function($query){
                 $query->order('chapter_order');
-            }],'author')->find($id);
+            }])->find($id);
             $tags = [];
             if(!empty($book->tags) || is_null($book->tags)){
                 $tags = explode('|', $book->tags);

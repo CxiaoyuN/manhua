@@ -17,7 +17,7 @@ class Banners extends BaseAdmin
     public function index()
     {
         $data = BannerModel::with('book');
-        $banners = $data->paginate(5, false,
+        $banners = $data->order('id','desc')->paginate(5, false,
             [
                 'query' => request()->param(),
                 'type' => 'util\AdminPage',

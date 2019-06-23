@@ -13,7 +13,7 @@ class Mc extends BaseAdmin
     public function message()
     {
         $data = Message::where('type', '=', 0);
-        $msgs = $data->paginate(5, true,
+        $msgs = $data->order('id','desc')->paginate(5, true,
             [
                 'query' => request()->param(),
                 'type' => 'util\AdminPage',
