@@ -301,13 +301,13 @@
             <a class="manga-list-title-right-item active" href="javascript:void(0);" onclick="mySwiper_rank.slideTo(0);">人气</a>
             <a class="manga-list-title-right-item" href="javascript:void(0);" onclick="mySwiper_rank.slideTo(1);">新番</a>
             <a class="manga-list-title-right-item" href="javascript:void(0);" onclick="mySwiper_rank.slideTo(2);">完结</a>
-            <a class="manga-list-title-right-item" href="javascript:void(0);" onclick="mySwiper_rank.slideTo(3);">收藏</a>
+            <a class="manga-list-title-right-item" href="javascript:void(0);" onclick="mySwiper_rank.slideTo(3);">充值</a>
         </div>
     </div>
     <ul class="rank-list index">
         <div class="swiper-container-horizontal swiper-container-ios swiper-container-wp8-horizontal" id="rank_list">
             <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1380px, 0px, 0px);">
-                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" id="rank_1" data-swiper-slide-index="0">
+                <div class="swiper-slide swiper-slide-duplicate" id="rank_1" data-swiper-slide-index="0">
                     {volist name="hot" id="vo" offset="0" length="5"}
                     <li>
                         <a href="/book/{$vo.id}" title="{$vo.book_name}">
@@ -328,7 +328,7 @@
                     </li>
                     {/volist}
                 </div>
-                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" id="rank_2" data-swiper-slide-index="1">
+                <div class="swiper-slide swiper-slide-duplicate" id="rank_2" data-swiper-slide-index="1">
                     {volist name="newest" id="vo"  offset="0" length="5"}
                     <li>
                         <a href="/book/{$vo.id}" title="{$vo.book_name}">
@@ -370,7 +370,26 @@
                     </li>
                     {/volist}
                 </div>
-                <div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" id="rank_4" data-swiper-slide-index="3">
+                <div class="swiper-slide swiper-slide-duplicate" id="rank_4" data-swiper-slide-index="3">
+                    {volist name="most_charged" id="vo"  offset="0" length="5"}
+                    <li>
+                        <a href="/book/{$vo.id}" title="{$vo.book_name}">
+                            <div class="rank-list-cover">
+                                {if empty($vo.cover_url)}
+                                <img class="rank-list-cover-img lazy" data-original="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
+                                {else /}
+                                <img class="rank-list-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
+                                {/if}
+                            </div>
+                            <div class="rank-list-info">
+                                <div class="rank-list-info-right">
+                                    <p class="rank-list-info-right-title">{$vo.book_name}</p>
+                                    <p class="rank-list-info-right-subtitle">{$vo.summary|subtext=15}...</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {/volist}
                 </div>
             </div>
         </div>
@@ -391,7 +410,7 @@
         on: {
             slideChangeTransitionEnd: function () {
                 $('.manga-list-title-right-item').removeClass('active');
-                $('.manga-list-title-right-item').eq(this.activeIndex % 4).addClass('active');
+                $('.manga-list-title-right-item').eq(this.activeIndex).addClass('active');
             },
         }
     });

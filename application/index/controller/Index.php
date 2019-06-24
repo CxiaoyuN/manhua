@@ -37,19 +37,22 @@ class Index extends Base
 
         $newest = cache('newest_homepage');
         if (!$newest) {
-            $newest = $this->bookService->getBooks('create_time', '1=1', 14);
+            $newest = $this->bookService->getBooks('last_time', '1=1', 14);
             cache('newest_homepage', $newest, null, 'redis');
         }
 
         $ends = cache('ends_homepage');
         if (!$ends) {
-            $ends = $this->bookService->getBooks('update_time', [['end', '=', '1']], 14);
+            $ends = $this->bookService->getBooks('create_time', [['end', '=', '1']], 14);
             cache('ends_homepage', $ends, null, 'redis');
         }
 
         $most_charged = cache('most_charged');
         if (!$most_charged) {
-            $most_charged = $this->bookService->getMostChargedBook();
+            $arr = $this->bookService->getMostChargedBook();
+            foreach ($arr as $item){
+                $most_charged[] = $item['book'];
+            }
             cache('most_charged', $most_charged, null, 'redis');
         }
 

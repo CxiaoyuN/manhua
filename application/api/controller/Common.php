@@ -14,9 +14,13 @@ use think\Controller;
 
 class Common extends Controller
 {
-    public function clearcache(){
+    public function clearcache()
+    {
         $key = input('api_key');
-        if (empty($key) || is_null($key)){
+        if (empty($key) || is_null($key)) {
+            return 'api密钥不能为空！';
+        }
+        if ($key != md5(config('site.api_key'))) {
             return 'api密钥错误！';
         }
         Cache::clear('redis');
