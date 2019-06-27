@@ -2,7 +2,6 @@
 
 namespace app\index\controller;
 
-use app\model\Banner;
 use app\model\Author;
 use think\Db;
 
@@ -75,7 +74,7 @@ class Index extends Base
     {
         $keyword = input('keyword');
         $redis = new_redis();
-        $redis->zIncrBy($this->redis_prefix . 'hot_search:', 1, $keyword);
+        $redis->zIncrBy($this->redis_prefix . 'hot_search', 1, $keyword);
         $hot_search_json = $redis->zRevRange($this->redis_prefix . 'hot_search:', 1, 4, true);
         $hot_search = array();
         foreach ($hot_search_json as $k => $v) {

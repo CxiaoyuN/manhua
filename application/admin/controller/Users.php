@@ -62,7 +62,7 @@ class Users extends BaseAdmin
 
     public function disabled()
     {
-        $data = $this->userService->getAdminPagedUsers(0);
+        $data = $this->userService->getAdminPagedUsers(0,[]);
         $this->assign([
             'users' => $data['users'],
             'count' => $data['count']

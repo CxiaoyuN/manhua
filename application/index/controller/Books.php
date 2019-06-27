@@ -42,11 +42,13 @@ class Books extends Base
             $recommand = $this->bookService->getRecommand($book->tags);
             cache('rand_books',$recommand,null,'redis');
         }
+
         $updates = cache('update_books');
         if (!$updates){
-            $updates = $this->bookService->getBooks('update_time',[],10);
+            $updates = $this->bookService->getBooks('last_time',[],10);
             cache('update_books',$updates,null,'redis');
         }
+
         $start = cache('book_start:' . $id);
         if ($start == false) {
             $db = Db::query('SELECT id FROM '.$this->prefix.'chapter WHERE book_id = ' . $id . ' ORDER BY id LIMIT 1');

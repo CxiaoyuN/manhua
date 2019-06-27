@@ -84,6 +84,7 @@ class Books extends BaseAdmin
             }
             $book->author_id = $author->id;
             $book->author_name = $author->author_name;
+            $book->last_time = time();
             $result = $book->save($data);
             if ($result) {
                 $dir = App::getRootPath() . '/public/static/upload/book/' . $book->id;
@@ -131,6 +132,7 @@ class Books extends BaseAdmin
             } else { //如果作者已经存在
                 $data['author_id'] = $author->id;
                 $data['author_name'] = $author->author_name;
+                $data['last_time'] = time();
             }
             $result = Book::update($data);
             if ($result) {
