@@ -13,8 +13,8 @@
             <span style="color: red" class="wallet-main-coin-value">{$promotion_sum}</span> 元
         </div>
     </div>
-    <a class="wallet-main-coin-btn copy-btns" data-clipboard-target="#fo1">获取推广链接</a>
-    <div style="color: white;margin-top: 3px;text-align: center" id="fo1">{$url}?pid={$Think.session.xwx_user_id}</div>
+    <a class="wallet-main-coin-btn copy-btns" id="copy-btns">获取推广链接</a>
+    <input type="text" value="{$url}?pid={$Think.session.xwx_user_id}" id="copy-text" style="visibility: hidden;">
     <ol>
         <li style="list-style-type: disc;width: 90%;margin-left:5%;" class="wallet-main-coin-title">
             通过您的推广链接注册的会员自动成为您的下线, 同时您会获得<span style="color: red">{$reg_reward}</span>元的奖励
@@ -36,16 +36,16 @@
     </ul>
 </div>
 <div class="toast" style="display:none;"></div>
-<script src="/static/js/clipboard.min.js"></script>
+<script src="https://cdn.bootcss.com/clipboard-polyfill/3.0.0-beta3/clipboard-polyfill.js"></script>
 <script type="text/javascript">
-    var clipboard = new Clipboard('.copy-btns');
-    clipboard.on('success',
-        function (e) {
+    $('#copy-btns').click(function () {
+        var text=$('#copy-text').val();
+        clipboard.writeText(text).then(function(){
             ShowDialog('复制成功');
-        });
-    clipboard.on('error',
-        function (e) {
+        }, function(err){
             ShowDialog('复制失败');
         });
+    })
+
 </script>
 {/block}

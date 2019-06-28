@@ -169,5 +169,10 @@ class Books extends Base
         foreach ($comments as &$comment){
             $comment['content'] = file_get_contents($dir.'/'.$comment->id.'.txt');
         }
+        $result = [
+            'success' => 1,
+            'comments' => $comments
+        ];
+        return json($result);
     }
 }

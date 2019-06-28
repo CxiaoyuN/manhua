@@ -13,7 +13,7 @@
                     <span class="pl10" id="fo1">{$url}?pid={$Think.session.xwx_user_id}</span>
                 </small>
                 <div class="pull-right">
-                    <a class="btn wallet-btn copy-btns" data-clipboard-target="#fo1">复制链接</a>
+                    <a class="btn wallet-btn copy-btns" id="copy-btns">复制链接</a>
                 </div>
             </header>
             <div class="box-body">
@@ -63,16 +63,16 @@
         </section>
     </article>
 </main>
-<script src="/static/js/clipboard.min.js"></script>
+<script src="https://cdn.bootcss.com/clipboard-polyfill/3.0.0-beta3/clipboard-polyfill.js"></script>
 <script type="text/javascript">
-    var clipboard = new Clipboard('.copy-btns');
-    clipboard.on('success',
-        function (e) {
+    $('#copy-btns').click(function () {
+        var text=$('#fo1').text();
+        clipboard.writeText(text).then(function(){
             ShowDialog('复制成功');
-        });
-    clipboard.on('error',
-        function (e) {
+        }, function(err){
             ShowDialog('复制失败');
         });
+    })
+
 </script>
 {/block}
