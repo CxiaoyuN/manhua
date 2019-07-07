@@ -3,11 +3,12 @@
 
 namespace app\app\controller;
 
+
 use app\model\Tags as Tag;
 
-class Index extends Base
+class Tags extends Base
 {
-    public function tags(){
+    public function getList(){
         $tags = cache('tags');
         if (!$tags){
             $tags = Tag::all();

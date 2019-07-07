@@ -44,7 +44,7 @@ CREATE TABLE `xwx_user_finance`  (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) NOT NULL DEFAULT 0,
   `money` decimal(10,2) NOT NULL DEFAULT 0 COMMENT '充值/消费金额',
-  `usage` tinyint(4) NOT NULL COMMENT '用途，1.充值，2.购买vip，3.购买章节，4.下线奖励',
+  `usage` tinyint(4) NOT NULL COMMENT '用途，1.充值，2.购买vip，3.购买章节，4.推广奖励',
   `summary` text COMMENT '备注',
   `create_time` int(11) DEFAULT '0',
   `update_time` int(11) DEFAULT '0',

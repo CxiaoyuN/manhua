@@ -193,9 +193,13 @@ class Books extends BaseAdmin
                 $start_pay = $data['start_pay'];
                 $money = $data['money'];
                 $area_id = $data['area_id'];
-                $sql = 'UPDATE xwx_book SET start_pay=' . $start_pay . ',money=' . $money;
+                $start_id = $data['start_id'];
+                $sql = 'UPDATE xwx_book SET start_pay=' . $start_pay . ',money=' . $money . ' WHERE 1=1';
                 if ($area_id != -1) {
-                    $sql = $sql . ' WHERE area_id=' . $area_id;
+                    $sql = $sql . ' AND area_id=' . $area_id;
+                }
+                if ($start_id > -1) {
+                    $sql = $sql . ' AND id>=' . $start_id;
                 }
                 Db::query($sql);
                 $this->success('批量设置成功');

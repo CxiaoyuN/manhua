@@ -26,7 +26,7 @@ return [
         ]
     ],
     'vip' => [  //设置vip天数及相应的价格
-        ['month' => 1, 'price' => 30],
+        ['month' => 1, 'price' => 5],
         ['month' => 6, 'price' => 100],
         ['month' => 12, 'price' => 400]
     ],
