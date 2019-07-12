@@ -14,7 +14,32 @@
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
     <article class="Hui-admin-content clearfix">
-
+        <div class="panel">
+            <div class="panel-body">
+                <div class="text-c">
+                    <input type="text" placeholder="用户id" style="width:250px" id="uid" class="input-text">
+                    <span class="select-box" style="width:150px;">
+                            <select id="usage" class="select" name="usage" size="1">
+                                <option value="0" selected="selected">全部</option>
+                                <option value="1">用户充值</option>
+                                <option value="2">购买vip</option>
+                                <option value="3">购买章节</option>
+                                <option value="4">推广奖励</option>
+                            </select>
+                     </span>
+                    <button type="submit" class="btn btn-success" onclick="search()"><i
+                            class="Hui-iconfont">&#xe665;</i> 查询
+                    </button>
+                </div>
+                <script>
+                    function search() {
+                        var uid = $('#uid').val();
+                        var usage = $('#usage option:selected').val();
+                        location.href = "finance?usage=" + usage + "&uid=" + uid;
+                    }
+                </script>
+            </div>
+        </div>
         <div class="panel mt-20">
             <div class="panel-body">
                 <div class="clearfix">
@@ -42,18 +67,19 @@
                             <td>
                                 {if $vo.usage ==1 }
                                 用户充值
-                                {elseif  $vo.usage ==2}
+                                {elseif $vo.usage ==2}
                                 购买vip
-                                {elseif  $vo.usage ==3}
+                                {elseif $vo.usage ==3}
                                 购买章节
-                                {elseif  $vo.usage ==4}
+                                {elseif $vo.usage ==4}
                                 推广奖励
                                 {/if}
                             </td>
                             <td>{$vo.summary}</td>
                             <td>{$vo.create_time|date='Y-m-d H:i'}</td>
                             <td class="f-14 td-manage">
-                                <a style="text-decoration:none" class="ml-5" onclick="del(this,{$vo.id})" href="javascript:;"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                                <a style="text-decoration:none" class="ml-5" onclick="del(this,{$vo.id})"
+                                   href="javascript:;"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                         </tr>
                         {/volist}
                         </tbody>

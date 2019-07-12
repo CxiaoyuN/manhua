@@ -82,6 +82,9 @@ class Chapters extends Base
                 cache('chapter_next:' . $id, $next, null, 'redis');
             }
 
+            $chapter['prev'] = count($prev) > 0 ? $prev[0] : null;
+            $chapter['next'] = count($next) > 0 ? $next[0] : null;
+
             $result = [
                 'success' => 1,
                 'chapter' => $chapter

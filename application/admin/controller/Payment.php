@@ -4,6 +4,8 @@
 namespace app\admin\controller;
 
 
+use app\model\User;
+use app\model\UserFinance;
 use app\service\FinanceService;
 use think\facade\App;
 
@@ -33,7 +35,23 @@ class Payment extends BaseAdmin
     //订单查询
     public function orders()
     {
-        $data = $this->financeService->getPagedOrders();
+        $id = input('id');
+        $uid = input('uid');
+        $status = input('status');
+        $map = array();
+        if ($id) {
+            $map[] = ['id', '=', $id];
+        }
+        if ($uid) {
+            $map[] = ['user_id', '=', $uid];
+        }
+        if ($status) {
+            if ($status == 2) {
+                $status = 0;
+            }
+            $map[] = ['status', '=', $status];
+        }
+        $data = $this->financeService->getPagedOrders($map);
         $this->assign([
             'orders' => $data['orders'],
             'count' => $data['count']
@@ -42,8 +60,18 @@ class Payment extends BaseAdmin
     }
 
     //用户消费记录
-    public function finance(){
-        $data = $this->financeService->getPagedFinance();
+    public function finance()
+    {
+        $uid = input('uid');
+        $usage = input('usage');
+        $map = array();
+        if ($uid) {
+            $map[] = ['user_id', '=', $uid];
+        }
+        if ($usage) {
+            $map[] = ['usage', '=', $usage];
+        }
+        $data = $this->financeService->getPagedFinance($map);
         $this->assign([
             'finances' => $data['finances'],
             'count' => $data['count']
@@ -52,12 +80,33 @@ class Payment extends BaseAdmin
     }
 
     //用户购买记录
-    public function buy(){
+    public function buy()
+    {
         $data = $this->financeService->getPagedBuyHistory();
         $this->assign([
             'buys' => $data['buys'],
             'count' => $data['count']
         ]);
+        return view();
+    }
+
+    public function charge()
+    {
+        if ($this->request->isPost()) {
+            $uid = input('uid');
+            $user = User::get($uid);
+            if (!$user) {
+                $this->error('用户不存在');
+            }
+            $money = input('money');
+            $userFinance = new UserFinance();
+            $userFinance->user_id = $uid;
+            $userFinance->money = $money;
+            $userFinance->usage = 1;
+            $userFinance->summary = '代充值';
+            $userFinance->save();
+            $this->success('充值成功');
+        }
         return view();
     }
 }

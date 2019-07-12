@@ -131,11 +131,22 @@ class Books extends Base
             cache('book_start:' . $id, $start,null,'redis');
         }
 
+        $isfavor = 0;
+        if (!is_null($this->uid)) {
+            $where[] = ['user_id', '=', $this->uid];
+            $where[] = ['book_id', '=', $id];
+            $userfavor = UserBook::where($where)->find();
+            if (!is_null($userfavor)) { //未收藏本漫画
+                $isfavor = 1;
+            }
+        }
+
         $result = [
             'success' => 1,
             'book' => $book,
             'tags' => $tags,
-            'start' => $start
+            'start' => $start,
+            'isfavor' => $isfavor
         ];
         return json($result);
     }

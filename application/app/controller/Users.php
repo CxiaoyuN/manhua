@@ -4,9 +4,12 @@
 namespace app\app\controller;
 
 
+use app\model\Book;
 use app\model\Comments;
 use app\model\Message;
 use app\model\User;
+use app\model\UserBook;
+use app\model\UserFinance;
 use app\service\FinanceService;
 use app\service\PromotionService;
 use app\service\UserService;
@@ -28,11 +31,36 @@ class Users extends BaseAuth
         $this->promotionService = new PromotionService();
     }
 
-    public function bookshelf(){
-        $favors = $this->userService->getFavors($this->uid);
+    public function userinfo()
+    {
+        $uid = $this->uid;
+        $userName = session('xwx_user');
+        $nickName = session('xwx_nick_name');
+        $mobile = session('xwx_user_mobile');
+        return [
+            'success' => 1,
+            'uid' => $uid,
+            'userName' => $userName,
+            'nickName' => $nickName,
+            'mobile' => $mobile
+        ];
+    }
+
+    public function bookshelf()
+    {
+        $startItem = input('startItem');
+        $pageSize = input('pageSize');
+        $favors = UserBook::where('user_id', '=', $this->uid)->limit($startItem, $pageSize)->select();
+
+        foreach ($favors as &$favor) {
+            $book = Book::get($favor->book_id);
+            $favor['book'] = $book;
+        }
         $result = [
             'success' => 1,
-            'favors' => $favors
+            'favors' => $favors,
+            'startItem' => $startItem,
+            'pageSize' => $pageSize
         ];
         return json($result);
     }
@@ -42,6 +70,33 @@ class Users extends BaseAuth
         $ids = explode(',', input('ids')); //书籍id;
         $this->userService->delFavors($this->uid, $ids);
         return ['success' => 1, 'msg' => '删除收藏'];
+    }
+
+    public function addfavor()
+    {
+        if (is_null($this->uid)) {
+            return ['success' => 0, 'msg' => '用户未登录'];
+        }
+        $redis = new_redis();
+        if ($redis->exists('favor_lock:' . $this->uid)) { //如果存在锁
+            return ['success' => 0, 'msg' => '操作太频繁'];
+        } else {
+            $redis->set('favor_lock:' . $this->uid, 1, 3); //写入锁
+
+            $val = input('val');
+            $book_id = input('book_id');
+
+            if ($val == 0) { //未收藏
+                $user = User::get($this->uid);
+                $book = Book::get($book_id);
+                $user->books()->save($book);
+                return ['success' => 1, 'isfavor' => 1]; //isfavor表示已收藏
+            } else {
+                $user = User::get($this->uid);
+                $user->books()->detach(['book_id' => $book_id]);
+                return ['success' => 1, 'isfavor' => 0]; //isfavor为0表示未收藏
+            }
+        }
     }
 
     public function history()
@@ -66,7 +121,8 @@ class Users extends BaseAuth
         return ['success' => 1, 'msg' => '删除阅读历史'];
     }
 
-    public function getVipExpireTime(){
+    public function getVipExpireTime()
+    {
         $user = User::get($this->uid);
         $time = $user->vip_expire_time - time();
         $result = [
@@ -84,9 +140,9 @@ class Users extends BaseAuth
         $res = $user->isUpdate(true)->save(['id' => $this->uid]);
         if ($res) {
             session('xwx_nick_name', $nick_name);
-            return json(['success' => 1,'msg' => '修改成功']);
+            return json(['success' => 1, 'msg' => '修改成功']);
         } else {
-            return json(['success' => 0,'msg' => '修改失败']);
+            return json(['success' => 0, 'msg' => '修改失败']);
         }
     }
 
@@ -111,10 +167,10 @@ class Users extends BaseAuth
     {
         $phone = input('phone');
         $code = input('phonecode');
-        if (is_null(session('xwx_sms_code')) || $code != session('xwx_sms_code')){
+        if (is_null(session('xwx_sms_code')) || $code != session('xwx_sms_code')) {
             return json(['success' => 0, 'msg' => '验证码错误']);
         }
-        if (is_null(session('xwx_cms_phone')) || $phone != session('xwx_cms_phone')){
+        if (is_null(session('xwx_cms_phone')) || $phone != session('xwx_cms_phone')) {
             return json(['success' => 0, 'msg' => '验证码错误']);
         }
         return json(['success' => 1, 'msg' => '验证码正确']);
@@ -140,7 +196,7 @@ class Users extends BaseAuth
             $redis = new_redis();
             $redis->set($this->redis_prefix . ':xwx_mobile_unlock:' . $this->uid, 1, 300); //设置解锁缓存，让用户可以更改手机
         }
-        return json(['success' => 0, 'msg' => $result['msg']]) ;
+        return json(['success' => 0, 'msg' => $result['msg']]);
     }
 
     public function resetpwd()
@@ -153,7 +209,7 @@ class Users extends BaseAuth
             'password' => $pwd,
         ];
         if (!$validate->check($data)) {
-            return json(['msg' => '密码在6到21位之间', 'success' => 0]) ;
+            return json(['msg' => '密码在6到21位之间', 'success' => 0]);
         }
         $user = User::get($this->uid);
         $user->password = $pwd;
@@ -211,42 +267,42 @@ class Users extends BaseAuth
 
     public function message()
     {
+        $startItem = input('startItem');
+        $pageSize = input('pageSize');
         $map[] = ['msg_key', '=', $this->uid];
         $map[] = ['type', '=', 0]; //类型为用户留言
-        $type = 'util\Page';
-        $num = 10;
-        if ($this->request->isMobile()) {
-            $type = 'util\MPage';
-            $num = 1;
-        }
-        $msgs = Message::where($map)->paginate($num, true,
-            [
-                'type' => $type,
-                'var_page' => 'page',
-            ])->each(function ($item, $key) {
-            $dir = Env::get('root_path') . '/public/static/upload/message/' . $item['id'] . '/';
-            $item['content'] = file_get_contents($dir . 'msg.txt'); //获取用户留言内容
+        $msgs = Message::where($map)->limit($startItem, $pageSize)->select()
+            ->each(function ($item, $key) {
+                $dir = Env::get('root_path') . '/public/static/upload/message/' . $item['id'] . '/';
+                $item['content'] = file_get_contents($dir . 'msg.txt'); //获取用户留言内容
 
-            //利用本条留言的ID查出本条留言的所有回复留言
-            $map2[] = ['msg_key', '=', $item['id']];
-            $map2[] = ['type', '=', 1]; //类型为回复
-            $replys = Message::where($map2)->select();
-            $item['replys'] = $replys;
-            foreach ($replys as &$reply) {
-                $reply['content'] = file_get_contents($dir . $reply->id . '.txt');
-            }
-        });
+                //利用本条留言的ID查出本条留言的所有回复留言
+                $map2[] = ['msg_key', '=', $item['id']];
+                $map2[] = ['type', '=', 1]; //类型为回复
+                $replys = Message::where($map2)->select();
+                $item['replys'] = $replys;
+                foreach ($replys as &$reply) {
+                    $reply['content'] = file_get_contents($dir . $reply->id . '.txt');
+                }
+            });
 
-        return json(['success' => 1, 'msg' => $msgs]);
+        return json(['success' => 1, 'msg' => $msgs, 'startItem' => $startItem, 'pageSize' => $pageSize]);
     }
 
     public function getRewards()
     {
-        $rewards = cache('rewards:' . $this->uid);
-        if (!$rewards) {
-            $rewards = $this->promotionService->getRewardsHistory();
-        }
-        return json(['success' => 1, 'rewards' => $rewards]);
+        $startItem = input('startItem');
+        $pageSize = input('pageSize');
+        $map = array();
+        $map[] = ['user_id', '=', $this->uid];
+        $map[] = ['usage', '=', 4]; //4为奖励记录
+        $rewards = UserFinance::where($map)->limit($startItem, $pageSize)->select();
+        return json([
+            'success' => 1,
+            'rewards' => $rewards,
+            'startItem' => $startItem,
+            'pageSize' => $pageSize
+        ]);
     }
 
 }

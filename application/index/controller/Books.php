@@ -23,47 +23,47 @@ class Books extends Base
     public function index($id)
     {
         $book = cache('book:' . $id);
-        $tags = cache('tags:book:' . $id );
-        if ($book ==false) {
-            $book = Book::with(['chapters' => function($query){
+        $tags = cache('tags:book:' . $id);
+        if ($book == false) {
+            $book = Book::with(['chapters' => function ($query) {
                 $query->order('chapter_order');
             }])->find($id);
             $tags = [];
-            if(!empty($book->tags) || is_null($book->tags)){
+            if (!empty($book->tags) || is_null($book->tags)) {
                 $tags = explode('|', $book->tags);
-            }           
-            cache('book:' . $id, $book,null,'redis');
-            cache('tags:book:' . $id , $tags,null,'redis');
+            }
+            cache('book:' . $id, $book, null, 'redis');
+            cache('tags:book:' . $id, $tags, null, 'redis');
         }
         $hot_books = $this->savehot($book);
 
         $recommand = cache('rand_books');
-        if (!$recommand){
+        if (!$recommand) {
             $recommand = $this->bookService->getRecommand($book->tags);
-            cache('rand_books',$recommand,null,'redis');
+            cache('rand_books', $recommand, null, 'redis');
         }
 
         $updates = cache('update_books');
-        if (!$updates){
-            $updates = $this->bookService->getBooks('last_time',[],10);
-            cache('update_books',$updates,null,'redis');
+        if (!$updates) {
+            $updates = $this->bookService->getBooks('last_time', [], 10);
+            cache('update_books', $updates, null, 'redis');
         }
 
         $start = cache('book_start:' . $id);
         if ($start == false) {
-            $db = Db::query('SELECT id FROM '.$this->prefix.'chapter WHERE book_id = ' . $id . ' ORDER BY id LIMIT 1');
+            $db = Db::query('SELECT id FROM ' . $this->prefix . 'chapter WHERE book_id = ' . $id . ' ORDER BY id LIMIT 1');
             $start = $db ? $db[0]['id'] : -1;
-            cache('book_start:' . $id, $start,null,'redis');
+            cache('book_start:' . $id, $start, null, 'redis');
         }
 
         $comments = $this->getComments($book->id);
 
         $isfavor = 0;
-        if (!is_null($this->uid)){
-            $where[] = ['user_id','=',$this->uid];
-            $where[] = ['book_id','=',$id];
+        if (!is_null($this->uid)) {
+            $where[] = ['user_id', '=', $this->uid];
+            $where[] = ['book_id', '=', $id];
             $userfavor = UserBook::where($where)->find();
-            if (!is_null($userfavor)){ //未收藏本漫画
+            if (!is_null($userfavor)) { //未收藏本漫画
                 $isfavor = 1;
             }
         }
@@ -85,34 +85,44 @@ class Books extends Base
 
     public function booklist(Request $request)
     {
+        $page_num = $request->param('page_num');
         $cate_selector = '全部';
         $area_selector = '全部';
         $end_selector = '全部';
-        $tags = \app\model\Tags::all();
-        $areas = \app\model\Area::all();
+        $tags = cache('tags');
+        if (!$tags) {
+            $tags = \app\model\Tags::all();
+            cache('tags', $tags, null, 'redis');
+        }
+        $areas = cache('areas');
+        if (!$areas) {
+            $areas = \app\model\Area::all();
+            cache('areas', $areas, null, 'redis');
+        }
+
         $map = array();
         $area = $request->param('area');
-        if (is_null($area) || $area == '-1'){
+        if (is_null($area) || $area == '-1') {
 
         } else {
             $area_selector = $area;
-            $map[] = ['area_id','=',$area];
+            $map[] = ['area_id', '=', $area];
         }
         $tag = $request->param('tag');
-        if (is_null($tag) || $tag == '全部'){
+        if (is_null($tag) || $tag == '全部') {
 
         } else {
             $cate_selector = $tag;
             $map[] = ['tags', 'like', '%' . $tag . '%'];
         }
         $end = $request->param('end');
-        if (is_null($end) || $end == -1){
+        if (is_null($end) || $end == -1) {
 
         } else {
             $end_selector = $end;
-            $map[] = ['end','=',$end];
+            $map[] = ['end', '=', $end];
         }
-        $books = $this->bookService->getPagedBooks('create_time', $map, 35);
+        $books = $this->bookService->getPagedBooks('create_time', $map, $page_num);
         $this->assign([
             'books' => $books,
             'tags' => $tags,
@@ -125,33 +135,34 @@ class Books extends Base
         return view($this->tpl);
     }
 
-    public function addfavor(){
-        if ($this->request->isPost()){
-            if (is_null($this->uid)){
+    public function addfavor()
+    {
+        if ($this->request->isPost()) {
+            if (is_null($this->uid)) {
                 return ['err' => 1, 'msg' => '用户未登录'];
             }
             $redis = new_redis();
-            if ($redis->exists('favor_lock:'.$this->uid)){ //如果存在锁
-                return ['err' => 1,'msg' => '操作太频繁'];
-            }else{
-                $redis->set('favor_lock:'.$this->uid,1,3); //写入锁
+            if ($redis->exists('favor_lock:' . $this->uid)) { //如果存在锁
+                return ['err' => 1, 'msg' => '操作太频繁'];
+            } else {
+                $redis->set('favor_lock:' . $this->uid, 1, 3); //写入锁
 
                 $val = input('val');
                 $book_id = input('book_id');
 
-                if ($val == 0){ //未收藏
+                if ($val == 0) { //未收藏
                     $user = User::get($this->uid);
                     $book = Book::get($book_id);
                     $user->books()->save($book);
                     return ['err' => 0, 'isfavor' => 1]; //isfavor表示已收藏
-                }else{
+                } else {
                     $user = User::get($this->uid);
                     $user->books()->detach(['book_id' => $book_id]);
                     return ['err' => 0, 'isfavor' => 0]; //isfavor为0表示未收藏
                 }
             }
         }
-        return ['err' => 1,'msg' => '不是post请求'];
+        return ['err' => 1, 'msg' => '不是post请求'];
     }
 
     private function savehot($book)
@@ -168,24 +179,25 @@ class Books extends Base
             'author' => $book->author,
             'taglist' => explode('|', $book->tags),
         ]));
-        $hots = $redis->zRevRange($this->redis_prefix.'hot_books',0,10,true);
+        $hots = $redis->zRevRange($this->redis_prefix . 'hot_books', 0, 10, true);
         $hot_books = array();
-        foreach ($hots as $k => $v){
-            $hot_books[] = json_decode($k,true);
+        foreach ($hots as $k => $v) {
+            $hot_books[] = json_decode($k, true);
         }
         return $hot_books;
     }
 
-    private function getComments($book_id){
-        $comments = cache('comments:'.$book_id);
-        if (!$comments){
-            $comments = Comments::where('book_id','=',$book_id)->order('create_time','desc')
-                ->limit(0,5)->select();
-            cache('comments:'.$book_id,$comments);
+    private function getComments($book_id)
+    {
+        $comments = cache('comments:' . $book_id);
+        if (!$comments) {
+            $comments = Comments::where('book_id', '=', $book_id)->order('create_time', 'desc')
+                ->limit(0, 5)->select();
+            cache('comments:' . $book_id, $comments);
         }
-        $dir = App::getRootPath().'public/static/upload/comments/'.$book_id;
-        foreach ($comments as &$comment){
-            $comment['content'] = file_get_contents($dir.'/'.$comment->id.'.txt');
+        $dir = App::getRootPath() . 'public/static/upload/comments/' . $book_id;
+        foreach ($comments as &$comment) {
+            $comment['content'] = file_get_contents($dir . '/' . $comment->id . '.txt');
         }
         return $comments;
     }

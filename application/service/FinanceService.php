@@ -68,7 +68,7 @@ class FinanceService extends Controller
         }
         $map = array();
         $map[] = ['user_id', '=', $uid];
-        $map[] = ['usage', 'in', [1,4]];
+        $map[] = ['usage', 'in', [1, 4]];
         $sum = UserFinance::where($map)->sum('money');
         return $sum;
     }
@@ -123,9 +123,9 @@ class FinanceService extends Controller
         }
     }
 
-    public function getPagedOrders()
+    public function getPagedOrders($where = '1=1')
     {
-        $data = UserOrder::order('id', 'desc');
+        $data = UserOrder::where($where)->order('id', 'desc');
         $orders = $data->paginate(5, false,
             [
                 'query' => request()->param(),
@@ -138,9 +138,9 @@ class FinanceService extends Controller
         ];
     }
 
-    public function getPagedFinance()
+    public function getPagedFinance($where = '1=1')
     {
-        $data = UserFinance::order('id', 'desc');
+        $data = UserFinance::where($where)->order('id', 'desc');
         $finances = $data->paginate(5, false,
             [
                 'query' => request()->param(),
