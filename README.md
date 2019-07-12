@@ -1,6 +1,6 @@
 # xiaohuanxiong
 开源有态度的漫画CMS
-- 官方论坛：http://raccooncms.com
+- 官方论坛：http://xhxcms.com
 - 文档地址：https://www.kancloud.cn/hiliqi/xwx_comic_cms
 - 官方QQ群：780362399
 
