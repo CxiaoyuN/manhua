@@ -44,20 +44,22 @@ class UserService extends Controller
         }
     }
 
-    public function getAdminPagedUsers($status, $where)
+    public function getAdminPagedUsers($status, $where, $orderBy, $order)
     {
         if ($status == 1) { //正常用户
-            $data = User::where($where)->order('id', 'desc');
+            $data = User::where($where)->order($orderBy, $order);
         } else {
-            $data = User::onlyTrashed()->where($where)->order('id', 'desc');
+            $data = User::onlyTrashed()->where($where)->order($orderBy, $order);
         }
-
+        $financeService = new FinanceService();
         $users = $data->paginate(5, false,
             [
                 'query' => request()->param(),
                 'type' => 'util\AdminPage',
                 'var_page' => 'page',
-            ]);
+            ])->each(function ($item, $key) use($financeService){
+                $item['balance'] = $financeService->getBalance($item->id);
+        });
         return [
             'users' => $users,
             'count' => $data->count()

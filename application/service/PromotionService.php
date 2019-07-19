@@ -32,10 +32,10 @@ class PromotionService extends Controller
             }
 
             $userFinance->save(); //存储用户充值数据
-            cache('rewards:' . $uid, null); //删除奖励缓存
-            cache('rewards:sum:' . $uid, null); //删除奖励总和缓存
-            Cache::clear('pay'); //清除支付缓存
         }
+        cache('rewards:' . $uid, null); //删除奖励缓存
+        cache('rewards:sum:' . $uid, null); //删除奖励总和缓存
+        Cache::clear('pay'); //清除支付缓存
     }
 
     public function getRewardsHistory()

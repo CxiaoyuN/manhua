@@ -26,7 +26,7 @@ class Users extends BaseAdmin
 
     public function index()
     {
-        $data = $this->userService->getAdminPagedUsers(1, []);
+        $data = $this->userService->getAdminPagedUsers(1, [], 'id', 'desc');
         $this->assign([
             'users' => $data['users'],
             'count' => $data['count']
@@ -39,6 +39,7 @@ class Users extends BaseAdmin
         $username = input('username');
         $status = input('status');
         $isvip = input('isvip');
+        $sort = input('sort');
         $where[] = ['username', 'like', '%' . $username . '%'];
         $time = time();
         if ($isvip == 'yes') {
@@ -46,8 +47,12 @@ class Users extends BaseAdmin
         } else if ($isvip == 'no') {
             $where[] = ['vip_expire_time', '<', $time];
         }
-
-        $data = $this->userService->getAdminPagedUsers($status, $where);
+        if ($sort) {
+            $orderBy = 'last_login_time';
+        } else {
+            $orderBy = 'id';
+        }
+        $data = $this->userService->getAdminPagedUsers($status, $where, $orderBy, $sort);
         $this->assign([
             'users' => $data['users'],
             'count' => $data['count']
@@ -62,7 +67,7 @@ class Users extends BaseAdmin
 
     public function disabled()
     {
-        $data = $this->userService->getAdminPagedUsers(0,[]);
+        $data = $this->userService->getAdminPagedUsers(0, [], 'id', 'desc');
         $this->assign([
             'users' => $data['users'],
             'count' => $data['count']

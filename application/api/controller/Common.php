@@ -11,6 +11,7 @@ namespace app\api\controller;
 use think\facade\App;
 use think\facade\Cache;
 use think\Controller;
+use app\model\Clicks;
 
 class Common extends Controller
 {
@@ -27,5 +28,23 @@ class Common extends Controller
         $rootPath = App::getRootPath();
         delete_dir_file($rootPath . '/runtime/cache/') && delete_dir_file($rootPath . '/runtime/temp/');
         return '清理成功';
+    }
+
+    public function sycnclicks()
+    {
+        $day = input('date');
+        if (!$day){
+            $day = date("Y-m-d", strtotime("-1 day"));
+        }
+        $redis = new_redis();
+        $hots = $redis->zRevRange('click:' . $day, 0, 10, true);
+        foreach ($hots as $k => $v) {
+            $clicks = new Clicks();
+            $clicks->book_id = $k;
+            $clicks->clicks = $v;
+            $clicks->cdate = $day;
+            $clicks->save();
+        }
+        return json(['success' => 1, 'msg' => '同步完成']);
     }
 }

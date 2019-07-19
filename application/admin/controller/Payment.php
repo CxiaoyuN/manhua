@@ -37,7 +37,7 @@ class Payment extends BaseAdmin
     {
         $id = input('id');
         $uid = input('uid');
-        $status = input('status');
+        $status = (int)input('status');
         $map = array();
         if ($id) {
             $map[] = ['id', '=', $id];
@@ -45,12 +45,11 @@ class Payment extends BaseAdmin
         if ($uid) {
             $map[] = ['user_id', '=', $uid];
         }
+
         if ($status) {
-            if ($status == 2) {
-                $status = 0;
-            }
-            $map[] = ['status', '=', $status];
+            $map[] = ['status', '=', $status == 2 ? 0 : 1];
         }
+
         $data = $this->financeService->getPagedOrders($map);
         $this->assign([
             'orders' => $data['orders'],

@@ -141,12 +141,12 @@ class Books extends Base
             }
         }
 
+        $book['start'] = $start;
+        $book['isfavor'] = $isfavor;
         $result = [
             'success' => 1,
             'book' => $book,
-            'tags' => $tags,
-            'start' => $start,
-            'isfavor' => $isfavor
+            'tags' => $tags
         ];
         return json($result);
     }

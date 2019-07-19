@@ -124,7 +124,7 @@ INFO;
                         $saveFileName = Env::get('root_path') . $value;
                         $dir = dirname($saveFileName);
                         if (!file_exists($dir)) {
-                            mkdir($dir, 0777);
+                            mkdir($dir, 0777,true);
                         }
                         file_put_contents($saveFileName, $data, true); //将内容写入到本地文件
                         array_push($msg, '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');

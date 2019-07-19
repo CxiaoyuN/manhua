@@ -24,7 +24,14 @@
                                 <option value="no">普通用户</option>
                                <option value="yes">vip用户</option>
                             </select>
-                        </span>
+                    </span>
+                    <span class="select-box" style="width:150px;">
+                            <select id="loginTimeSort" class="select" name="sort" size="1">
+                                <option value="" selected="selected">按登录时间排序</option>
+                                <option value="asc">升序</option>
+                               <option value="desc">降序</option>
+                            </select>
+                    </span>
                     <button type="submit" class="btn btn-success" onclick="search()"><i
                             class="Hui-iconfont">&#xe665;</i> 查询
                     </button>
@@ -33,7 +40,8 @@
                     function search() {
                         var username = $('#searchParam').val();
                         var isvip = $('#vipSel option:selected').val();
-                        location.href = "search?username=" + username + '&isvip=' + isvip + '&status=1';
+                        var sort = $('#loginTimeSort option:selected').val();
+                        location.href = "search?username=" + username + '&isvip=' + isvip + '&status=1' + '&sort=' + sort;
                     }
                 </script>
             </div>
@@ -51,8 +59,9 @@
                             <th width="120">用户名</th>
                             <th width="120">昵称</th>
                             <th width="120">手机</th>
+                            <th width="80">余额</th>
                             <th width="120">vip到期时间</th>
-                            <th width="120">创建时间</th>
+                            <th class="Hui-iconfont" width="120">最后登录时间</th>
                             <th width="200">操作</th>
                         </tr>
                         </thead>
@@ -63,8 +72,9 @@
                             <td>{$vo.username}</td>
                             <td>{$vo.nick_name}</td>
                             <td>{$vo.mobile}</td>
+                            <td>{$vo.balance}</td>
                             <td>{$vo.vip_expire_time|date='Y-m-d'}</td>
-                            <td>{$vo.create_time|date='Y-m-d H:i'}</td>
+                            <td>{$vo.last_login_time|date='Y-m-d H:i'}</td>
                             <td class="f-14 td-manage">
                                 <a style="text-decoration:none" class="ml-5"
                                    onclick="editCreate('用户编辑','edit?id={$vo.id}')">

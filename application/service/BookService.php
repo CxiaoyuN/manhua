@@ -11,6 +11,7 @@ namespace app\service;
 use app\index\controller\Base;
 use app\model\Book;
 use app\model\Chapter;
+use app\model\Clicks;
 use app\model\UserBuy;
 use think\Db;
 
@@ -117,7 +118,6 @@ class BookService extends Base
         return $books;
     }
 
-
     public function getByName($name)
     {
         return Book::where('book_name', '=', $name)->find();
@@ -144,5 +144,19 @@ FROM ' . $this->prefix . 'book AS ad1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(i
             "select * from " . $this->prefix . "book where match(book_name,summary,author_name,nick_name) 
             against ('" . $keyword . "' IN NATURAL LANGUAGE MODE)"
         );
+    }
+
+    public function getHotBooks($date = '1900-01-01', $num = 10)
+    {
+        $data = Db::query("SELECT book_id,SUM(clicks) as clicks FROM xwx_clicks WHERE cdate>=:cdate
+ GROUP BY book_id ORDER BY clicks DESC LIMIT :num", ['cdate' => $date, 'num' => $num]);
+        $books = array();
+        foreach ($data as $val) {
+            $book = Book::with('chapters')->find($val['book_id']);
+            $book['chapter_count'] = count($book->chapters);
+            $book['taglist'] = explode('|', $book->tags);
+            array_push($books,$book);
+        }
+        return $books;
     }
 }

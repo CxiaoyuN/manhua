@@ -37,13 +37,15 @@ class Users extends BaseAuth
         $userName = session('xwx_user');
         $nickName = session('xwx_nick_name');
         $mobile = session('xwx_user_mobile');
-        return [
+        return json([
             'success' => 1,
-            'uid' => $uid,
-            'userName' => $userName,
-            'nickName' => $nickName,
-            'mobile' => $mobile
-        ];
+            'user' => [
+                'uid' => $uid,
+                'userName' => $userName,
+                'nickName' => $nickName,
+                'mobile' => $mobile
+            ]
+        ]);
     }
 
     public function bookshelf()
@@ -69,17 +71,17 @@ class Users extends BaseAuth
     {
         $ids = explode(',', input('ids')); //书籍id;
         $this->userService->delFavors($this->uid, $ids);
-        return ['success' => 1, 'msg' => '删除收藏'];
+        return json(['success' => 1, 'msg' => '删除收藏']);
     }
 
     public function addfavor()
     {
         if (is_null($this->uid)) {
-            return ['success' => 0, 'msg' => '用户未登录'];
+            return json(['success' => 0, 'msg' => '用户未登录']);
         }
         $redis = new_redis();
         if ($redis->exists('favor_lock:' . $this->uid)) { //如果存在锁
-            return ['success' => 0, 'msg' => '操作太频繁'];
+            return json(['success' => 0, 'msg' => '操作太频繁']);
         } else {
             $redis->set('favor_lock:' . $this->uid, 1, 3); //写入锁
 
@@ -90,11 +92,11 @@ class Users extends BaseAuth
                 $user = User::get($this->uid);
                 $book = Book::get($book_id);
                 $user->books()->save($book);
-                return ['success' => 1, 'isfavor' => 1]; //isfavor表示已收藏
+                return json(['success' => 1, 'isfavor' => 1]); //isfavor表示已收藏
             } else {
                 $user = User::get($this->uid);
                 $user->books()->detach(['book_id' => $book_id]);
-                return ['success' => 1, 'isfavor' => 0]; //isfavor为0表示未收藏
+                return json(['success' => 1, 'isfavor' => 0]); //isfavor为0表示未收藏
             }
         }
     }

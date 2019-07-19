@@ -104,6 +104,8 @@ class Account extends Controller
                 if ($user->delete_time > 0) {
                     return ['err' => 1, 'msg' => '用户被锁定'];
                 } else {
+                    $user->last_login_time = time();
+                    $user->isUpdate(true)->save();
                     session('xwx_user', $user->username);
                     session('xwx_user_id', $user->id);
                     session('xwx_nick_name', $user->nick_name);

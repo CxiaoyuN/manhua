@@ -28,7 +28,7 @@ class Finance extends BaseUcenter
         $this->util = new $class();
         $this->balance = cache('balance:' . $this->uid); //当前用户余额
         if (!$this->balance) {
-            $this->balance = $this->financeService->getBalance();
+            $this->balance = $this->financeService->getBalance($this->uid);
             cache('balance:' . $this->uid, $this->balance, '', 'pay');
         }
     }
@@ -36,7 +36,7 @@ class Finance extends BaseUcenter
     //充值记录
     public function chargehistory()
     {
-        $charges = $this->financeService->getUserChargeHistory();
+        $charges = $this->financeService->getUserChargeHistory($this->uid);
 
         $charge_sum = cache('chargesum:' . $this->uid);
         if (!$charge_sum) {
@@ -55,7 +55,7 @@ class Finance extends BaseUcenter
 
     public function spendinghistory()
     {
-        $spendings = $this->financeService->getUserSpendingHistory();
+        $spendings = $this->financeService->getUserSpendingHistory($this->uid);
 
         $spending_sum = cache('spendingsum:' . $this->uid);
         if (!$spending_sum) {
@@ -98,7 +98,7 @@ class Finance extends BaseUcenter
     {
         $buys = cache('buyhistory:' . $this->uid);
         if (!$buys) {
-            $buys = $this->financeService->getUserBuyHistory();
+            $buys = $this->financeService->getUserBuyHistory($this->uid);
             cache('buyhistory:' . $this->uid, $buys, '', 'pay');
         }
         $this->assign([
@@ -159,7 +159,7 @@ class Finance extends BaseUcenter
         if ($this->request->isPost()) {
             $redis = new_redis();
             if (!$redis->exists($this->redis_prefix . ':user_buy_lock:'.$this->uid)) { //如果没上锁，则该用户可以进行购买操作
-                $this->balance = $this->financeService->getBalance(); //这里不查询缓存，直接查数据库更准确
+                $this->balance = $this->financeService->getBalance($this->uid); //这里不查询缓存，直接查数据库更准确
                 if ($price > $this->balance) { //如果价格高于用户余额，则不能购买
                     return ['err' => 1, 'msg' => '余额不足'];
                 } else {

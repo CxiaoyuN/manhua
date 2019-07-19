@@ -83,7 +83,7 @@ class Users extends BaseUcenter
     {
         $balance = cache('balance:' . $this->uid); //当前用户余额
         if (!$balance) {
-            $balance = $this->financeService->getBalance();
+            $balance = $this->financeService->getBalance($this->uid);
             cache('balance:' . $this->uid, $balance, '', 'pay');
         }
         $user = User::get($this->uid);

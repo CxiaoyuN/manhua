@@ -35,7 +35,15 @@ class Books extends Base
             cache('book:' . $id, $book, null, 'redis');
             cache('tags:book:' . $id, $tags, null, 'redis');
         }
-        $hot_books = $this->savehot($book);
+
+        $this->savehot($book);
+
+        $hot_books = cache('hot_books');
+        if (!$hot_books) {
+            $hot_books = $this->bookService->getHotBooks();
+            cache('hot_books', $hot_books, null, 'redis');
+        }
+
 
         $recommand = cache('rand_books');
         if (!$recommand) {
@@ -168,23 +176,10 @@ class Books extends Base
     private function savehot($book)
     {
         $redis = new_redis();
-        $redis->zIncrBy($this->redis_prefix . 'hot_books', 1, json_encode([
-            'id' => $book->id,
-            'book_name' => $book->book_name,
-            'cover_url' => $book->cover_url,
-            'last_time' => $book->last_time,
-            'chapter_count' => count($book->chapters),
-            'summary' => $book->summary,
-            'area' => $book->area,
-            'author' => $book->author,
-            'taglist' => explode('|', $book->tags),
-        ]));
-        $hots = $redis->zRevRange($this->redis_prefix . 'hot_books', 0, 10, true);
-        $hot_books = array();
-        foreach ($hots as $k => $v) {
-            $hot_books[] = json_decode($k, true);
-        }
-        return $hot_books;
+        $day = date("Y-m-d", time());
+        //以当前日期为键，增加点击数
+        $redis->zIncrBy('click:' . $day, 1, $book->id);
+
     }
 
     private function getComments($book_id)

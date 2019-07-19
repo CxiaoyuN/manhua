@@ -12,60 +12,46 @@ use think\Controller;
 
 class FinanceService extends Controller
 {
-    public function getUserChargeHistory()
+    public function getUserChargeHistory($uid)
     {
-        $uid = session('xwx_user_id');
-        if (!$uid) {
-            return [];
-        } else {
-            $map = array();
-            $map[] = ['user_id', '=', $uid];
-            $map[] = ['usage', '=', 1];
-            $type = 'util\Page';
-            if ($this->request->isMobile()) {
-                $type = 'util\MPage';
-            }
-            $charges = UserFinance::where($map)->paginate(10, false,
-                [
-                    'query' => request()->param(),
-                    'type' => $type,
-                    'var_page' => 'page',
-                ]);
-
-            return $charges;
+        $map = array();
+        $map[] = ['user_id', '=', $uid];
+        $map[] = ['usage', '=', 1];
+        $type = 'util\Page';
+        if ($this->request->isMobile()) {
+            $type = 'util\MPage';
         }
+        $charges = UserFinance::where($map)->paginate(10, false,
+            [
+                'query' => request()->param(),
+                'type' => $type,
+                'var_page' => 'page',
+            ]);
+
+        return $charges;
     }
 
-    public function getUserSpendingHistory()
+    public function getUserSpendingHistory($uid)
     {
-        $uid = session('xwx_user_id');
-        if (!$uid) {
-            return [];
-        } else {
-            $map = array();
-            $map[] = ['user_id', '=', $uid];
-            $map[] = ['usage', ['=', 2], ['=', 3], 'or'];
-            $type = 'util\Page';
-            if ($this->request->isMobile()) {
-                $type = 'util\MPage';
-            }
-            $spendings = UserFinance::where($map)->paginate(10, true,
-                [
-                    'query' => request()->param(),
-                    'type' => $type,
-                    'var_page' => 'page',
-                ]);
-            return $spendings;
+        $map = array();
+        $map[] = ['user_id', '=', $uid];
+        $map[] = ['usage', ['=', 2], ['=', 3], 'or'];
+        $type = 'util\Page';
+        if ($this->request->isMobile()) {
+            $type = 'util\MPage';
         }
+        $spendings = UserFinance::where($map)->paginate(10, true,
+            [
+                'query' => request()->param(),
+                'type' => $type,
+                'var_page' => 'page',
+            ]);
+        return $spendings;
     }
 
     //获得当前用户充值总和
-    public function getChargeSum()
+    public function getChargeSum($uid)
     {
-        $uid = session('xwx_user_id');
-        if (!$uid) {
-            return 0;
-        }
         $map = array();
         $map[] = ['user_id', '=', $uid];
         $map[] = ['usage', 'in', [1, 4]];
@@ -74,12 +60,8 @@ class FinanceService extends Controller
     }
 
     //获得当前用户消费总和
-    public function getSpendingSum()
+    public function getSpendingSum($uid)
     {
-        $uid = session('xwx_user_id');
-        if (!$uid) {
-            return 0;
-        }
         $map = array();
         $map[] = ['user_id', '=', $uid];
         $map[] = ['usage', ['=', 2], ['=', 3], 'or'];
@@ -87,40 +69,31 @@ class FinanceService extends Controller
         return $sum;
     }
 
-    public function getBalance()
+    public function getBalance($uid)
     {
-        $uid = session('xwx_user_id');
-        if (!$uid) {
-            return 0;
-        }
-        $charge_sum = $this->getChargeSum();
-        $spending_sum = $this->getSpendingSum();
+        $charge_sum = $this->getChargeSum($uid);
+        $spending_sum = $this->getSpendingSum($uid);
         return $charge_sum - $spending_sum;
     }
 
-    public function getUserBuyHistory()
+    public function getUserBuyHistory($uid)
     {
-        $uid = session('xwx_user_id');
-        if (!$uid) {
-            return [];
-        } else {
-            $type = 'util\Page';
-            if ($this->request->isMobile()) {
-                $type = 'util\MPage';
-            }
-            $buys = UserBuy::where('user_id', '=', $uid)->order('id', 'desc')
-                ->paginate(10, false,
-                    [
-                        'query' => request()->param(),
-                        'type' => $type,
-                        'var_page' => 'page',
-                    ]);
-            foreach ($buys as &$buy) {
-                $chapter = Chapter::with('book')->find($buy['chapter_id']);
-                $buy['chapter'] = $chapter;
-            }
-            return $buys;
+        $type = 'util\Page';
+        if ($this->request->isMobile()) {
+            $type = 'util\MPage';
         }
+        $buys = UserBuy::where('user_id', '=', $uid)->order('id', 'desc')
+            ->paginate(10, false,
+                [
+                    'query' => request()->param(),
+                    'type' => $type,
+                    'var_page' => 'page',
+                ]);
+        foreach ($buys as &$buy) {
+            $chapter = Chapter::with('book')->find($buy['chapter_id']);
+            $buy['chapter'] = $chapter;
+        }
+        return $buys;
     }
 
     public function getPagedOrders($where = '1=1')

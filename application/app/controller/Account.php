@@ -68,10 +68,10 @@ class Account extends Base
             $map[] = ['password', '=', md5(strtolower(trim($request->param('password'))) . config('site.salt'))];
             $user = User::withTrashed()->where($map)->find();
             if (is_null($user)) {
-                return ['success' => 0, 'msg' => '用户名或密码错误'];
+                return json(['success' => 0, 'msg' => '用户名或密码错误']);
             } else {
                 if ($user->delete_time > 0) {
-                    return ['success' => 0, 'msg' => '用户被锁定'];
+                    return json(['success' => 0, 'msg' => '用户被锁定']);
                 } else {
                     session('xwx_user', $user->username);
                     session('xwx_user_id', $user->id);
@@ -79,7 +79,7 @@ class Account extends Base
                     session('xwx_user_mobile', $user->mobile);
                     session('xwx_user_level', $user->level);
                     session('xwx_vip_expire_time', $user->vip_expire_time);
-                    return ['success' => 1, 'msg' => '登录成功'];
+                    return json(['success' => 1, 'msg' => '登录成功']);
                 }
             }
         } else {
@@ -88,7 +88,8 @@ class Account extends Base
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         session('xwx_user', null);
         session('xwx_user_id', null);
         return ['success' => 1, 'msg' => '登出成功'];

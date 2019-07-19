@@ -260,3 +260,17 @@ CREATE TABLE `xwx_message`  (
   key `type` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Table structure for xwx_clicks
+-- ----------------------------
+DROP TABLE IF EXISTS `xwx_clicks`;
+CREATE TABLE `xwx_clicks`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `book_id` int(10) UNSIGNED NOT NULL,
+  `clicks` int(10) UNSIGNED NOT NULL,
+  `cdate` datetime(0) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `book_id`(`book_id`) USING BTREE,
+  INDEX `cdate`(`cdate`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

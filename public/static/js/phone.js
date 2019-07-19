@@ -69,7 +69,7 @@ $('#sub1').click(function () {
 })
 
 $('#resetpwd_sub').click(function () {
-    if (resetpwd() == true) {
+    if (resetpwd() == 4) {
         $.post({
             url: '/resetpwd',
             data: {password: $("#txt_password").val()},
@@ -88,6 +88,7 @@ $('#resetpwd_sub').click(function () {
             }
         })
     } else {
+        ShowDialog('密码不符合要求');
         setTimeout(function () {
             location.reload();
         }, 1000);
