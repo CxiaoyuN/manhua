@@ -21,7 +21,7 @@ class Common extends Controller
         if (empty($key) || is_null($key)) {
             return 'api密钥不能为空！';
         }
-        if ($key != md5(config('site.api_key'))) {
+        if ($key != config('site.api_key')) {
             return 'api密钥错误！';
         }
         Cache::clear('redis');
@@ -32,6 +32,13 @@ class Common extends Controller
 
     public function sycnclicks()
     {
+        $key = input('api_key');
+        if (empty($key) || is_null($key)) {
+            return 'api密钥不能为空！';
+        }
+        if ($key != config('site.api_key')) {
+            return 'api密钥错误！';
+        }
         $day = input('date');
         if (!$day){
             $day = date("Y-m-d", strtotime("-1 day"));
