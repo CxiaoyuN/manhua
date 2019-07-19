@@ -28,6 +28,7 @@ CREATE TABLE `xwx_user` (
   `create_time` int(11) DEFAULT '0',
   `update_time` int(11) DEFAULT '0',
   `delete_time` int(11) DEFAULT '0',
+  `last_login_time` int(11) DEFAULT '0',
   `vip_expire_time` int(11) DEFAULT '0' COMMENT '会员到期时间',
   `pid`int(10) unsigned DEFAULT '0' COMMENT '上线用户ID',
   PRIMARY KEY (`id`) USING BTREE,
