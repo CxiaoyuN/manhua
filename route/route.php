@@ -14,7 +14,7 @@ use think\facade\Route;
 Route::rule('/tag/[:name]', 'index/tags/index');
 Route::rule('/book/:id', 'index/books/index');
 Route::rule('/booklist', 'index/books/booklist');
-Route::rule('/chapter/:id-:salt', 'index/chapters/index');
+Route::rule('/chapter/:id-[:salt]', 'index/chapters/index');
 Route::rule('/search/[:keyword]', 'index/search');
 Route::rule('/rank', 'index/rank/index');
 Route::rule('/author/:id', 'index/authors/index');

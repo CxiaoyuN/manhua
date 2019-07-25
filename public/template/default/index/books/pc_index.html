@@ -62,7 +62,11 @@
                     {if $start == -1}
                     <a href="#" class="btn-2" rel="nofollow">暂无章节</a>
                     {else /}
-                    <a href="/chapter/{$start}-{:dex($id_salt.$start)}" class="btn-2" rel="nofollow">开始阅读</a>
+                        {empty name="id_salt"}
+                        <a href="/chapter/{$start}" class="btn-2" rel="nofollow">开始阅读</a>
+                        {else /}
+                        <a href="/chapter/{$start}-{:dex($id_salt.$start)}" class="btn-2" rel="nofollow">开始阅读</a>
+                        {/empty}
                     {/if}
                 </div>
             </div>
@@ -156,7 +160,11 @@
                     <ul class="view-win-list detail-list-select" id="detail-list-select">
                         {volist name="book.chapters" id="vo"}
                         <li>
+                            {empty name="id_salt"}
+                            <a href="/chapter/{$vo.id}" target="_blank" rel="nofollow">{$vo.chapter_name}</a>
+                            {else /}
                             <a href="/chapter/{$vo.id}-{:dex($id_salt.$vo.id)}" target="_blank" rel="nofollow">{$vo.chapter_name}</a>
+                            {/empty}
                             {if $vo.chapter_order >= $book.start_pay }
                             <img class="detail-list-3-info-right" src="/static/images/center-main-list-logo-4.png">
                             {/if}
@@ -164,7 +172,7 @@
                         {/volist}
                     </ul>
                     <script>
-                        ;(function(){
+                        (function(){
                             $("#detail-list-select li").each(function(){
                                 var tsi=$(this).index();
                                 $(this).attr("idx",tsi);

@@ -4,7 +4,7 @@
             'img_site' => 'https://hm.com',
             'site_name' => '哈哈漫画',
             'salt' => 'hanmantai',
-            'id_salt' => 'manhua',
+            'id_salt' => 'dddd',
             'api_key' => 'hahahaha', 
             'tpl' => 'default',
             'payment' => 'Vkzf'         

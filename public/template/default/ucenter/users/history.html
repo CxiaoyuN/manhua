@@ -30,10 +30,19 @@
                 <p class="buy-manga-title">{$vo.book_name}</p>
             </a>
             <p class="buy-manga-author">{$vo.last_time|date='Y-m-d'}更新</p>
-            <a href="/chapter/{$vo.chapter_id}-{:dex($id_salt.$vo.chapter_id)}" class="readlink" mid="40683">
+            {empty name="id_salt"}
+            <a href="/chapter/{$vo.chapter_id}" class="readlink">
+            {else /}
+            <a href="/chapter/{$vo.chapter_id}-{:dex($id_salt.$vo.chapter_id)}" class="readlink">
+            {/empty}
                 <p class="buy-manga-new">{$vo.chapter_name}</p>
             </a>
-            <a class="buy-manga-right-a readlink" mid="{$vo.book_id}" href="/chapter/{$vo.chapter_id}-{:dex($id_salt.$vo.chapter_id)}">
+
+             {empty name="id_salt"}
+                <a class="buy-manga-right-a readlink" mid="{$vo.book_id}" href="/chapter/{$vo.chapter_id}">
+             {else /}
+                <a class="buy-manga-right-a readlink" mid="{$vo.book_id}" href="/chapter/{$vo.chapter_id}-{:dex($id_salt.$vo.chapter_id)}">
+             {/empty}
                 <img class="buy-manga-right-img" src="/static/images/buy-manga-right.png">
                 <p class="buy-manga-right-title">续看</p>
             </a>

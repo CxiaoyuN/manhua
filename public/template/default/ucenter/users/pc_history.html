@@ -69,7 +69,11 @@
                                         </h2>
                                         <p class="chapter" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
                                             <span>最近阅读</span>
+                                            {empty name="id_salt"}
+                                            <a href="/chapter/{$vo.chapter_id}" target="_blank">{$vo.chapter_name}</a>
+                                            {else /}
                                             <a href="/chapter/{$vo.chapter_id}-{:dex($id_salt.$vo.chapter_id)}" target="_blank">{$vo.chapter_name}</a>
+                                            {/empty}
                                         </p>
                                     </div>
                             </div>
