@@ -52,10 +52,10 @@
                             <div class="mh-item">
                                 {if empty($vo.cover_url)}
                                 <a class="mh-cover" style="background-image: url({$img_site}/static/upload/book/{$vo.book_id}/cover.jpg)"
-                                   href="/book/{$vo.book_id}">
+                                   href="/book/{$id_salt}{$vo.book_id}">
                                     {else /}
                                     <a class="mh-cover" style="background-image: url({$vo.cover_url})"
-                                       href="/book/{$vo.book_id}">
+                                       href="/book/{$id_salt}{$vo.book_id}">
                                         {/if}
                                         <span class="tag  mh-tag">{$vo.end?"完结":"连载"}</span>
                                         <span class="read-section">{$vo.last_time|date='Y-m-d'}更新</span>
@@ -65,11 +65,11 @@
                                     </a>
                                     <div class="mh-item-detali">
                                         <h2 class="title" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                            <a href="/book/{$vo.book_id}">{$vo.book_name}</a>
+                                            <a href="/book/{$id_salt}{$vo.book_id}">{$vo.book_name}</a>
                                         </h2>
                                         <p class="chapter" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
                                             <span>最近阅读</span>
-                                            <a href="/chapter/{$vo.chapter_id}" target="_blank">{$vo.chapter_name}</a>
+                                            <a href="/chapter/{$vo.chapter_id}-{:dex($id_salt.$vo.chapter_id)}" target="_blank">{$vo.chapter_name}</a>
                                         </p>
                                     </div>
                             </div>

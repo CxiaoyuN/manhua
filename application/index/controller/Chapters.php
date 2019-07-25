@@ -15,7 +15,7 @@ use think\Db;
 
 class Chapters extends Base
 {
-    public function index($id)
+    public function index($id,$salt)
     {
         $chapter = Chapter::with(['photos' => function ($query) {
             $query->order('pic_order');

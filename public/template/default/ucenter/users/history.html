@@ -16,7 +16,7 @@
     {volist name="books" id="vo"}
     <div class="buy-manga">
         <div class="buy-manga-cover">
-            <a href="/book/{$vo.book_id}">
+            <a href="/book/{$id_salt}{$vo.book_id}">
                 {if empty($vo.cover_url)}
                 <img src="{$img_site}/static/upload/book/{$vo.book_id}/cover.jpg">
                 {else /}
@@ -26,14 +26,14 @@
             <a class="buy-manga-cover-hover" href="javascript:void(0);" mid="{$vo.book_id}" style="display:none;"></a>
         </div>
         <div class="buy-manga-info">
-            <a href="/book/{$vo.book_id}" class="readlink" mid="{$vo.book_id}">
+            <a href="/book/{$id_salt}{$vo.book_id}" class="readlink" mid="{$vo.book_id}">
                 <p class="buy-manga-title">{$vo.book_name}</p>
             </a>
             <p class="buy-manga-author">{$vo.last_time|date='Y-m-d'}更新</p>
-            <a href="/chapter/{$vo.chapter_id}" class="readlink" mid="40683">
+            <a href="/chapter/{$vo.chapter_id}-{:dex($id_salt.$vo.chapter_id)}" class="readlink" mid="40683">
                 <p class="buy-manga-new">{$vo.chapter_name}</p>
             </a>
-            <a class="buy-manga-right-a readlink" mid="{$vo.book_id}" href="/chapter/{$vo.chapter_id}">
+            <a class="buy-manga-right-a readlink" mid="{$vo.book_id}" href="/chapter/{$vo.chapter_id}-{:dex($id_salt.$vo.chapter_id)}">
                 <img class="buy-manga-right-img" src="/static/images/buy-manga-right.png">
                 <p class="buy-manga-right-title">续看</p>
             </a>

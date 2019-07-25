@@ -22,7 +22,7 @@
         $(item).addClass('active');
         var end = $('#end a.active').attr('data-val');
         var area = $('#manga-list-bar-right-down a.active').attr('data-val');
-        location.href = '/booklist?tag={$cate_selector}'+'&area='+area+'&end='+end+'&page_num=36';
+        location.href = '/booklist?tag={$cate_selector}'+'&area='+area+'&end='+end;
     }
 </script>
 <div class="manga-list" style="border:none;background-color:#f8f8f8;padding-top: 87px;">
@@ -30,7 +30,7 @@
         {volist name="books" id="vo"}
         <li>
             <div class="manga-list-2-cover">
-                <a href="/book/{$vo.id}">
+                <a href="/book/{$id_salt}{$vo.id}">
                     {if empty($vo.cover_url)}
                     <img class="manga-list-2-cover-img lazy" data-original="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                     {else /}
@@ -39,10 +39,10 @@
                 </a>
             </div>
             <p class="manga-list-2-title">
-                <a href="/book/{$vo.id}">{$vo.book_name}</a>
+                <a href="/book/{$id_salt}{$vo.id}">{$vo.book_name}</a>
             </p>
             <p class="manga-list-2-tip">
-                <a href="/book/{$vo.id}">已更新 {$vo.chapter_count}话</a>
+                <a href="/book/{$id_salt}{$vo.id}">已更新 {$vo.chapter_count}话</a>
             </p>
         </li>
         {/volist}

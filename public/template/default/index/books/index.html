@@ -62,7 +62,7 @@
         <ul class="detail-list-1 detail-list-select" id="detail-list-select">
             {volist name="book.chapters" id="vo"}
             <li>
-                <a href="/chapter/{$vo.id}" title="{$vo.chapter_name}" class="chapteritem">{$vo.chapter_name}</a>
+                <a href="/chapter/{$vo.id}-{:dex($id_salt.$vo.id)}" title="{$vo.chapter_name}" class="chapteritem">{$vo.chapter_name}</a>
                 {if $vo.chapter_order >= $book.start_pay }
                 <img class="detail-list-3-info-right" src="/static/images/center-main-list-logo-4.png">
                 {/if}
@@ -91,7 +91,7 @@
             {if $start == -1}
             <a href="#" class="detail-bottom-btn">暂无章节</a>
             {else /}
-            <a href="/chapter/{$start}" class="detail-bottom-btn">开始阅读</a>
+            <a href="/chapter/{$start}-{:dex($id_salt.$start)}" class="detail-bottom-btn">开始阅读</a>
             {/if}
         </div>
         <a class="detail-list-more" id="detail-list-more" href="javascript:void(0);" onclick="charpterMore(this);">展开全部章节</a>
@@ -159,7 +159,7 @@
                     <img src="/static/images/mrtx.gif">
                 </div>
                 <div class="detail-list-comment-info">
-                    <p class="detail-list-comment-title">{$Think.session.xwx_nick_name|default='无昵称'}
+                    <p class="detail-list-comment-title">{$vo.user.nick_name|default=$vo.user.username}
                         <a class="detail-list-comment-right zanbtn" href="javascript:void(0);">1</a>
                     </p>
                     <p class="detail-list-comment-subtitle"> {$vo.create_time|date='Y-m-d'}</p>
@@ -178,7 +178,7 @@
         {volist name="recommand" id="vo"}
         <div class="buy-manga">
             <div class="buy-manga-cover">
-                <a href="/book/{$vo.id}">
+                <a href="/book/{$id_salt}{$vo.id}">
                     {if empty($vo.cover_url)}
                     <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg">
                     {else /}
@@ -188,14 +188,14 @@
                 <a class="buy-manga-cover-hover" href="javascript:void(0);" mid="2941" style="display:none;"></a>
             </div>
             <div class="buy-manga-info">
-                <a href="/book/{$vo.id}" class="readlink" mid="2941">
+                <a href="/book/{$id_salt}{$vo.id}" class="readlink" mid="2941">
                     <p class="buy-manga-title">{$vo.book_name}</p>
                 </a>
                 <p class="buy-manga-author">{$vo.last_time|date='Y-m-d'}更新</p>
-                <a href="/book/{$vo.id}" class="readlink" mid="40683">
+                <a href="/book/{$id_salt}{$vo.id}" class="readlink" mid="40683">
                     <p class="buy-manga-new">{$vo.summary|subtext=12}...</p>
                 </a>
-                <a class="buy-manga-right-a readlink" href="/book/{$vo.id}">
+                <a class="buy-manga-right-a readlink" href="/book/{$id_salt}{$vo.id}">
                     <img class="buy-manga-right-img" src="/static/images/buy-manga-right.png">
                     <p class="buy-manga-right-title">阅读</p>
                 </a>

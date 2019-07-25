@@ -223,3 +223,8 @@ function verifycode($code,$phone){
     }
     return 1;
 }
+
+//16进制转10进制
+function dex($str){
+    return base_convert($str,16,10);
+}

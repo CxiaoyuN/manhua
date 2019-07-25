@@ -38,16 +38,16 @@
         var tag = $('#tags dd.active').attr('data-val');
         var area = $('#areas dd.active').attr('data-val');
         var end = $('#end dd.active').attr('data-val');
-        location.href = '/booklist?tag='+tag+'&area='+area+'&end='+end+'&page_num=35';
+        location.href = '/booklist?tag='+tag+'&area='+area+'&end='+end;
     }
 </script>
 <section class="box container pb40 overflow-Show" style="min-height:400px;">
     <div class="box-body">
         <ul class="mh-list col7">
-            {volist name="books" id="vo"}
+            {volist name="books" id="vo" offset="0" length="35"}
             <li>
                 <div class="mh-item">
-                    <a href="/book/{$vo.id}" title="{$vo.book_name}">
+                    <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
                         {if empty($vo.cover_url)}
                         <p class="mh-cover" style="background-image: url({$img_site}/static/upload/book/{$vo.id}/cover.jpg)"></p>
                         {else /}
@@ -56,7 +56,7 @@
                     </a>
                     <div class="mh-item-detali">
                         <h2 class="title">
-                            <a href="/book/{$vo.id}" title="{$vo.book_name}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                 {$vo.book_name}
                             </a>
                     </h2>
@@ -66,7 +66,7 @@
                         </p>
                         <p class="chapter" style="width: 181px;">
                             <span>已更新</span>
-                            <a href="/book/{$vo.id}">{$vo.chapter_count}话</a>
+                            <a href="/book/{$id_salt}{$vo.id}">{$vo.chapter_count}话</a>
                         </p>
                     </div>
                 </div>
