@@ -36,9 +36,13 @@ class BookService extends Base
         return $books;
     }
 
-    public function getPagedBooksAdmin($where = '1=1')
+    public function getPagedBooksAdmin($status, $where = '1=1')
     {
-        $data = Book::where($where);
+        if ($status == 1) { //正常用户
+            $data = Book::where($where);
+        } else {
+            $data = Book::onlyTrashed()->where($where);
+        }
         $books = $data->with('author,chapters')->order('id', 'desc')
             ->paginate(5, false,
                 [
@@ -153,9 +157,11 @@ FROM ' . $this->prefix . 'book AS ad1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(i
         $books = array();
         foreach ($data as $val) {
             $book = Book::with('chapters')->find($val['book_id']);
-            $book['chapter_count'] = count($book->chapters);
-            $book['taglist'] = explode('|', $book->tags);
-            array_push($books,$book);
+            if ($book){
+                $book['chapter_count'] = count($book->chapters);
+                $book['taglist'] = explode('|', $book->tags);
+                array_push($books,$book);
+            }
         }
         return $books;
     }

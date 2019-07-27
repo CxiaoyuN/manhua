@@ -225,7 +225,6 @@ class Users extends BaseUcenter
 
     public function commentadd()
     {
-        $content = strip_tags(input('comment'));
         $book_id = input('book_id');
         $redis = new_redis();
         if ($redis->exists('comment_lock:' . $this->uid)) {
@@ -234,14 +233,15 @@ class Users extends BaseUcenter
             $comment = new Comments();
             $comment->user_id = $this->uid;
             $comment->book_id = $book_id;
+            $comment->content = strip_tags(input('comment'));
             $result = $comment->save();
             if ($result) {
-                $redis->set('comment_lock:' . $this->uid, 1, 10);
-                $dir = App::getRootPath() . 'public/static/upload/comments/' . $book_id;
-                if (!file_exists($dir)) {
-                    mkdir($dir, 0777, true);
-                }
-                file_put_contents($dir . '/' . $comment->id . '.txt', $content);
+                $redis->set('comment_lock:' . $this->uid, 1, 10); //加10秒锁
+//                $dir = App::getRootPath() . 'public/static/upload/comments/' . $book_id;
+//                if (!file_exists($dir)) {
+//                    mkdir($dir, 0777, true);
+//                }
+//                file_put_contents($dir . '/' . $comment->id . '.txt', $content);
                 cache('comments:' . $book_id, null);
                 return json(['msg' => '评论成功', 'err' => 0]);
             } else {
@@ -256,16 +256,16 @@ class Users extends BaseUcenter
             $msg = new Message();
             $msg->type = 0;//类型为用户留言
             $msg->msg_key = $this->uid; //这里的key为留言用户的id
+            $msg->content = strip_tags(input('content'));//过滤掉用户输入的HTML标签
             $res = $msg->save();
             if ($res) {
-                $content = strip_tags(input('content'));//过滤掉用户输入的HTML标签
-                //保存用户留言的文件路径
-                $dir = Env::get('root_path') . '/public/static/upload/message/' . $msg->id . '/';
-                if (!file_exists($dir)) {
-                    mkdir($dir, 0777);
-                }
-                $savename = $dir . 'msg.txt';
-                file_put_contents($savename, $content);
+//                //保存用户留言的文件路径
+//                $dir = Env::get('root_path') . '/public/static/upload/message/' . $msg->id . '/';
+//                if (!file_exists($dir)) {
+//                    mkdir($dir, 0777);
+//                }
+//                $savename = $dir . 'msg.txt';
+//                file_put_contents($savename, $content);
                 return ['err' => 0, 'msg' => '留言成功'];
             } else {
                 return ['err' => 1, 'msg' => '留言失败'];
@@ -290,17 +290,17 @@ class Users extends BaseUcenter
                 'type' => $type,
                 'var_page' => 'page',
             ])->each(function ($item, $key) {
-            $dir = Env::get('root_path') . '/public/static/upload/message/' . $item['id'] . '/';
-            $item['content'] = file_get_contents($dir . 'msg.txt'); //获取用户留言内容
+//            $dir = Env::get('root_path') . '/public/static/upload/message/' . $item['id'] . '/';
+//            $item['content'] = file_get_contents($dir . 'msg.txt'); //获取用户留言内容
 
             //利用本条留言的ID查出本条留言的所有回复留言
             $map2[] = ['msg_key', '=', $item['id']];
             $map2[] = ['type', '=', 1]; //类型为回复
             $replys = Message::where($map2)->select();
             $item['replys'] = $replys;
-            foreach ($replys as &$reply) {
-                $reply['content'] = file_get_contents($dir . $reply->id . '.txt');
-            }
+//            foreach ($replys as &$reply) {
+//                $reply['content'] = file_get_contents($dir . $reply->id . '.txt');
+//            }
         });
 
         $this->assign([

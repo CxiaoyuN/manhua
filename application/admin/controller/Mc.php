@@ -18,12 +18,13 @@ class Mc extends BaseAdmin
                 'query' => request()->param(),
                 'type' => 'util\AdminPage',
                 'var_page' => 'page',
-            ])->each(function ($item, $key) {
-            $dir = Env::get('root_path') . '/public/static/upload/message/' . $item['id'] . '/';
-            $item['content'] = file_get_contents($dir . 'msg.txt'); //获取用户留言内容
-            $user = User::get($item['msg_key']);//根据留言用户ID查出用户
-            $item['user'] = $user;
-        });
+            ]);
+//        ->each(function ($item, $key) {
+//            $dir = Env::get('root_path') . '/public/static/upload/message/' . $item['id'] . '/';
+//            $item['content'] = file_get_contents($dir . 'msg.txt'); //获取用户留言内容
+//            $user = User::get($item['msg_key']);//根据留言用户ID查出用户
+//            $item['user'] = $user;
+//        });
         $this->assign([
             'msgs' => $msgs,
             'count' => $data->count()
@@ -34,30 +35,30 @@ class Mc extends BaseAdmin
     public function reply()
     {
         $id = input('id');
-        $dir = Env::get('root_path') . '/public/static/upload/message/' . $id . '/';
-        if (!file_exists($dir)) {
-            mkdir($dir, 0777);
-        }
+//        $dir = Env::get('root_path') . '/public/static/upload/message/' . $id . '/';
+//        if (!file_exists($dir)) {
+//            mkdir($dir, 0777);
+//        }
         if ($this->request->isPost()) {
-            $content = input('content');
             $msg = new Message();
             $msg->msg_key = $id; //受回复消息的id
             $msg->type = 1;//类型是回复
+            $msg->content = input('content');
             $res = $msg->save();
-            if ($res) {
-                $savename = $dir . $msg->id . '.txt'; //回复消息的存储方式为id.txt
-                file_put_contents($savename, $content);
-            }
+//            if ($res) {
+//                $savename = $dir . $msg->id . '.txt'; //回复消息的存储方式为id.txt
+//                file_put_contents($savename, $content);
+//            }
             $this->success('回复成功');
         }
         $msg = Message::get($id);
-        $msg->content = file_get_contents($dir . 'msg.txt');
+        //$msg->content = file_get_contents($dir . 'msg.txt');
         $map[] = ['msg_key', '=', $id]; //key为受回复消息id
         $map[] = ['type', '=', 1]; //类型为回复
         $replys = Message::where($map)->select();
-        foreach ($replys as &$reply) {
-            $reply['content'] = file_get_contents($dir . $reply->id . '.txt');
-        }
+//        foreach ($replys as &$reply) {
+//            $reply['content'] = file_get_contents($dir . $reply->id . '.txt');
+//        }
         $this->assign([
             'msg' => $msg,
             'replys' => $replys

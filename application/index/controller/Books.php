@@ -190,10 +190,10 @@ class Books extends Base
                 ->order('create_time', 'desc')->limit(0, 5)->select();
             cache('comments:' . $book_id, $comments);
         }
-        $dir = App::getRootPath() . 'public/static/upload/comments/' . $book_id;
-        foreach ($comments as &$comment) {
-            $comment['content'] = file_get_contents($dir . '/' . $comment->id . '.txt');
-        }
+//        $dir = App::getRootPath() . 'public/static/upload/comments/' . $book_id;
+//        foreach ($comments as &$comment) {
+//            $comment['content'] = file_get_contents($dir . '/' . $comment->id . '.txt');
+//        }
         return $comments;
     }
 }

@@ -128,6 +128,7 @@ CREATE TABLE `xwx_book` (
   `create_time` int(11) DEFAULT '0',
   `update_time` int(11) DEFAULT '0',
   `last_time` int(11) DEFAULT '0' COMMENT '最后更新时间',
+  `delete_time` int(11) DEFAULT '0',
   `tags` varchar(100) DEFAULT '' COMMENT '分类',
   `summary` text COMMENT '简介',
   `end` tinyint(4) DEFAULT '0' COMMENT '0为连载，1为完结',

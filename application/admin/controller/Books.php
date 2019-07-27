@@ -24,9 +24,7 @@ class Books extends BaseAdmin
 
     public function index()
     {
-        $this->authorService = new \app\service\AuthorService();
-        $this->bookService = new \app\service\BookService();
-        $data = $this->bookService->getPagedBooksAdmin();
+        $data = $this->bookService->getPagedBooksAdmin(1);
         $books = $data['books'];
         foreach ($books as &$book) {
             $book['chapter_count'] = count($book->chapters);
@@ -42,10 +40,11 @@ class Books extends BaseAdmin
     public function search()
     {
         $name = input('book_name');
+        $status = input('status');
         $where = [
             ['book_name', 'like', '%' . $name . '%']
         ];
-        $data = $this->bookService->getPagedBooksAdmin($where);
+        $data = $this->bookService->getPagedBooksAdmin($status,$where);
         $books = $data['books'];
         foreach ($books as &$book) {
             $book['chapter_count'] = count($book->chapters);
@@ -158,6 +157,51 @@ class Books extends BaseAdmin
         }
     }
 
+    public function disable()
+    {
+        $id = input('id');
+        if (empty($id) || is_null($id)) {
+            return ['status' => 0];
+        }
+        $book = Book::get($id);
+        $result = $book->delete();
+        if ($result) {
+            return ['status' => 1];
+        } else {
+            return ['status' => 0];
+        }
+    }
+
+    public function enable()
+    {
+        $id = input('id');
+        if (empty($id) || is_null($id)) {
+            return ['status' => 0];
+        }
+        $book = Book::onlyTrashed()->find($id);
+        $result = $book->restore();
+        if ($result) {
+            return ['status' => 1];
+        } else {
+            return ['status' => 0];
+        }
+    }
+
+    public function disabled()
+    {
+        $data = $this->bookService->getPagedBooksAdmin(0);
+        $books = $data['books'];
+        foreach ($books as &$book) {
+            $book['chapter_count'] = count($book->chapters);
+        }
+        $count = $data['count'];
+        $this->assign([
+            'books' => $books,
+            'count' => $count
+        ]);
+        return view();
+    }
+
     public function delete($id)
     {
         $book = Book::get($id);
@@ -165,7 +209,7 @@ class Books extends BaseAdmin
         if (count($chapters) > 0) {
             return ['err' => 1, 'msg' => '该漫画下含有章节，请先删除所有章节'];
         }
-        $book->delete();
+        $book->delete(true);
         return ['err' => 0, 'msg' => '删除成功'];
     }
 
@@ -181,7 +225,7 @@ class Books extends BaseAdmin
                 $chapter->delete(); //删除章节
             }
         }
-        Book::destroy($ids);
+        Book::destroy($ids,true);
     }
 
     public function payment(Request $request)

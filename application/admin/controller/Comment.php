@@ -28,10 +28,11 @@ class Comment extends BaseAdmin
                 'query' => request()->param(),
                 'type' => 'util\AdminPage',
                 'var_page' => 'page',
-            ])->each(function ($item, $key) {
-            $dir = Env::get('root_path') . '/public/static/upload/comments/' . $item->book->id . '/';
-            $item['content'] = file_get_contents($dir . $item->id . '.txt'); //获取用户评论内容
-        });
+            ]);
+//        ->each(function ($item, $key) {
+//            $dir = Env::get('root_path') . '/public/static/upload/comments/' . $item->book->id . '/';
+//            $item['content'] = file_get_contents($dir . $item->id . '.txt'); //获取用户评论内容
+//        });
         $this->assign([
             'comments' => $comments,
             'count' => $data->count()

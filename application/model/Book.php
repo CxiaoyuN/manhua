@@ -9,11 +9,16 @@
 namespace app\model;
 
 use think\Model;
+use think\model\concern\SoftDelete;
 
 class Book extends Model
 {
     protected $pk = 'id';
     protected $autoWriteTimestamp = true;
+    use SoftDelete;
+    protected $deleteTime = 'delete_time';
+    protected $defaultSoftDelete = 0;
+
 
     public static function init()
     {
