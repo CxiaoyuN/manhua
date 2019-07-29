@@ -18,13 +18,12 @@ class Mc extends BaseAdmin
                 'query' => request()->param(),
                 'type' => 'util\AdminPage',
                 'var_page' => 'page',
-            ]);
-//        ->each(function ($item, $key) {
-//            $dir = Env::get('root_path') . '/public/static/upload/message/' . $item['id'] . '/';
-//            $item['content'] = file_get_contents($dir . 'msg.txt'); //获取用户留言内容
-//            $user = User::get($item['msg_key']);//根据留言用户ID查出用户
-//            $item['user'] = $user;
-//        });
+            ])->each(function ($item, $key) {
+            //$dir = Env::get('root_path') . '/public/static/upload/message/' . $item['id'] . '/';
+            //$item['content'] = file_get_contents($dir . 'msg.txt'); //获取用户留言内容
+            $user = User::get($item['msg_key']);//根据留言用户ID查出用户
+            $item['user'] = $user;
+        });
         $this->assign([
             'msgs' => $msgs,
             'count' => $data->count()
