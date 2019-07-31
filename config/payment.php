@@ -18,8 +18,8 @@ return [
         ]
     ],
     'kakapay' => [
-        'meid' => '2019260',
-        'mekey' => '4cc513851d754fd7c9a8d1f37c6a13a2',
+        'meid' => '',
+        'mekey' => '',
         'channel' => [
             ['type' => 'aliwap', 'code'=>1,'img' => 'alipay', 'title' => '支付宝'],
             ['type' => 'wxwap', 'code'=>3,'img' => 'weixin', 'title' => '微信支付']
