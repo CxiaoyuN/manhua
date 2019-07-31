@@ -240,12 +240,13 @@ CREATE TABLE `xwx_comments` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `book_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `content` text,
   `create_time` int(11) DEFAULT '0',
   `update_time` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `book_id` (`book_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for xwx_message
@@ -257,10 +258,11 @@ CREATE TABLE `xwx_message`  (
   `type` tinyint(4) NOT NULL COMMENT '留言类型：0是用户留言，1是回复',
   `create_time` int(11) DEFAULT '0',
   `update_time` int(11) DEFAULT '0',
+  `content` text,
   PRIMARY KEY (`id`) USING BTREE,
   KEY `msg_key` (`msg_key`),
   key `type` (`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for xwx_clicks
@@ -275,4 +277,18 @@ CREATE TABLE `xwx_clicks`  (
   INDEX `book_id`(`book_id`) USING BTREE,
   INDEX `cdate`(`cdate`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for xwx_vip_code
+-- ----------------------------
+DROP TABLE IF EXISTS `xwx_vip_code`;
+CREATE TABLE `xwx_vip_code`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'vip码',
+  `add_day` int(11) DEFAULT NULL COMMENT '增加时间',
+  `create_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT NULL,
+  `used` tinyint(4) DEFAULT -1 COMMENT '是否使用',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT = Dynamic;
 
