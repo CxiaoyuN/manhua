@@ -9398,6 +9398,29 @@ body {
     cursor: pointer
 }
 
+.vipcode .label .channel-btn {
+    height: 36px;
+    line-height: 36px;
+    padding: 0 8px;
+    background-color: #fd113a;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    outline: 0;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer
+}
+
+.vipcode input {
+    width: 33%;
+    height: 39px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 0 8px;
+    font-size: 15px;
+}
+
 .vip-recharge-con .recharge-footer a {
     color: #999;
     font-size: 13px

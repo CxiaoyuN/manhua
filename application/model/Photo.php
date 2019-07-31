@@ -14,7 +14,6 @@ use think\Model;
 class Photo extends Model
 {
     protected $pk='id';
-    protected $autoWriteTimestamp = true;
 
     public function chapter(){
         return $this->belongsTo('chapter');

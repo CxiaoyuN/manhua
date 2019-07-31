@@ -77,6 +77,19 @@ class Books extends Base
             }
         }
 
+        $start_pay = cache('max_chapter_order:' . $bid);
+        if (!$start_pay) {
+            if ($book->start_pay >= 0) {
+                $start_pay = $book->start_pay; //如果是正序，则开始付费章节就是设置的
+            } else { //如果是倒序付费设置
+                $abs = abs($book->start_pay) - 1; //取得倒序的绝对值，比如-2，则是倒数第2章开始付费
+                $max_chapter_order = Db::query("SELECT MAX(chapter_order) as max FROM " . $this->prefix . "chapter WHERE book_id=:id",
+                    ['id' => $bid])[0]['max'];
+                cache('max_chapter_order:' . $bid, $max_chapter_order);
+                $start_pay = (float)$max_chapter_order - $abs; //计算出起始付费章节
+            }
+        }
+
         $this->assign([
             'book' => $book,
             'tags' => $tags,
@@ -87,6 +100,7 @@ class Books extends Base
             'header_title' => $book->book_name,
             'isfavor' => $isfavor,
             'comments' => $comments,
+            'start_pay' => $start_pay
         ]);
         return view($this->tpl);
 

@@ -6,8 +6,7 @@ namespace app\model;
 
 use think\Model;
 
-class Message extends Model
+class VipCode extends Model
 {
     protected $pk='id';
-
 }

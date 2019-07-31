@@ -45,6 +45,7 @@ Route::rule('/charge', 'ucenter/finance/charge');
 Route::rule('/feedback', 'ucenter/finance/feedback');
 Route::rule('/buychapter', 'ucenter/finance/buychapter');
 Route::rule('/vip', 'ucenter/finance/vip');
+Route::rule('/vipexchange', 'ucenter/finance/vipexchange');
 
 Route::rule('/zhapaynotify', 'api/zhapaynotify/index');
 Route::rule('/vkzfnotify', 'api/vkzfnotify/index');

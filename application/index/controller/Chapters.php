@@ -21,9 +21,24 @@ class Chapters extends Base
             $query->order('pic_order');
         }], 'book')->cache('chapter:' . $id, 600, 'redis')->find($id);
         $flag = true;
-        if ($chapter->chapter_order >= $chapter->book->start_pay) { //如果本章是本漫画设定的付费章节
-            $flag = false;
+        if ($chapter->book->start_pay >= 0) {
+            if ($chapter->chapter_order >= $chapter->book->start_pay) { //如果本章序大于起始付费章节，则是付费章节
+                $flag = false;
+            }
+        } else { //如果是倒序付费设置
+            $abs = abs($chapter->book->start_pay) - 1; //取得倒序的绝对值，比如-2，则是倒数第2章开始付费
+            $max_chapter_order = cache('max_chapter_order:' . $chapter->book_id);
+            if (!$max_chapter_order) {
+                $max_chapter_order = Db::query("SELECT MAX(chapter_order) as max FROM " . $this->prefix . "chapter WHERE book_id=:id",
+                    ['id' => $chapter->book_id])[0]['max'];
+                cache('max_chapter_order:' . $chapter->book_id, $max_chapter_order);
+            }
+            $start_pay = (float)$max_chapter_order - $abs; //计算出起始付费章节
+            if ($chapter->chapter_order >= $start_pay) { //如果本章序大于起始付费章节，则是付费章节
+                $flag = false;
+            }
         }
+
         $uid = session('xwx_user_id');
 
         if (!is_null($uid)) { //如果用户已经登录

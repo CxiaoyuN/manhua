@@ -41,7 +41,6 @@ class Zhapaynotify extends Controller
                 if ($order) {
                     if ((int)$order->status == 0){
                         $order->money = $data['total_fee'];
-                        $order->pay_type = $type; //支付类型
                         $order->update_time = $data['paytime']; //云端处理订单时间戳
                         $order->status = $status;
                         $order->isupdate(true)->save(); //更新订单

@@ -165,7 +165,7 @@
                             {else /}
                             <a href="/chapter/{$vo.id}-{:dex($id_salt.$vo.id)}" target="_blank" rel="nofollow">{$vo.chapter_name}</a>
                             {/empty}
-                            {if $vo.chapter_order >= $book.start_pay }
+                            {if $vo.chapter_order >= $start_pay }
                             <img class="detail-list-3-info-right" src="/static/images/center-main-list-logo-4.png">
                             {/if}
                         </li>

@@ -22,7 +22,7 @@
             <li>
                 <div class="rank-list-cover">
                     {if empty($keyword.cover_url)}
-                    <img class="rank-list-cover-img lazy" data-original="{$img_site}/static/upload/book/{$id_salt}{$keyword.id}/cover.jpg" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$keyword.book_name}">
+                    <img class="rank-list-cover-img lazy" data-original="{$img_site}/static/upload/book/{$keyword.id}/cover.jpg" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$keyword.book_name}">
                     {else /}
                     <img class="rank-list-cover-img lazy" data-original="{$keyword.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$keyword.book_name}">
                     {/if}

@@ -19,7 +19,7 @@
     <div class="title-1">充值方式</div>
     <ul class="recharge-style">
         {volist name="payments" id="vo"}
-        <li data-val="{$vo.type}">
+        <li data-val="{$vo.type}" data-code="{$vo.code}">
             <img class="recharge-style-img" src="/static/images/{$vo.img}.png">
             <div class="recharge-style-info">
                 <p class="recharge-style-title">{$vo.title}</p>
@@ -31,6 +31,7 @@
     <form method="post" id="chargeForm" action="charge">
         <input type="hidden" name="money" id="money" value="">
         <input type="hidden" name="pay_type" id="pay_type" value="">
+        <input type="hidden" name="code" id="code">
     </form>
     <div class="recharge-tip">
         <p class="recharge-tip-line">温馨提示：</p>
@@ -52,6 +53,7 @@
     $('.recharge-style li').click(function () {
         $(this).addClass('active').siblings().removeClass('active');
         $('#pay_type').val($(this).attr('data-val'));
+        $('#code').valid($(this).attr('data-code'));
     })
 
     $('#formSub').click(function () {

@@ -5,14 +5,16 @@ namespace app\ucenter\controller;
 
 
 use app\model\Chapter;
+use app\model\FriendshipLink;
 use app\model\User;
 use app\model\UserBuy;
 use app\model\UserFinance;
 use app\model\UserOrder;
+use app\model\VipCode;
 use app\service\FinanceService;
-use think\App;
 use think\facade\Cache;
 use think\Request;
+use think\Db;
 
 class Finance extends BaseUcenter
 {
@@ -118,7 +120,7 @@ class Finance extends BaseUcenter
             $order->user_id = $this->uid;
             $order->money = $money;
             $order->status = 0; //未完成订单
-            $order->pay_type = 0;
+            $order->pay_type = $request->post('code');
             $order->expire_time = time() + 86400; //订单失效时间往后推一天
             $res = $order->save();
             if ($res) {
@@ -158,7 +160,7 @@ class Finance extends BaseUcenter
         $price = $chapter->book->money; //获得单章价格
         if ($this->request->isPost()) {
             $redis = new_redis();
-            if (!$redis->exists($this->redis_prefix . ':user_buy_lock:'.$this->uid)) { //如果没上锁，则该用户可以进行购买操作
+            if (!$redis->exists($this->redis_prefix . ':user_buy_lock:' . $this->uid)) { //如果没上锁，则该用户可以进行购买操作
                 $this->balance = $this->financeService->getBalance($this->uid); //这里不查询缓存，直接查数据库更准确
                 if ($price > $this->balance) { //如果价格高于用户余额，则不能购买
                     return ['err' => 1, 'msg' => '余额不足'];
@@ -178,7 +180,7 @@ class Finance extends BaseUcenter
                     $userBuy->summary = '购买章节';
                     $userBuy->save();
                 }
-                $redis->set($this->redis_prefix . ':user_buy_lock:'.$this->uid, 1, 5);
+                $redis->set($this->redis_prefix . ':user_buy_lock:' . $this->uid, 1, 5);
                 Cache::clear('pay'); //删除缓存
                 return ['err' => 0, 'msg' => '购买成功，等待跳转'];
             } else {
@@ -199,7 +201,7 @@ class Finance extends BaseUcenter
         $user = User::get($this->uid);
         if ($request->isPost()) {
             $redis = new_redis();
-            if (!$redis->exists($this->redis_prefix . ':user_buy_lock:'.$this->uid)) { //如果没上锁，则该用户可以进行购买操作
+            if (!$redis->exists($this->redis_prefix . ':user_buy_lock:' . $this->uid)) { //如果没上锁，则该用户可以进行购买操作
                 $arr = config('payment.vip'); //拿到vip配置数组
                 $month = (int)$request->param('month'); //拿到用户选择的vip
                 foreach ($arr as $key => $value) {
@@ -221,13 +223,13 @@ class Finance extends BaseUcenter
                                 $user->vip_expire_time = $user->vip_expire_time + $month * 30 * 24 * 60 * 60;
                             }
                             $user->isupdate(true)->save();
-                            session('xwx_vip_expire_time',$user->vip_expire_time); //更新session
+                            session('xwx_vip_expire_time', $user->vip_expire_time); //更新session
                             Cache::clear('pay'); //删除缓存
                             return ['err' => 0, 'msg' => '购买成功，等待跳转'];
                         }
                     }
                 }
-                $redis->set($this->redis_prefix . ':user_buy_lock:'.$this->uid, 1, 5);
+                $redis->set($this->redis_prefix . ':user_buy_lock:' . $this->uid, 1, 5);
                 return ['err' => 1, 'msg' => '请选择正确的选项']; //以防用户篡改页面的提交值
             } else {
                 return ['err' => -1, 'msg' => '同账号非法操作'];
@@ -245,6 +247,56 @@ class Finance extends BaseUcenter
             'user' => $user,
             'day' => $day,
             'vips' => config('payment.vip')
+        ]);
+        return view($this->tpl);
+    }
+
+    public function vipexchange()
+    {
+        if ($this->request->isPost()){
+            $str_code = trim(input('code'));
+            $user = User::get($this->uid);
+            $code = VipCode::where('code', '=', $str_code)->find();
+            if (!$code) {
+                return json(['err' => 1, 'msg' => '该优惠码不存在']);
+            } else {
+                if ((int)$code->used == 1) {
+                    return json(['err' => 1, 'msg' => '该vip码已经被使用']);
+                }
+
+                Db::startTrans();
+                try {
+                    Db::table($this->prefix . 'vip_code')->update([
+                        'used' => 1,
+                        'id' => $code->id,
+                        'update_time' => time()
+                    ]);
+                    Db::table($this->prefix . 'user')->update([
+                        'vip_expire_time' => strtotime('+' . (int)$code->add_day . ' day', (int)$user->vip_expire_time),
+                        'id' => $this->uid
+                    ]);
+                    // 提交事务
+                    Db::commit();
+                } catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+                    return json(['err' => 1, 'msg' => $e->getMessage()]);
+                }
+
+                return json(['err' => 0, 'msg' => 'vip码使用成功']);
+            }
+        }
+
+        $newest = cache('newest_homepage');
+        if (!$newest) {
+            $bookService = new \app\service\BookService();
+            $newest = $bookService->getBooks('last_time', '1=1', 14);
+            cache('newest_homepage', $newest, null, 'redis');
+        }
+
+        $this->assign([
+            'header_title' => 'vip会员',
+            'books' => $newest
         ]);
         return view($this->tpl);
     }

@@ -303,7 +303,7 @@ img.normal-top-right-avatar{height: 25px;vertical-align: top;margin-top: 11px;ma
 .line-container input{margin-top: 10px;width: 74%;border: 1px solid #F4F4F4;height: 50px;border-radius: 25px;outline: none;font-family: 'Microsoft YaHei';padding: 0 5%;font-size: 15px;}
 .line-container-btn{width: 84%;background: #FD113A;border-radius: 2px;height: 50px;display: block;line-height: 50px;text-align: center;margin: 30px auto;font-size: 15px;color: #FFFFFF;letter-spacing: 0;}
 
-.center-main{height: 100px;margin-top: 45px;background-image: url(/static/images/center-main-bg.png);background-size: cover;}
+.center-main{margin-top: 15px;background-image: url(/static/images/center-main-bg.png);background-size: cover;}
 .center-main-login{padding-top: 30px;text-align: center;}
 .center-main-login-btn{width: 100px;height: 40px;line-height: 40px;text-align: center;display: inline-block;font-size: 15px;color: #FD113A;letter-spacing: 0;background-color: #f4f4f4;border-radius: 2px;margin: 0 20px;}
 .center-main-info{padding-top: 16px;position: relative;overflow: hidden;height: 84px;}
@@ -313,7 +313,7 @@ img.normal-top-right-avatar{height: 25px;vertical-align: top;margin-top: 11px;ma
 .center-main-info-title{font-size: 15px;color: #FFFFFF;letter-spacing: 0;margin-top: 12px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .center-main-info-tip{font-size: 13px;color: #FFFFFF;letter-spacing: 0;margin-top: 6px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .center-main-info-right-logo{position: absolute;right: 20px;top: 40px;height: 20px;}
-.center-main-list{margin-top: 10px;}
+.center-main-list{margin-top: 10px;    margin-bottom: 51px;}
 .center-main-list-border{margin-top: 10px;border-top: 1px solid #f4f4f4;border-bottom: 1px solid #f4f4f4;}
 .center-main-list li,.center-main-list-border li{border-top: 1px solid #f4f4f4;height: 50px;line-height: 50px;background-color: #fff;}
 .center-main-list li.avatar,.center-main-list-border li.avatar{border-top: 1px solid #f4f4f4;height: 100px;line-height: 100px;background-color: #fff;}

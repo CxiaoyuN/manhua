@@ -18,6 +18,7 @@ class BaseUcenter extends Controller
 {
     protected $tpl;
     protected $uid;
+    protected $prefix;
     protected $redis_prefix;
     protected $id_salt;
 
@@ -34,6 +35,7 @@ class BaseUcenter extends Controller
     {
         parent::__construct($app);
         $this->redis_prefix = config('cache.prefix');
+        $this->prefix = config('database.prefix');
         $this->id_salt = config('site.id_salt');
         $tpl_root = './template/'.config('site.tpl').'/ucenter/';
         $controller = strtolower($this->request->controller());

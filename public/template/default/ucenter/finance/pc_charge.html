@@ -16,7 +16,7 @@
                     {volist name="payments" id="vo"}
                     <li>
                         <label>
-                            <input type="radio" name="channel" class="channel" data-val="{$vo.type}" checked="">
+                            <input type="radio" name="channel" class="channel" data-val="{$vo.type}" data-code="{$vo.code}" checked="">
                             <div>
                                 <img src="/static/images/{$vo.img}.png" alt="" style="width:auto;height:40px"> {$vo.title}
                             </div>
@@ -58,12 +58,14 @@
                 })
                 $('.channel').click(function () {
                     $('#pay_type').val($(this).attr('data-val'));
+                    $('#code').valid($(this).attr('data-code'));
                 })
             </script>
             <div class="recharge-footer mb20">
                 <form action="charge" method="post">
                     <input type="hidden" name="money" id="money" value="">
                     <input type="hidden" name="pay_type" id="pay_type" value="">
+                    <input type="hidden" name="code" id="code">
                     <span class="label">
                         <input type="submit" value="同意协议并充值" class="channel-btn">
                     </span>

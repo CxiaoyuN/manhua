@@ -14,7 +14,6 @@ use think\Model;
 class Banner extends Model
 {
     protected $pk='id';
-    protected $autoWriteTimestamp = true;
 
     public function book(){
         return $this->hasOne('book','id','book_id');
