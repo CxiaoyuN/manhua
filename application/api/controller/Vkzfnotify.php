@@ -6,7 +6,6 @@ namespace app\api\controller;
 use app\model\UserFinance;
 use app\model\UserOrder;
 use think\Controller;
-use think\facade\Cache;
 use think\Request;
 use util\Vkzf;
 use app\service\PromotionService;

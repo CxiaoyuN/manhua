@@ -288,7 +288,9 @@ CREATE TABLE `xwx_vip_code`  (
   `add_day` int(11) DEFAULT NULL COMMENT '增加时间',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `used` tinyint(4) DEFAULT -1 COMMENT '是否使用',
-  PRIMARY KEY (`id`) USING BTREE
+ `used` tinyint(4) DEFAULT -1 COMMENT '1.未使用 2.已发出 3.已使用',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `code`(`code`) USING BTREE,
+  INDEX `used`(`used`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT = Dynamic;
 

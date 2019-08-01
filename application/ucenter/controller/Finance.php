@@ -260,14 +260,14 @@ class Finance extends BaseUcenter
             if (!$code) {
                 return json(['err' => 1, 'msg' => '该优惠码不存在']);
             } else {
-                if ((int)$code->used == 1) {
+                if ((int)$code->used == 3) {
                     return json(['err' => 1, 'msg' => '该vip码已经被使用']);
                 }
 
                 Db::startTrans();
                 try {
                     Db::table($this->prefix . 'vip_code')->update([
-                        'used' => 1,
+                        'used' => 3, //变更状态为使用
                         'id' => $code->id,
                         'update_time' => time()
                     ]);

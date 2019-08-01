@@ -9,9 +9,9 @@ use app\model\UserOrder;
 use app\service\PromotionService;
 use think\Controller;
 use think\Request;
-use Util\Kakapay;
+use util\Kakapay;
 
-class Kakapaynotify extends Controller
+class kakapaynotify extends Controller
 {
     protected $kakapayUtil;
 
