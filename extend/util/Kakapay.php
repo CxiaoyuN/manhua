@@ -25,10 +25,10 @@ class Kakapay
         $this->mekey = trim(config('payment.kakapay.mekey'));
 
         if (empty($this->meid)) {
-            throw new Exception('meid should not be NULL!');
+            exception('meid should not be NULL!', 10006);
         }
         if (empty($this->mekey)) {
-            throw new Exception('mekey should not be NULL!');
+            exception('mekey should not be NULL!', 10006);
         }
     }
 
@@ -64,25 +64,6 @@ class Kakapay
             echo $pay['err_msg'];
             exit;
         }
-    }
-
-    private function setOrder($order)
-    {
-        if (empty($order) || !is_array($order)) {
-            throw new Exception("order must is a array!");
-        }
-        foreach ($this->order_require as $key) {
-            if (empty($order[$key]) || trim($order[$key]) == '') {
-                throw new Exception($key . ' should not be NULL!');
-            }
-            $order[$key] = trim($order[$key]);
-        }
-        foreach ($this->order_optional as $key) {
-            if (isset($order[$key])) {
-                $order[$key] = trim($order[$key]);
-            }
-        }
-        return $this;
     }
 
     public function payCode($order)
